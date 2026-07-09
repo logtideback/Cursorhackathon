@@ -20,14 +20,26 @@ export default function CaptureScreen({
 
   return (
     <div className="screen capture-screen">
-      <header className="app-header">
-        <h1 className="app-title">
-          Proof<span className="accent">Mode</span>
-        </h1>
-        <p className="headline">Capture the agreement before it becomes a disagreement.</p>
+      <header className="hero-header">
+        <div className="hero-top">
+          <div className="hero-badge" aria-hidden="true">
+            <span className="hero-badge-icon">🛡️</span>
+            <span className="hero-badge-check">✓</span>
+          </div>
+          <div className="hero-title-block">
+            <span className="hero-pill">Mobile agreement capture</span>
+            <h1 className="app-title">
+              Proof<span className="accent">Mode</span>
+            </h1>
+          </div>
+        </div>
+        <h2 className="headline">Capture the agreement before it becomes a disagreement.</h2>
+        <p className="hero-subtext">
+          Turn quick promises, payments, meetups, and returns into reviewed proof cards.
+        </p>
       </header>
 
-      <div className="card">
+      <div className="card glass-card">
         <label className="photo-upload-area" htmlFor="photo-input">
           {photoPreview ? (
             <img src={photoPreview} alt="Preview" className="photo-preview" />

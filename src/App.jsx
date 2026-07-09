@@ -148,6 +148,9 @@ export default function App() {
 
   return (
     <div className="app-shell">
+      <div className="bg-blob bg-blob-1" aria-hidden="true" />
+      <div className="bg-blob bg-blob-2" aria-hidden="true" />
+      <div className="bg-blob bg-blob-3" aria-hidden="true" />
       <main className="app-main">
         {viewingCard && currentCard ? (
           <ProofCardView

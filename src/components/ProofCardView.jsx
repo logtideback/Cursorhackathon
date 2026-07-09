@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { getTypeIcon, getTypeAccent, FIELD_ICONS } from '../utils/typeIcons'
 
 const FIELDS = [
   { key: 'title', label: 'Title' },
@@ -21,6 +22,8 @@ export default function ProofCardView({
 }) {
   const [isEditing, setIsEditing] = useState(false)
   const [editData, setEditData] = useState({ ...card })
+  const typeAccent = getTypeAccent(card.type)
+  const typeIcon = getTypeIcon(card.type)
 
   function handleEditField(key, value) {
     setEditData((prev) => ({ ...prev, [key]: value }))
@@ -38,17 +41,30 @@ export default function ProofCardView({
 
   const display = isEditing ? editData : card
 
+  function fieldIcon(key) {
+    if (key === 'type') return typeIcon
+    return FIELD_ICONS[key] || '•'
+  }
+
   return (
     <div className="screen proof-card-screen">
       <button type="button" className="back-btn" onClick={onBack}>
         ← Back
       </button>
 
-      <div className="card proof-card">
+      <div className={`card proof-card glass-card type-card-${typeAccent}`}>
+        <div className="proof-card-accent" aria-hidden="true" />
+
         <div className="proof-card-header">
-          <div>
-            <p className="extracted-label">AI extracted these details</p>
-            <span className="review-badge">Review required</span>
+          <div className="proof-card-title-row">
+            <span className="proof-type-icon">{typeIcon}</span>
+            <div>
+              <p className="extracted-label">AI extracted these details</p>
+              <div className="badge-row">
+                <span className="review-badge">Review required</span>
+                <span className="smart-badge">Smart extraction</span>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -58,70 +74,87 @@ export default function ProofCardView({
 
         <div className="proof-fields">
           {FIELDS.map(({ key, label }) => (
-            <div key={key} className="proof-field">
-              <span className="field-label">{label}</span>
-              {isEditing ? (
-                key === 'status' ? (
-                  <select
-                    className="field-input"
-                    value={editData.status}
-                    onChange={(e) => handleEditField('status', e.target.value)}
-                  >
-                    <option value="Open">Open</option>
-                    <option value="Complete">Complete</option>
-                  </select>
-                ) : key === 'confidence' ? (
-                  <select
-                    className="field-input"
-                    value={editData.confidence}
-                    onChange={(e) => handleEditField('confidence', e.target.value)}
-                  >
-                    <option value="High">High</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Low">Low</option>
-                  </select>
+            <div key={key} className="proof-field-row">
+              <span className="field-icon" aria-hidden="true">{fieldIcon(key)}</span>
+              <div className="proof-field">
+                <span className="field-label">{label}</span>
+                {isEditing ? (
+                  key === 'status' ? (
+                    <select
+                      className="field-input"
+                      value={editData.status}
+                      onChange={(e) => handleEditField('status', e.target.value)}
+                    >
+                      <option value="Open">Open</option>
+                      <option value="Complete">Complete</option>
+                    </select>
+                  ) : key === 'confidence' ? (
+                    <select
+                      className="field-input"
+                      value={editData.confidence}
+                      onChange={(e) => handleEditField('confidence', e.target.value)}
+                    >
+                      <option value="High">High</option>
+                      <option value="Medium">Medium</option>
+                      <option value="Low">Low</option>
+                    </select>
+                  ) : (
+                    <input
+                      className="field-input"
+                      value={editData[key]}
+                      onChange={(e) => handleEditField(key, e.target.value)}
+                    />
+                  )
                 ) : (
-                  <input
-                    className="field-input"
-                    value={editData[key]}
-                    onChange={(e) => handleEditField(key, e.target.value)}
-                  />
-                )
-              ) : (
-                <span className={`field-value ${key === 'status' ? `status-${display.status.toLowerCase()}` : ''} ${key === 'confidence' ? `confidence-${display.confidence.toLowerCase()}` : ''}`}>
-                  {key === 'status' && (
-                    <span className={`status-pill ${display.status.toLowerCase()}`}>
-                      {display.status}
-                    </span>
-                  )}
-                  {key === 'confidence' && (
-                    <span className={`confidence-pill ${display.confidence.toLowerCase()}`}>
-                      {display.confidence}
-                    </span>
-                  )}
-                  {key !== 'status' && key !== 'confidence' && display[key]}
-                </span>
-              )}
+                  <span className={`field-value ${key === 'status' ? `status-${display.status.toLowerCase()}` : ''} ${key === 'confidence' ? `confidence-${display.confidence.toLowerCase()}` : ''}`}>
+                    {key === 'status' && (
+                      <span className={`status-pill ${display.status.toLowerCase()}`}>
+                        {display.status}
+                      </span>
+                    )}
+                    {key === 'confidence' && (
+                      <span className={`confidence-pill ${display.confidence.toLowerCase()}`}>
+                        {display.confidence}
+                      </span>
+                    )}
+                    {key === 'type' && (
+                      <span className="type-inline">
+                        <span className="type-inline-icon">{typeIcon}</span>
+                        {display[key]}
+                      </span>
+                    )}
+                    {key !== 'status' && key !== 'confidence' && key !== 'type' && display[key]}
+                  </span>
+                )}
+              </div>
             </div>
           ))}
 
-          <div className="proof-field">
-            <span className="field-label">Source note</span>
-            <span className="field-value source-note">{display.sourceNote}</span>
+          <div className="proof-field-row">
+            <span className="field-icon" aria-hidden="true">📝</span>
+            <div className="proof-field">
+              <span className="field-label">Source note</span>
+              <span className="field-value source-note">{display.sourceNote}</span>
+            </div>
           </div>
 
-          <div className="proof-field">
-            <span className="field-label">Suggested confirmation message</span>
-            {isEditing ? (
-              <textarea
-                className="field-input message-input"
-                value={editData.suggestedMessage}
-                onChange={(e) => handleEditField('suggestedMessage', e.target.value)}
-                rows={3}
-              />
-            ) : (
-              <span className="field-value message-text">{display.suggestedMessage}</span>
-            )}
+          <div className="proof-field-row message-row">
+            <span className="field-icon" aria-hidden="true">💬</span>
+            <div className="proof-field">
+              <span className="field-label">Suggested confirmation message</span>
+              {isEditing ? (
+                <textarea
+                  className="field-input message-input"
+                  value={editData.suggestedMessage}
+                  onChange={(e) => handleEditField('suggestedMessage', e.target.value)}
+                  rows={3}
+                />
+              ) : (
+                <div className="message-bubble">
+                  <span className="message-text">{display.suggestedMessage}</span>
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
