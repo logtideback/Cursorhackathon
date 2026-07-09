@@ -36,7 +36,7 @@
   --font: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   --nav-height: 44px;
   --safe-bottom: max(env(safe-area-inset-bottom, 0px), 20px);
-  --main-bottom-pad: calc(var(--nav-height) + var(--safe-bottom) + 32px);
+  --main-bottom-pad: calc(140px + env(safe-area-inset-bottom, 0px));
 }
 
 html {
