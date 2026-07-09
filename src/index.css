@@ -34,8 +34,9 @@
   --gradient-accent: linear-gradient(135deg, #3B82F6 0%, #6366F1 100%);
   --gradient-accent-hover: linear-gradient(135deg, #2563EB 0%, #4F46E5 100%);
   --font: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --nav-height: 48px;
-  --safe-bottom: max(env(safe-area-inset-bottom, 0px), 16px);
+  --nav-height: 44px;
+  --safe-bottom: max(env(safe-area-inset-bottom, 0px), 20px);
+  --main-bottom-pad: calc(var(--nav-height) + var(--safe-bottom) + 32px);
 }
 
 html {
@@ -95,7 +96,7 @@ body {
 
 .app-main {
   flex: 1;
-  padding: 12px 16px calc(var(--nav-height) + var(--safe-bottom) + 12px);
+  padding: 10px 16px var(--main-bottom-pad);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   position: relative;
@@ -113,19 +114,19 @@ body {
 
 /* ===== HEADER ===== */
 .hero-header {
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 .hero-top {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 12px;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
 .brand-mark {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -168,19 +169,19 @@ body {
 }
 
 .headline {
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--text-primary);
-  line-height: 1.3;
+  line-height: 1.28;
   letter-spacing: -0.2px;
-  margin-bottom: 6px;
+  margin-bottom: 5px;
 }
 
 .hero-subtext {
   font-size: 13px;
   color: var(--text-secondary);
-  line-height: 1.45;
-  margin-bottom: 12px;
+  line-height: 1.4;
+  margin-bottom: 10px;
 }
 
 .example-chips {
@@ -193,7 +194,7 @@ body {
   font-family: var(--font);
   font-size: 11px;
   font-weight: 500;
-  padding: 6px 12px;
+  padding: 5px 10px;
   border-radius: 8px;
   border: 1px solid var(--border-strong);
   background: rgba(255, 255, 255, 0.04);
@@ -242,6 +243,50 @@ body {
 .proof-list-accent {
   margin: 0;
   border-radius: var(--radius) var(--radius) 0 0;
+}
+
+/* Capture screen — compact layout */
+.capture-screen .card {
+  padding: 12px;
+}
+
+.capture-screen .photo-upload-area {
+  min-height: 72px;
+  margin-bottom: 10px;
+}
+
+.capture-screen .photo-placeholder {
+  min-height: 72px;
+  padding: 10px;
+}
+
+.capture-screen .photo-preview {
+  max-height: 110px;
+}
+
+.capture-screen .input-label {
+  margin-bottom: 5px;
+}
+
+.capture-screen .note-input {
+  min-height: 68px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+}
+
+.capture-screen .btn-primary {
+  min-height: 44px;
+  padding: 11px 16px;
+}
+
+.capture-screen .safety-note {
+  margin-top: 10px;
+  padding: 8px 12px;
+}
+
+.capture-screen .explanation {
+  margin-top: 6px;
+  padding-bottom: 4px;
 }
 
 /* Photo upload */
@@ -442,7 +487,8 @@ body {
   border-top: 1px solid var(--border);
   padding: 0 16px var(--safe-bottom);
   z-index: 100;
-  height: calc(var(--nav-height) + var(--safe-bottom));
+  min-height: calc(var(--nav-height) + var(--safe-bottom));
+  box-sizing: border-box;
 }
 
 .nav-item {
@@ -453,7 +499,7 @@ body {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 12px 0 8px;
+  padding: 10px 0 6px;
   color: var(--text-muted);
   font-family: var(--font);
   position: relative;
@@ -819,7 +865,7 @@ body {
 /* Toast */
 .toast {
   position: fixed;
-  bottom: calc(var(--nav-height) + var(--safe-bottom) + 12px);
+  bottom: calc(var(--nav-height) + var(--safe-bottom) + 16px);
   left: 50%;
   transform: translateX(-50%);
   background: var(--bg-card-solid);
@@ -839,7 +885,7 @@ body {
 
 @supports (padding: env(safe-area-inset-top)) {
   .app-main {
-    padding-top: calc(12px + env(safe-area-inset-top));
+    padding-top: calc(10px + env(safe-area-inset-top));
   }
 }
 

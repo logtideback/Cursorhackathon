@@ -89,7 +89,7 @@ export default function CaptureScreen({
           placeholder="Example: I lent Alex my USB-C charger. He'll return it after demos."
           value={note}
           onChange={(e) => onNoteChange(e.target.value)}
-          rows={3}
+          rows={2}
         />
 
         <button
