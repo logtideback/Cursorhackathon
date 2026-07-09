@@ -12,35 +12,60 @@ export default function MyProofsScreen({
     filter === 'open' ? p.status === 'Open' : p.status === 'Complete'
   )
 
+  const openCount = proofs.filter((p) => p.status === 'Open').length
+  const completeCount = proofs.filter((p) => p.status === 'Complete').length
+  const totalCount = proofs.length
+
   return (
     <div className="screen proofs-screen">
       <header className="proofs-header">
-        <h2>My Proofs</h2>
-        <p className="proofs-subtitle">Your saved agreement cards</p>
+        <div className="vault-header">
+          <span className="vault-icon" aria-hidden="true">🧾</span>
+          <div>
+            <h2>Your Proof Vault</h2>
+            <p className="proofs-subtitle">Your agreement collection</p>
+          </div>
+        </div>
       </header>
 
-      <div className="filter-tabs">
+      <div className="stats-row">
+        <div className="stat-card stat-open">
+          <span className="stat-value">{openCount}</span>
+          <span className="stat-label">Open</span>
+        </div>
+        <div className="stat-card stat-complete">
+          <span className="stat-value">{completeCount}</span>
+          <span className="stat-label">Complete</span>
+        </div>
+        <div className="stat-card stat-total">
+          <span className="stat-value">{totalCount}</span>
+          <span className="stat-label">Total</span>
+        </div>
+      </div>
+
+      <div className="filter-tabs game-tabs">
         <button
           type="button"
           className={`filter-tab ${filter === 'open' ? 'active' : ''}`}
           onClick={() => onFilterChange('open')}
         >
-          Open
+          ⚡ Open
         </button>
         <button
           type="button"
           className={`filter-tab ${filter === 'complete' ? 'active' : ''}`}
           onClick={() => onFilterChange('complete')}
         >
-          Complete
+          ✓ Complete
         </button>
       </div>
 
       <div className="proofs-list">
         {filtered.length === 0 ? (
           <div className="empty-state card glass-card">
-            <span className="empty-icon">📭</span>
-            <p>No {filter} proofs yet</p>
+            <span className="empty-icon">🎒</span>
+            <p className="empty-title">No proofs here yet</p>
+            <p className="empty-text">Capture your next agreement</p>
           </div>
         ) : (
           filtered.map((proof) => {

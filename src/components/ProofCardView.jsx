@@ -19,6 +19,7 @@ export default function ProofCardView({
   onEdit,
   onBack,
   copyFeedback,
+  showCelebration = false,
 }) {
   const [isEditing, setIsEditing] = useState(false)
   const [editData, setEditData] = useState({ ...card })
@@ -52,25 +53,34 @@ export default function ProofCardView({
         ← Back
       </button>
 
-      <div className={`card proof-card glass-card type-card-${typeAccent}`}>
-        <div className="proof-card-accent" aria-hidden="true" />
+      {showCelebration && (
+        <div className="celebration-banner">
+          <span className="celebration-emoji">🎉</span>
+          Nice — proof card created!
+        </div>
+      )}
 
-        <div className="proof-card-header">
-          <div className="proof-card-title-row">
-            <span className="proof-type-icon">{typeIcon}</span>
+      <div className={`card proof-card collectible-card glass-card type-card-${typeAccent}`}>
+        <div className="collectible-header">
+          <span className="unlocked-badge">Proof Card unlocked</span>
+          <div className="collectible-header-main">
+            <span className="collectible-icon">{typeIcon}</span>
             <div>
-              <p className="extracted-label">AI extracted these details</p>
-              <div className="badge-row">
-                <span className="review-badge">Review required</span>
-                <span className="smart-badge">Smart extraction</span>
-              </div>
+              <h3 className="collectible-title">{display.title}</h3>
+              <span className="collectible-type">{display.type}</span>
             </div>
+          </div>
+          <div className="badge-row">
+            <span className="review-badge">Review required</span>
+            <span className="smart-badge">Smart extraction</span>
           </div>
         </div>
 
         {display.photo && (
           <img src={display.photo} alt="Proof" className="proof-photo" />
         )}
+
+        <p className="extracted-label">AI extracted these details</p>
 
         <div className="proof-fields">
           {FIELDS.map(({ key, label }) => (
@@ -118,8 +128,8 @@ export default function ProofCardView({
                       </span>
                     )}
                     {key === 'type' && (
-                      <span className="type-inline">
-                        <span className="type-inline-icon">{typeIcon}</span>
+                      <span className="type-chip">
+                        <span className="type-chip-icon">{typeIcon}</span>
                         {display[key]}
                       </span>
                     )}
@@ -172,7 +182,7 @@ export default function ProofCardView({
             </>
           ) : (
             <>
-              <button type="button" className="btn btn-primary btn-compact" onClick={() => onSave(card)}>
+              <button type="button" className="btn btn-primary btn-compact btn-glow" onClick={() => onSave(card)}>
                 Save
               </button>
               <button type="button" className="btn btn-secondary btn-compact" onClick={() => onCopy(card.suggestedMessage)}>

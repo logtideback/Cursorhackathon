@@ -5,7 +5,7 @@ export const TYPE_ICONS = {
   'Task/promise': '✅',
   'Return/dropoff': '🔑',
   'Condition proof': '📸',
-  'Agreement': '📝',
+  'Agreement': '🤝',
 }
 
 export const TYPE_ACCENTS = {
@@ -19,7 +19,7 @@ export const TYPE_ACCENTS = {
 }
 
 export function getTypeIcon(type) {
-  return TYPE_ICONS[type] || '📝'
+  return TYPE_ICONS[type] || '🤝'
 }
 
 export function getTypeAccent(type) {
@@ -27,11 +27,18 @@ export function getTypeAccent(type) {
 }
 
 export const FIELD_ICONS = {
-  title: '📋',
+  title: '🏆',
   type: '🏷️',
   people: '👥',
   agreement: '💬',
   due: '⏰',
-  status: '●',
+  status: '🎯',
   confidence: '✨',
 }
+
+export const EXAMPLE_CHIPS = [
+  { label: 'Borrowed charger', note: "I lent Alex my USB-C charger. He'll return it after demos." },
+  { label: 'Pay me back', note: 'Chris will pay me back tomorrow for dinner.' },
+  { label: 'Meet at 9', note: 'Maya and I agreed to meet at the Supabase booth at 9:15.' },
+  { label: 'Return keys', note: 'I returned the keys to the landlord.' },
+]

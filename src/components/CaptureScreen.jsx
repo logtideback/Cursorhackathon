@@ -1,4 +1,5 @@
 import { useRef } from 'react'
+import { EXAMPLE_CHIPS } from '../utils/typeIcons'
 
 export default function CaptureScreen({
   note,
@@ -21,32 +22,48 @@ export default function CaptureScreen({
   return (
     <div className="screen capture-screen">
       <header className="hero-header">
+        <div className="hero-sparkles" aria-hidden="true">✦ ✧ ✦</div>
         <div className="hero-top">
-          <div className="hero-badge" aria-hidden="true">
-            <span className="hero-badge-icon">🛡️</span>
-            <span className="hero-badge-check">✓</span>
+          <div className="hero-mascot" aria-hidden="true">
+            <span className="hero-mascot-shield">🛡️</span>
+            <span className="hero-mascot-spark">✨</span>
           </div>
           <div className="hero-title-block">
-            <span className="hero-pill">Mobile agreement capture</span>
+            <span className="hero-pill">Agreement captured in 10 seconds</span>
             <h1 className="app-title">
               Proof<span className="accent">Mode</span>
             </h1>
           </div>
         </div>
-        <h2 className="headline">Capture the agreement before it becomes a disagreement.</h2>
+        <h2 className="headline-punch">Lock in the agreement before anyone forgets.</h2>
+        <p className="headline-sub">Capture the agreement before it becomes a disagreement.</p>
         <p className="hero-subtext">
           Turn quick promises, payments, meetups, and returns into reviewed proof cards.
         </p>
+
+        <div className="example-chips">
+          {EXAMPLE_CHIPS.map(({ label, note: chipNote }) => (
+            <button
+              key={label}
+              type="button"
+              className="example-chip"
+              onClick={() => onNoteChange(chipNote)}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
       </header>
 
-      <div className="card glass-card">
+      <div className="card glass-card game-card">
         <label className="photo-upload-area" htmlFor="photo-input">
           {photoPreview ? (
             <img src={photoPreview} alt="Preview" className="photo-preview" />
           ) : (
             <div className="photo-placeholder">
               <span className="photo-icon">📷</span>
-              <span>Add photo (optional)</span>
+              <span className="photo-label">Add photo evidence</span>
+              <span className="photo-hint">Optional — tap to capture</span>
             </div>
           )}
         </label>
@@ -60,21 +77,23 @@ export default function CaptureScreen({
           onChange={handlePhotoSelect}
         />
 
+        <label className="input-label" htmlFor="note-input">What was agreed?</label>
         <textarea
+          id="note-input"
           className="note-input"
           placeholder="Example: I lent Alex my USB-C charger. He'll return it after demos."
           value={note}
           onChange={(e) => onNoteChange(e.target.value)}
-          rows={4}
+          rows={3}
         />
 
         <button
           type="button"
-          className="btn btn-primary"
+          className="btn btn-primary btn-glow"
           onClick={onCreateProof}
           disabled={isCreating}
         >
-          {isCreating ? 'Creating proof card…' : 'Create Proof Card'}
+          {isCreating ? 'Creating proof card…' : 'Create Proof Card ✨'}
         </button>
       </div>
 
