@@ -17,7 +17,6 @@ export default function App() {
   const [proofsFilter, setProofsFilter] = useState('open')
   const [copyFeedback, setCopyFeedback] = useState('')
   const [toast, setToast] = useState('')
-  const [showCardCelebration, setShowCardCelebration] = useState(false)
 
   useEffect(() => {
     setProofs(loadProofs())
@@ -50,7 +49,6 @@ export default function App() {
       }
       setCurrentCard(card)
       setViewingCard(true)
-      setShowCardCelebration(true)
       setIsCreating(false)
     }, 1000)
   }
@@ -81,7 +79,6 @@ export default function App() {
     setCurrentCard(null)
     setNote('')
     setPhotoPreview(null)
-    setShowCardCelebration(false)
     setActiveTab('proofs')
   }
 
@@ -134,14 +131,12 @@ export default function App() {
   function handleSelectProof(proof) {
     setCurrentCard(proof)
     setViewingCard(true)
-    setShowCardCelebration(false)
   }
 
   function handleBackFromCard() {
     setViewingCard(false)
     setCurrentCard(null)
     setCopyFeedback('')
-    setShowCardCelebration(false)
   }
 
   function handleTabChange(tab) {
@@ -155,11 +150,6 @@ export default function App() {
     <div className="app-shell">
       <div className="bg-blob bg-blob-1" aria-hidden="true" />
       <div className="bg-blob bg-blob-2" aria-hidden="true" />
-      <div className="bg-blob bg-blob-3" aria-hidden="true" />
-      <div className="bg-blob bg-blob-4" aria-hidden="true" />
-      <div className="sparkle sparkle-1" aria-hidden="true">✦</div>
-      <div className="sparkle sparkle-2" aria-hidden="true">✧</div>
-      <div className="sparkle sparkle-3" aria-hidden="true">★</div>
       <main className="app-main">
         {viewingCard && currentCard ? (
           <ProofCardView
@@ -170,7 +160,6 @@ export default function App() {
             onEdit={handleEditCard}
             onBack={handleBackFromCard}
             copyFeedback={copyFeedback}
-            showCelebration={showCardCelebration}
           />
         ) : activeTab === 'capture' ? (
           <CaptureScreen

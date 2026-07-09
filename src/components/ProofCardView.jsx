@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { getTypeIcon, getTypeAccent, FIELD_ICONS } from '../utils/typeIcons'
+import { getTypeAccent } from '../utils/typeIcons'
 
 const FIELDS = [
   { key: 'title', label: 'Title' },
@@ -19,12 +19,10 @@ export default function ProofCardView({
   onEdit,
   onBack,
   copyFeedback,
-  showCelebration = false,
 }) {
   const [isEditing, setIsEditing] = useState(false)
   const [editData, setEditData] = useState({ ...card })
   const typeAccent = getTypeAccent(card.type)
-  const typeIcon = getTypeIcon(card.type)
 
   function handleEditField(key, value) {
     setEditData((prev) => ({ ...prev, [key]: value }))
@@ -42,37 +40,23 @@ export default function ProofCardView({
 
   const display = isEditing ? editData : card
 
-  function fieldIcon(key) {
-    if (key === 'type') return typeIcon
-    return FIELD_ICONS[key] || '•'
-  }
-
   return (
     <div className="screen proof-card-screen">
       <button type="button" className="back-btn" onClick={onBack}>
         ← Back
       </button>
 
-      {showCelebration && (
-        <div className="celebration-banner">
-          <span className="celebration-emoji">🎉</span>
-          Nice — proof card created!
-        </div>
-      )}
+      <div className={`card proof-card glass-card type-card-${typeAccent}`}>
+        <div className="proof-card-accent" aria-hidden="true" />
 
-      <div className={`card proof-card collectible-card glass-card type-card-${typeAccent}`}>
-        <div className="collectible-header">
-          <span className="unlocked-badge">Proof Card unlocked</span>
-          <div className="collectible-header-main">
-            <span className="collectible-icon">{typeIcon}</span>
-            <div>
-              <h3 className="collectible-title">{display.title}</h3>
-              <span className="collectible-type">{display.type}</span>
-            </div>
+        <div className="proof-card-header">
+          <div>
+            <h3 className="proof-card-title">{display.title}</h3>
+            <p className="proof-card-type">{display.type}</p>
           </div>
           <div className="badge-row">
-            <span className="review-badge">Review required</span>
             <span className="smart-badge">Smart extraction</span>
+            <span className="review-badge">Review required</span>
           </div>
         </div>
 
@@ -80,14 +64,11 @@ export default function ProofCardView({
           <img src={display.photo} alt="Proof" className="proof-photo" />
         )}
 
-        <p className="extracted-label">AI extracted these details</p>
-
         <div className="proof-fields">
           {FIELDS.map(({ key, label }) => (
             <div key={key} className="proof-field-row">
-              <span className="field-icon" aria-hidden="true">{fieldIcon(key)}</span>
-              <div className="proof-field">
-                <span className="field-label">{label}</span>
+              <span className="field-label">{label}</span>
+              <div className="proof-field-value">
                 {isEditing ? (
                   key === 'status' ? (
                     <select
@@ -127,13 +108,7 @@ export default function ProofCardView({
                         {display.confidence}
                       </span>
                     )}
-                    {key === 'type' && (
-                      <span className="type-chip">
-                        <span className="type-chip-icon">{typeIcon}</span>
-                        {display[key]}
-                      </span>
-                    )}
-                    {key !== 'status' && key !== 'confidence' && key !== 'type' && display[key]}
+                    {key !== 'status' && key !== 'confidence' && display[key]}
                   </span>
                 )}
               </div>
@@ -141,30 +116,24 @@ export default function ProofCardView({
           ))}
 
           <div className="proof-field-row">
-            <span className="field-icon" aria-hidden="true">📝</span>
-            <div className="proof-field">
-              <span className="field-label">Source note</span>
-              <span className="field-value source-note">{display.sourceNote}</span>
-            </div>
+            <span className="field-label">Source note</span>
+            <span className="field-value source-note">{display.sourceNote}</span>
           </div>
 
           <div className="proof-field-row message-row">
-            <span className="field-icon" aria-hidden="true">💬</span>
-            <div className="proof-field">
-              <span className="field-label">Suggested confirmation message</span>
-              {isEditing ? (
-                <textarea
-                  className="field-input message-input"
-                  value={editData.suggestedMessage}
-                  onChange={(e) => handleEditField('suggestedMessage', e.target.value)}
-                  rows={3}
-                />
-              ) : (
-                <div className="message-bubble">
-                  <span className="message-text">{display.suggestedMessage}</span>
-                </div>
-              )}
-            </div>
+            <span className="field-label">Suggested confirmation message</span>
+            {isEditing ? (
+              <textarea
+                className="field-input message-input"
+                value={editData.suggestedMessage}
+                onChange={(e) => handleEditField('suggestedMessage', e.target.value)}
+                rows={3}
+              />
+            ) : (
+              <div className="message-bubble">
+                <span className="message-text">{display.suggestedMessage}</span>
+              </div>
+            )}
           </div>
         </div>
 
@@ -182,7 +151,7 @@ export default function ProofCardView({
             </>
           ) : (
             <>
-              <button type="button" className="btn btn-primary btn-compact btn-glow" onClick={() => onSave(card)}>
+              <button type="button" className="btn btn-primary btn-compact" onClick={() => onSave(card)}>
                 Save
               </button>
               <button type="button" className="btn btn-secondary btn-compact" onClick={() => onCopy(card.suggestedMessage)}>

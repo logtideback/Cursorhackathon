@@ -1,6 +1,17 @@
 import { useRef } from 'react'
 import { EXAMPLE_CHIPS } from '../utils/typeIcons'
 
+function BrandMark() {
+  return (
+    <div className="brand-mark" aria-hidden="true">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 2L3 5.5V9.5C3 13.4 6.1 16.8 10 18C13.9 16.8 17 13.4 17 9.5V5.5L10 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+        <path d="M7.5 10L9.2 11.7L12.8 8.2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    </div>
+  )
+}
+
 export default function CaptureScreen({
   note,
   onNoteChange,
@@ -22,21 +33,16 @@ export default function CaptureScreen({
   return (
     <div className="screen capture-screen">
       <header className="hero-header">
-        <div className="hero-sparkles" aria-hidden="true">✦ ✧ ✦</div>
         <div className="hero-top">
-          <div className="hero-mascot" aria-hidden="true">
-            <span className="hero-mascot-shield">🛡️</span>
-            <span className="hero-mascot-spark">✨</span>
-          </div>
+          <BrandMark />
           <div className="hero-title-block">
-            <span className="hero-pill">Agreement captured in 10 seconds</span>
+            <span className="hero-pill">Mobile agreement capture</span>
             <h1 className="app-title">
               Proof<span className="accent">Mode</span>
             </h1>
           </div>
         </div>
-        <h2 className="headline-punch">Lock in the agreement before anyone forgets.</h2>
-        <p className="headline-sub">Capture the agreement before it becomes a disagreement.</p>
+        <h2 className="headline">Capture agreements before they become disputes.</h2>
         <p className="hero-subtext">
           Turn quick promises, payments, meetups, and returns into reviewed proof cards.
         </p>
@@ -55,7 +61,7 @@ export default function CaptureScreen({
         </div>
       </header>
 
-      <div className="card glass-card game-card">
+      <div className="card glass-card">
         <label className="photo-upload-area" htmlFor="photo-input">
           {photoPreview ? (
             <img src={photoPreview} alt="Preview" className="photo-preview" />
@@ -63,7 +69,6 @@ export default function CaptureScreen({
             <div className="photo-placeholder">
               <span className="photo-icon">📷</span>
               <span className="photo-label">Add photo evidence</span>
-              <span className="photo-hint">Optional — tap to capture</span>
             </div>
           )}
         </label>
@@ -89,11 +94,11 @@ export default function CaptureScreen({
 
         <button
           type="button"
-          className="btn btn-primary btn-glow"
+          className="btn btn-primary"
           onClick={onCreateProof}
           disabled={isCreating}
         >
-          {isCreating ? 'Creating proof card…' : 'Create Proof Card ✨'}
+          {isCreating ? 'Creating proof card…' : 'Create Proof Card'}
         </button>
       </div>
 

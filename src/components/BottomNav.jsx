@@ -6,7 +6,6 @@ export default function BottomNav({ activeTab, onTabChange }) {
         className={`nav-item ${activeTab === 'capture' ? 'active' : ''}`}
         onClick={() => onTabChange('capture')}
       >
-        <span className="nav-icon">⚡</span>
         <span className="nav-label">Capture</span>
       </button>
       <button
@@ -14,7 +13,6 @@ export default function BottomNav({ activeTab, onTabChange }) {
         className={`nav-item ${activeTab === 'proofs' ? 'active' : ''}`}
         onClick={() => onTabChange('proofs')}
       >
-        <span className="nav-icon">🧾</span>
         <span className="nav-label">My Proofs</span>
       </button>
     </nav>
