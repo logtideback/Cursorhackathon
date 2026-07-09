@@ -4,7 +4,7 @@ import ProofCardView from './components/ProofCardView'
 import MyProofsScreen from './components/MyProofsScreen'
 import BottomNav from './components/BottomNav'
 import { parseProofNote } from './utils/parser'
-import { loadProofs, saveProofs, generateId } from './utils/storage'
+import { loadProofs, saveProofs, generateId, findDuplicate } from './utils/storage'
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('capture')
@@ -54,9 +54,21 @@ export default function App() {
   }
 
   function handleSaveCard(card) {
-    const exists = proofs.find((p) => p.id === card.id)
+    const existsById = proofs.find((p) => p.id === card.id)
+    const duplicate = findDuplicate(proofs, card)
+
+    if (duplicate && !existsById) {
+      showToast('This proof is already saved')
+      setViewingCard(false)
+      setCurrentCard(null)
+      setNote('')
+      setPhotoPreview(null)
+      setActiveTab('proofs')
+      return
+    }
+
     let updated
-    if (exists) {
+    if (existsById) {
       updated = proofs.map((p) => (p.id === card.id ? card : p))
     } else {
       updated = [card, ...proofs]

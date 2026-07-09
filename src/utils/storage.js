@@ -59,6 +59,28 @@ const SEED_DATA = [
   },
 ]
 
+export function proofFingerprint(proof) {
+  return [proof.title, proof.people, proof.agreement, proof.due].join('|')
+}
+
+export function isDuplicateProof(a, b) {
+  return proofFingerprint(a) === proofFingerprint(b)
+}
+
+export function findDuplicate(proofs, proof) {
+  return proofs.find((p) => p.id !== proof.id && isDuplicateProof(p, proof))
+}
+
+function mergeWithoutDuplicates(existing, incoming) {
+  const result = [...existing]
+  for (const item of incoming) {
+    if (!result.some((p) => isDuplicateProof(p, item))) {
+      result.push(item)
+    }
+  }
+  return result
+}
+
 export function loadProofs() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
@@ -67,7 +89,17 @@ export function loadProofs() {
       return SEED_DATA
     }
     const parsed = JSON.parse(raw)
-    return Array.isArray(parsed) ? parsed : SEED_DATA
+    if (!Array.isArray(parsed)) {
+      const merged = mergeWithoutDuplicates([], SEED_DATA)
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(merged))
+      return merged
+    }
+    if (parsed.length === 0) {
+      const merged = mergeWithoutDuplicates([], SEED_DATA)
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(merged))
+      return merged
+    }
+    return parsed
   } catch {
     return SEED_DATA
   }

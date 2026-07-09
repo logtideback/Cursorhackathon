@@ -139,18 +139,18 @@ export default function ProofCardView({
             </>
           ) : (
             <>
-              <button type="button" className="btn btn-primary" onClick={() => onSave(card)}>
+              <button type="button" className="btn btn-primary btn-compact" onClick={() => onSave(card)}>
                 Save
               </button>
-              <button type="button" className="btn btn-secondary" onClick={() => onCopy(card.suggestedMessage)}>
+              <button type="button" className="btn btn-secondary btn-compact" onClick={() => onCopy(card.suggestedMessage)}>
                 {copyFeedback || 'Copy message'}
               </button>
               {card.status === 'Open' && (
-                <button type="button" className="btn btn-success" onClick={() => onMarkComplete(card)}>
+                <button type="button" className="btn btn-success btn-compact" onClick={() => onMarkComplete(card)}>
                   Mark complete
                 </button>
               )}
-              <button type="button" className="btn btn-outline" onClick={() => setIsEditing(true)}>
+              <button type="button" className="btn btn-outline btn-compact" onClick={() => setIsEditing(true)}>
                 Edit
               </button>
             </>
