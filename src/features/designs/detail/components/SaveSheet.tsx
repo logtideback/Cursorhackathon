@@ -5,12 +5,13 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Button, Text, TextField } from '@/components';
 import { SAVED_ASPECT_OPTIONS } from '@/features/designs/detail/constants';
 import type { DesignSaveState } from '@/features/designs/detail/types';
-import { trackEvent } from '@/lib/analytics/track';
+import { track } from '@/lib/analytics';
 import { colors, spacing } from '@/theme';
 import type { SavedAspect, Tables } from '@/types/database';
 
 type SaveSheetProps = {
   visible: boolean;
+  designId: string;
   onClose: () => void;
   mode: 'quick-save' | 'manage';
   saveState?: DesignSaveState;
@@ -52,6 +53,7 @@ function initialDraft(
 }
 
 function SaveSheetBody({
+  designId,
   onClose,
   mode,
   saveState,
@@ -203,10 +205,15 @@ function SaveSheetBody({
                     savedAspect: draft.aspect,
                   });
                 }
-                trackEvent('visual_save_note_saved', {
-                  has_aspect: Boolean(draft.aspect),
-                  has_note: Boolean(draft.note.trim()),
-                  aspect: draft.aspect,
+                track({
+                  name: 'design_saved',
+                  properties: {
+                    designId,
+                    collectionId: activeCollectionId,
+                    hasAspect: Boolean(draft.aspect),
+                    hasNote: Boolean(draft.note.trim()),
+                    source: 'detail',
+                  },
                 });
                 onClose();
               } catch (err) {

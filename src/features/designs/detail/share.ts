@@ -1,7 +1,7 @@
 import * as Linking from 'expo-linking';
 import { Share } from 'react-native';
 
-import { trackEvent } from '@/lib/analytics/track';
+import { track } from '@/lib/analytics';
 
 export function buildDesignShareUrl(designId: string): string {
   // Prefer a deep link when the Taste scheme is configured.
@@ -22,6 +22,7 @@ export function buildDesignShareMessage(params: {
 export async function shareDesign(params: {
   title: string;
   designId: string;
+  creatorId?: string | null;
   creatorName?: string | null;
 }): Promise<'shared' | 'dismissed' | 'unavailable'> {
   const { message, url } = buildDesignShareMessage(params);
@@ -39,9 +40,13 @@ export async function shareDesign(params: {
       },
     );
 
-    trackEvent('design_shared', {
-      design_id: params.designId,
-      action: result.action,
+    track({
+      name: 'design_shared',
+      properties: {
+        designId: params.designId,
+        ...(params.creatorId ? { creatorId: params.creatorId } : {}),
+        source: 'detail',
+      },
     });
 
     if (result.action === Share.dismissedAction) {
@@ -55,9 +60,13 @@ export async function shareDesign(params: {
         message: `Taste — ${params.title}${params.creatorName ? ` by ${params.creatorName}` : ''}`,
         title: params.title,
       });
-      trackEvent('design_shared', {
-        design_id: params.designId,
-        action: 'fallback',
+      track({
+        name: 'design_shared',
+        properties: {
+          designId: params.designId,
+          ...(params.creatorId ? { creatorId: params.creatorId } : {}),
+          source: 'detail',
+        },
       });
       return 'shared';
     } catch {

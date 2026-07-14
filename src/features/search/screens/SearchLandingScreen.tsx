@@ -15,7 +15,6 @@ import {
 } from '@/features/search/recent-searches';
 import { useSearchStore } from '@/features/search/store';
 import type { RecentSearchEntry, TrendingCategory } from '@/features/search/types';
-import { trackEvent } from '@/lib/analytics/track';
 import { spacing } from '@/theme';
 
 export function SearchLandingScreen() {
@@ -67,7 +66,6 @@ export function SearchLandingScreen() {
           entries={recent}
           onSelect={(entry) => {
             setResultType(entry.resultType);
-            trackEvent('recent_search_selected', { query: entry.query });
             void openResults(entry.query);
           }}
           onClearAll={() => {

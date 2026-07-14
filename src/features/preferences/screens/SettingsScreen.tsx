@@ -3,9 +3,9 @@ import { router } from 'expo-router';
 import { Alert, Pressable, StyleSheet, Switch, View } from 'react-native';
 
 import { Button, ErrorState, LoadingIndicator, Screen, Text } from '@/components';
+import { AnalyticsConsentCard } from '@/features/preferences/components/AnalyticsConsentCard';
 import { flushPreferenceQueue } from '@/features/preferences/offline-queue';
 import type { PreferenceControls } from '@/features/preferences/types';
-import { trackEvent } from '@/lib/analytics/track';
 import { isEnvConfigured } from '@/lib/env';
 import {
   fetchPreferenceControls,
@@ -80,6 +80,10 @@ export function SettingsScreen() {
       </Text>
 
       <View style={styles.section}>
+        <AnalyticsConsentCard compact />
+      </View>
+
+      <View style={styles.section}>
         <Text variant="subtitle">Provenance in recommendations</Text>
         <View style={styles.row}>
           <View style={styles.rowCopy}>
@@ -92,9 +96,7 @@ export function SettingsScreen() {
             accessibilityLabel="Include AI-assisted designs"
             value={controls.includeAiAssisted}
             onValueChange={(value) => {
-              void settingsMutation.mutateAsync({ includeAiAssisted: value }).then(() => {
-                trackEvent('settings_ai_assisted_toggled', { enabled: value });
-              });
+              void settingsMutation.mutateAsync({ includeAiAssisted: value });
             }}
           />
         </View>
@@ -109,9 +111,7 @@ export function SettingsScreen() {
             accessibilityLabel="Include fully AI-generated designs"
             value={controls.includeFullyAiGenerated}
             onValueChange={(value) => {
-              void settingsMutation.mutateAsync({ includeFullyAiGenerated: value }).then(() => {
-                trackEvent('settings_fully_ai_toggled', { enabled: value });
-              });
+              void settingsMutation.mutateAsync({ includeFullyAiGenerated: value });
             }}
           />
         </View>
@@ -125,9 +125,7 @@ export function SettingsScreen() {
             <Pressable
               key={option.id}
               onPress={() => {
-                void settingsMutation.mutateAsync({ explorationLevel: option.id }).then(() => {
-                  trackEvent('settings_exploration_changed', { level: option.id });
-                });
+                void settingsMutation.mutateAsync({ explorationLevel: option.id });
               }}
               style={[styles.option, selected && styles.optionSelected]}
               accessibilityRole="radio"
@@ -158,7 +156,6 @@ export function SettingsScreen() {
                 fullWidth={false}
                 onPress={() => {
                   void unhideCreator(creator.id).then(() => {
-                    trackEvent('creator_unhidden', { creator_id: creator.id });
                     void query.refetch();
                   });
                 }}
@@ -184,7 +181,6 @@ export function SettingsScreen() {
                 fullWidth={false}
                 onPress={() => {
                   void unblockCreator(creator.id).then(() => {
-                    trackEvent('creator_unblocked', { creator_id: creator.id });
                     void query.refetch();
                   });
                 }}
@@ -236,7 +232,6 @@ export function SettingsScreen() {
                       if (isEnvConfigured()) {
                         await resetHiddenPreferences();
                       }
-                      trackEvent('hidden_preferences_reset');
                       void query.refetch();
                     })();
                   },
@@ -262,7 +257,6 @@ export function SettingsScreen() {
                       if (isEnvConfigured()) {
                         await resetRecommendationHistory();
                       }
-                      trackEvent('recommendation_history_reset');
                     })();
                   },
                 },

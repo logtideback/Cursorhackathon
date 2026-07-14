@@ -15,7 +15,8 @@ import {
 } from '@/features/search/constants';
 import { useFilterPreviewCount } from '@/features/search/hooks/useSearchResults';
 import { useSearchStore } from '@/features/search/store';
-import { trackEvent } from '@/lib/analytics/track';
+import { countActiveFilters } from '@/features/search/types';
+import { track } from '@/lib/analytics';
 import { colors, spacing } from '@/theme';
 import type { DesignProvenance } from '@/types/database';
 
@@ -202,7 +203,14 @@ export function SearchFiltersScreen() {
           variant="ghost"
           onPress={() => {
             clearAllFilters();
-            trackEvent('filter_cleared', { key: 'all' });
+            track({
+              name: 'filter_applied',
+              properties: {
+                filterKey: 'all',
+                activeFilterCount: 0,
+                action: 'clear_all',
+              },
+            });
           }}
         />
         <Button
@@ -216,8 +224,13 @@ export function SearchFiltersScreen() {
           loading={preview.isFetching && preview.data == null}
           onPress={() => {
             applyDraftFilters();
-            trackEvent('filter_applied', {
-              result_count: preview.data ?? null,
+            track({
+              name: 'filter_applied',
+              properties: {
+                filterKey: 'all',
+                activeFilterCount: countActiveFilters(draft),
+                action: 'apply',
+              },
             });
             router.back();
           }}

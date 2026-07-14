@@ -196,6 +196,7 @@ export function DesignDetailScreen({ designId }: DesignDetailScreenProps) {
             const result = await shareDesign({
               title: design.title,
               designId: design.id,
+              creatorId: design.creator.id,
               creatorName: design.creator.displayName,
             });
             if (result === 'unavailable') {
@@ -217,6 +218,7 @@ export function DesignDetailScreen({ designId }: DesignDetailScreenProps) {
 
       <SaveSheet
         visible={saveSheetVisible}
+        designId={design.id}
         mode={saveSheetMode}
         saveState={saveState}
         collections={collections}

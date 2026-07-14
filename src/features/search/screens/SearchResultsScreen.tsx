@@ -16,7 +16,7 @@ import { useSearchResults } from '@/features/search/hooks/useSearchResults';
 import { saveRecentSearch } from '@/features/search/recent-searches';
 import { useSearchStore } from '@/features/search/store';
 import type { SearchDesignHit, SearchTaxonomyHit } from '@/features/search/types';
-import { trackEvent } from '@/lib/analytics/track';
+import { track } from '@/lib/analytics';
 import { isEnvConfigured } from '@/lib/env';
 import { colors, spacing } from '@/theme';
 
@@ -106,16 +106,30 @@ export function SearchResultsScreen() {
         <ActiveFilterChips
           chips={chips}
           onClearChip={(chip) => {
-            trackEvent('filter_cleared', { key: chip.key });
             if (chip.clear === 'creator') {
               clearCreator();
             } else if (chip.clear !== 'all') {
               clearFilterKey(chip.clear);
             }
+            track({
+              name: 'filter_applied',
+              properties: {
+                filterKey: chip.key,
+                activeFilterCount: activeFilterCount(),
+                action: 'clear',
+              },
+            });
           }}
           onClearAll={() => {
-            trackEvent('filter_cleared', { key: 'all' });
             clearAllFilters();
+            track({
+              name: 'filter_applied',
+              properties: {
+                filterKey: 'all',
+                activeFilterCount: 0,
+                action: 'clear_all',
+              },
+            });
           }}
         />
       </View>
@@ -163,9 +177,12 @@ export function SearchResultsScreen() {
           <DesignResultsGrid
             items={visibleDesigns}
             onPress={(item) => {
-              trackEvent('search_result_opened', {
-                design_id: item.id,
-                result_type: 'designs',
+              track({
+                name: 'search_result_opened',
+                properties: {
+                  resultType: 'design',
+                  resultId: item.id,
+                },
               });
               router.push(`/design/${item.id}`);
             }}
@@ -185,9 +202,12 @@ export function SearchResultsScreen() {
           <CreatorResultsList
             items={creatorItems}
             onPress={(item) => {
-              trackEvent('search_result_opened', {
-                creator_id: item.id,
-                result_type: 'creators',
+              track({
+                name: 'search_result_opened',
+                properties: {
+                  resultType: 'creator',
+                  resultId: item.id,
+                },
               });
               router.push(`/creator/${item.id}`);
             }}
@@ -197,7 +217,14 @@ export function SearchResultsScreen() {
                 creatorLabel: item.displayName ?? item.username ?? 'Creator',
               });
               setResultType('designs');
-              trackEvent('filter_applied', { key: 'creator', creator_id: item.id });
+              track({
+                name: 'filter_applied',
+                properties: {
+                  filterKey: 'creator',
+                  activeFilterCount: activeFilterCount() + 1,
+                  action: 'apply',
+                },
+              });
             }}
           />
         ) : null}

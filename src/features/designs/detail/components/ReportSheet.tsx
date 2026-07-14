@@ -5,7 +5,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Button, Text, TextField } from '@/components';
 import { REPORT_REASON_OPTIONS } from '@/features/designs/detail/constants';
 import { isMockDesignId } from '@/features/discover/data/mock-designs';
-import { trackEvent } from '@/lib/analytics/track';
+import { track } from '@/lib/analytics';
 import { isEnvConfigured } from '@/lib/env';
 import { reportDesign } from '@/services/social';
 import { colors, spacing } from '@/theme';
@@ -82,10 +82,9 @@ function ReportSheetBody({ designId, onClose }: Omit<ReportSheetProps, 'visible'
             setError(null);
             try {
               if (isMockDesignId(designId) || !isEnvConfigured()) {
-                trackEvent('design_reported', {
-                  design_id: designId,
-                  reason,
-                  mock: true,
+                track({
+                  name: 'report_submitted',
+                  properties: { targetType: 'design', targetId: designId, reason },
                 });
               } else {
                 await reportDesign({
@@ -93,9 +92,9 @@ function ReportSheetBody({ designId, onClose }: Omit<ReportSheetProps, 'visible'
                   reason,
                   notes: notes.trim() || null,
                 });
-                trackEvent('design_reported', {
-                  design_id: designId,
-                  reason,
+                track({
+                  name: 'report_submitted',
+                  properties: { targetType: 'design', targetId: designId, reason },
                 });
               }
               Alert.alert('Report submitted', 'Thanks — our team will review this design.');

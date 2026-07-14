@@ -21,7 +21,7 @@ import type {
   SearchPage,
   SearchTaxonomyHit,
 } from '@/features/search/types';
-import { trackEvent } from '@/lib/analytics/track';
+import { track } from '@/lib/analytics';
 import { isEnvConfigured } from '@/lib/env';
 import {
   countSearchDesigns,
@@ -75,15 +75,20 @@ export function useSearchResults() {
   const offline = useOfflineFlag();
   const useMock = !isEnvConfigured();
   const requestIdRef = useRef(0);
+  const searchStartedAtRef = useRef(0);
   const [requestEpoch, setRequestEpoch] = useState(0);
 
   useEffect(() => {
     requestIdRef.current += 1;
     setRequestEpoch(requestIdRef.current);
-    trackEvent('search_started', {
-      query: debouncedQuery || null,
-      result_type: resultType,
-      filter_count: Object.values(filters).flat().length,
+    searchStartedAtRef.current = Date.now();
+    track({
+      name: 'search_started',
+      properties: {
+        queryLength: debouncedQuery.length,
+        hasQuery: Boolean(debouncedQuery.trim()),
+        resultType,
+      },
     });
   }, [debouncedQuery, resultType, filters]);
 
@@ -108,10 +113,15 @@ export function useSearchResults() {
             signal,
           });
       if (pageParam === 0) {
-        trackEvent('search_completed', {
-          query: debouncedQuery || null,
-          result_type: 'designs',
-          result_count: page.totalCount,
+        track({
+          name: 'search_completed',
+          properties: {
+            queryLength: debouncedQuery.length,
+            hasQuery: Boolean(debouncedQuery.trim()),
+            resultCount: page.totalCount,
+            resultType: 'designs',
+            durationMs: Date.now() - searchStartedAtRef.current,
+          },
         });
       }
       return page;
@@ -138,10 +148,15 @@ export function useSearchResults() {
             signal,
           });
       if (pageParam === 0) {
-        trackEvent('search_completed', {
-          query: debouncedQuery || null,
-          result_type: 'creators',
-          result_count: page.totalCount,
+        track({
+          name: 'search_completed',
+          properties: {
+            queryLength: debouncedQuery.length,
+            hasQuery: Boolean(debouncedQuery.trim()),
+            resultCount: page.totalCount,
+            resultType: 'creators',
+            durationMs: Date.now() - searchStartedAtRef.current,
+          },
         });
       }
       return page;
@@ -175,10 +190,15 @@ export function useSearchResults() {
             kind: taxonomyKind as 'category' | 'tag' | 'industry' | 'platform',
             signal,
           });
-      trackEvent('search_completed', {
-        query: debouncedQuery || null,
-        result_type: resultType,
-        result_count: items.length,
+      track({
+        name: 'search_completed',
+        properties: {
+          queryLength: debouncedQuery.length,
+          hasQuery: Boolean(debouncedQuery.trim()),
+          resultCount: items.length,
+          resultType,
+          durationMs: Date.now() - searchStartedAtRef.current,
+        },
       });
       return items;
     },

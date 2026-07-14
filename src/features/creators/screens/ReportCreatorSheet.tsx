@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Button, Text, TextField } from '@/components';
 import { REPORT_REASON_OPTIONS } from '@/features/designs/detail/constants';
-import { trackEvent } from '@/lib/analytics/track';
+import { track } from '@/lib/analytics';
 import { colors, spacing } from '@/theme';
 import type { ReportReason } from '@/types/database';
 
@@ -83,7 +83,10 @@ function ReportCreatorBody({
             setError(null);
             try {
               await onSubmit({ reason, notes: notes.trim() || null });
-              trackEvent('creator_reported', { creator_id: creatorId, reason });
+              track({
+                name: 'report_submitted',
+                properties: { targetType: 'creator', targetId: creatorId, reason },
+              });
               Alert.alert('Report submitted', 'Thanks — our team will review this profile.');
               onClose();
             } catch (err) {

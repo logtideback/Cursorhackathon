@@ -20,7 +20,7 @@ import { CreatorStats } from '@/features/creators/components/CreatorStats';
 import { ProvenanceTransparency } from '@/features/creators/components/ProvenanceTransparency';
 import { useCreatorProfile } from '@/features/creators/hooks/useCreatorProfile';
 import { ReportCreatorSheet } from '@/features/creators/screens/ReportCreatorSheet';
-import { trackEvent } from '@/lib/analytics/track';
+import { track } from '@/lib/analytics';
 import { isEnvConfigured } from '@/lib/env';
 import { hideCreator } from '@/services/preferences';
 import { useAuthStore } from '@/store/auth-store';
@@ -86,9 +86,7 @@ export function CreatorProfileScreen({
           description="Their designs stay hidden until you unblock them."
           actionLabel="Unblock"
           onAction={() => {
-            void blockMutation.mutateAsync(false).then(() => {
-              trackEvent('creator_unblocked', { creator_id: creatorId });
-            });
+            void blockMutation.mutateAsync(false);
           }}
         />
         <CreatorActions
@@ -130,13 +128,19 @@ export function CreatorProfileScreen({
                 if (isEnvConfigured()) {
                   await hideCreator(creatorId);
                 }
-                trackEvent('creator_hidden', { creator_id: creatorId });
+                track({
+                  name: 'creator_hidden',
+                  properties: { creatorId, source: 'profile' },
+                });
                 Alert.alert('Hidden', 'This creator won’t appear in recommendations.');
               })();
             }}
             onBlock={() => {
               void blockMutation.mutateAsync(true).then(() => {
-                trackEvent('creator_blocked', { creator_id: creatorId });
+                track({
+                  name: 'creator_blocked',
+                  properties: { creatorId, source: 'profile' },
+                });
               });
             }}
             onUnblock={() => undefined}
@@ -160,8 +164,9 @@ export function CreatorProfileScreen({
         followLoading={followMutation.isPending}
         onToggleFollow={() => {
           void followMutation.mutateAsync(!profile.isFollowing).then((following) => {
-            trackEvent(following ? 'creator_followed' : 'creator_unfollowed', {
-              creator_id: creatorId,
+            track({
+              name: following ? 'creator_followed' : 'creator_unfollowed',
+              properties: { creatorId, source: 'profile' },
             });
           });
         }}
@@ -236,13 +241,19 @@ export function CreatorProfileScreen({
                 if (isEnvConfigured()) {
                   await hideCreator(creatorId);
                 }
-                trackEvent('creator_hidden', { creator_id: creatorId });
+                track({
+                  name: 'creator_hidden',
+                  properties: { creatorId, source: 'profile' },
+                });
                 Alert.alert('Hidden', 'This creator won’t appear in recommendations.');
               })();
             }}
             onBlock={() => {
               void blockMutation.mutateAsync(true).then(() => {
-                trackEvent('creator_blocked', { creator_id: creatorId });
+                track({
+                  name: 'creator_blocked',
+                  properties: { creatorId, source: 'profile' },
+                });
               });
             }}
             onUnblock={() => undefined}

@@ -11,7 +11,7 @@ import {
   flushPreferenceQueue,
 } from '@/features/preferences/offline-queue';
 import type { DesignContextForFeedback } from '@/features/preferences/types';
-import { trackEvent } from '@/lib/analytics/track';
+import { track } from '@/lib/analytics';
 import { isEnvConfigured } from '@/lib/env';
 import { hideCreator } from '@/services/preferences';
 import { blockCreator } from '@/services/social';
@@ -101,7 +101,10 @@ export function DesignFeedbackActionsSheet({
                         });
                       }
                     }
-                    trackEvent('creator_hidden', { creator_id: design.creatorId });
+                    track({
+                      name: 'creator_hidden',
+                      properties: { creatorId: design.creatorId, source: 'detail' },
+                    });
                     onRemoved?.(design.designId);
                   }, 'Creator hidden from recommendations. They are not blocked.')
                 }
@@ -133,7 +136,10 @@ export function DesignFeedbackActionsSheet({
                                 });
                               }
                             }
-                            trackEvent('creator_blocked', { creator_id: design.creatorId });
+                            track({
+                              name: 'creator_blocked',
+                              properties: { creatorId: design.creatorId, source: 'detail' },
+                            });
                             onRemoved?.(design.designId);
                           }, 'Creator blocked.'),
                       },
@@ -154,6 +160,7 @@ export function DesignFeedbackActionsSheet({
                     await shareDesign({
                       title: design.title,
                       designId: design.designId,
+                      creatorId: design.creatorId,
                       creatorName: design.creatorName,
                     });
                   })

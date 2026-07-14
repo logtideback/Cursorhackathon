@@ -4,7 +4,7 @@ import { Alert, StyleSheet, View } from 'react-native';
 
 import { Button, Text } from '@/components';
 import { validateSourceUrl } from '@/features/designs/detail/source-link';
-import { trackEvent } from '@/lib/analytics/track';
+import { track } from '@/lib/analytics';
 import { colors, spacing } from '@/theme';
 
 type SourceLinkRowProps = {
@@ -70,9 +70,9 @@ export function SourceLinkRow({ designId, sourceUrl }: SourceLinkRowProps) {
               return;
             }
             await Linking.openURL(validated.url);
-            trackEvent('source_link_opened', {
-              design_id: designId,
-              url: validated.url,
+            track({
+              name: 'source_link_opened',
+              properties: { designId, hasValidUrl: true },
             });
           } catch {
             Alert.alert('Unable to open link', 'Something went wrong opening this source.');

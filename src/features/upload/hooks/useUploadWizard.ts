@@ -25,7 +25,7 @@ import {
   reorderItems,
   validateImageCount,
 } from '@/features/upload/validation';
-import { trackEvent } from '@/lib/analytics/track';
+import { track } from '@/lib/analytics';
 import { isEnvConfigured } from '@/lib/env';
 import {
   deleteOwnDesign,
@@ -98,10 +98,6 @@ export function useUploadWizard(options?: {
               })),
             });
             setHydrated(true);
-            trackEvent('upload_started', {
-              mode: 'edit',
-              design_id: editingDesignId,
-            });
             return;
           }
         } catch {
@@ -116,13 +112,8 @@ export function useUploadWizard(options?: {
       if (saved && draftHasContent(saved) && !editingDesignId) {
         setDraft(saved);
         setReadyBanner('Restored your unfinished upload draft.');
-        trackEvent('upload_started', { mode: 'restore_draft' });
       } else {
         setDraft(createEmptyDraft(userId, editingDesignId));
-        trackEvent('upload_started', {
-          mode: editingDesignId ? 'edit' : 'create',
-          design_id: editingDesignId,
-        });
       }
       setHydrated(true);
     }
@@ -142,13 +133,7 @@ export function useUploadWizard(options?: {
         clearTimeout(saveTimer.current);
       }
       saveTimer.current = setTimeout(() => {
-        void saveUploadDraft(next).then(() => {
-          trackEvent('upload_draft_saved', {
-            draft_id: next.draftId,
-            step: next.step,
-            image_count: next.images.length,
-          });
-        });
+        void saveUploadDraft(next);
       }, 400);
     },
     [userId, editingDesignId],
@@ -166,13 +151,7 @@ export function useUploadWizard(options?: {
             clearTimeout(saveTimer.current);
           }
           saveTimer.current = setTimeout(() => {
-            void saveUploadDraft(next).then(() => {
-              trackEvent('upload_draft_saved', {
-                draft_id: next.draftId,
-                step: next.step,
-                image_count: next.images.length,
-              });
-            });
+            void saveUploadDraft(next);
           }, 400);
         }
         return next;
@@ -259,11 +238,6 @@ export function useUploadWizard(options?: {
         continue;
       }
       prepared.push(outcome.image);
-      trackEvent('image_selected', {
-        mime_type: asset.mimeType ?? null,
-        width: asset.width ?? null,
-        height: asset.height ?? null,
-      });
     }
 
     if (prepared.length === 0) {
@@ -372,11 +346,6 @@ export function useUploadWizard(options?: {
           const bundle = await runPrePublishModeration(primary);
           moderationRef.current = bundle;
           setSimilarDesigns(bundle.similar);
-          trackEvent('similarity_check_completed', {
-            count: bundle.similar.length,
-            safety_flagged: bundle.safety.flaggedForReview,
-            duplicate_flagged: bundle.duplicate.flaggedForReview,
-          });
         } catch {
           moderationRef.current = null;
           setSimilarDesigns([]);
@@ -456,19 +425,30 @@ export function useUploadWizard(options?: {
         await clearUploadDraft(userId);
       }
 
-      trackEvent(draft.editingDesignId ? 'design_updated' : 'design_published', {
-        design_id: result.designId,
-        image_count: draft.images.length,
-        provenance: draft.provenance,
-      });
+      if (draft.editingDesignId) {
+        track({
+          name: 'design_updated',
+          properties: {
+            designId: result.designId,
+            imageCount: draft.images.length,
+            provenance: draft.provenance,
+          },
+        });
+      } else {
+        track({
+          name: 'design_uploaded',
+          properties: {
+            designId: result.designId,
+            imageCount: draft.images.length,
+            provenance: draft.provenance,
+            status: 'published',
+          },
+        });
+      }
 
       return result;
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Publish failed';
-      trackEvent('upload_failed', {
-        message,
-        design_id: draft.editingDesignId ?? draft.designId,
-      });
       setError(message);
       setPublishLocked(false);
       throw err;
@@ -483,12 +463,6 @@ export function useUploadWizard(options?: {
       return;
     }
     await saveUploadDraft(draft);
-    trackEvent('upload_draft_saved', {
-      draft_id: draft.draftId,
-      step: draft.step,
-      image_count: draft.images.length,
-      manual: true,
-    });
     Alert.alert('Draft saved', 'You can leave and continue later from Upload.');
   }, [draft, userId]);
 
@@ -506,11 +480,9 @@ export function useUploadWizard(options?: {
 
   const deleteDesign = useCallback(async (designId: string) => {
     if (!isEnvConfigured()) {
-      trackEvent('design_deleted', { design_id: designId, mock: true });
       return;
     }
     await deleteOwnDesign(designId);
-    trackEvent('design_deleted', { design_id: designId });
   }, []);
 
   return {

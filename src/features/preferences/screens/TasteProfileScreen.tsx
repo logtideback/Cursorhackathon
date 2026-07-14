@@ -4,7 +4,6 @@ import { Alert, StyleSheet, View } from 'react-native';
 
 import { Button, EmptyState, ErrorState, LoadingIndicator, Screen, Text } from '@/components';
 import type { TasteFacet, TasteProfileSummary } from '@/features/preferences/types';
-import { trackEvent } from '@/lib/analytics/track';
 import { isEnvConfigured } from '@/lib/env';
 import {
   fetchTasteProfileSummary,
@@ -194,7 +193,6 @@ export function TasteProfileScreen() {
                       if (isEnvConfigured()) {
                         await resetRecommendationHistory();
                       }
-                      trackEvent('recommendation_history_reset');
                       Alert.alert('Reset', 'Recommendation history cleared.');
                       void query.refetch();
                     })();

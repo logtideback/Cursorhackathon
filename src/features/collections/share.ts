@@ -1,7 +1,7 @@
 import * as Linking from 'expo-linking';
 import { Share } from 'react-native';
 
-import { trackEvent } from '@/lib/analytics/track';
+import { track } from '@/lib/analytics';
 
 /** Placeholder deep-link format for public collections. */
 export function buildPublicCollectionShareUrl(collectionId: string): string {
@@ -29,9 +29,9 @@ export async function sharePublicCollection(params: {
       },
       { dialogTitle: 'Share collection', subject: params.name },
     );
-    trackEvent('collection_shared', {
-      collection_id: params.collectionId,
-      action: result.action,
+    track({
+      name: 'collection_shared',
+      properties: { collectionId: params.collectionId, isPrivate: params.isPrivate },
     });
     if (result.action === Share.dismissedAction) {
       return 'dismissed';
@@ -40,9 +40,9 @@ export async function sharePublicCollection(params: {
   } catch {
     try {
       await Share.share({ message: `Taste — ${params.name}`, title: params.name });
-      trackEvent('collection_shared', {
-        collection_id: params.collectionId,
-        action: 'fallback',
+      track({
+        name: 'collection_shared',
+        properties: { collectionId: params.collectionId, isPrivate: params.isPrivate },
       });
       return 'shared';
     } catch {

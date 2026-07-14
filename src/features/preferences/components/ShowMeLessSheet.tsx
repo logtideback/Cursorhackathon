@@ -13,7 +13,7 @@ import {
   type DesignContextForFeedback,
   type ShowMeLessTarget,
 } from '@/features/preferences/types';
-import { trackEvent } from '@/lib/analytics/track';
+import { track } from '@/lib/analytics';
 import { isEnvConfigured } from '@/lib/env';
 import { applyShowLessFeedback } from '@/services/preferences';
 import { colors, spacing } from '@/theme';
@@ -102,9 +102,14 @@ export function ShowMeLessSheet({ visible, design, onClose, onApplied }: ShowMeL
                         });
                       }
                     }
-                    trackEvent('show_me_less_applied', {
-                      design_id: design.designId,
-                      targets: targets.join(','),
+                    track({
+                      name: 'show_less_selected',
+                      properties: {
+                        designId: design.designId,
+                        creatorId: design.creatorId,
+                        targetCount: targets.length,
+                        targets: targets.join(','),
+                      },
                     });
                     onApplied?.(design.designId);
                     Alert.alert('Noted', 'We’ll show fewer designs like this.');
