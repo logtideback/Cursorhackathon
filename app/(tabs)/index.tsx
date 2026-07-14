@@ -1,21 +1,135 @@
+import { router } from 'expo-router';
+import { useCallback, useRef } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { EmptyState, Screen, Text } from '@/components';
+import { LoadingIndicator, Screen } from '@/components';
+import { BatchProgress } from '@/features/discover/components/BatchProgress';
+import { DiscoverHeader } from '@/features/discover/components/DiscoverHeader';
+import { EmptyDeckState } from '@/features/discover/components/EmptyDeckState';
+import { NetworkErrorBanner } from '@/features/discover/components/NetworkErrorBanner';
+import { SwipeActions } from '@/features/discover/components/SwipeActions';
+import { SwipeDeck, type SwipeDeckHandle } from '@/features/discover/components/SwipeDeck';
+import { UndoToast } from '@/features/discover/components/UndoToast';
+import { useDiscoverDeck } from '@/features/discover/hooks/useDiscoverDeck';
+import type { DiscoverCard } from '@/features/discover/types';
 import { spacing } from '@/theme';
+import type { SwipeDirection } from '@/types/database';
 
 export default function DiscoverScreen() {
+  const deckRef = useRef<SwipeDeckHandle>(null);
+  const {
+    activeCard,
+    nextCards,
+    status,
+    errorMessage,
+    isOffline,
+    interactionsDisabled,
+    sessionSwipes,
+    sessionSaves,
+    toast,
+    failedSwipe,
+    isUndoing,
+    commitSwipe,
+    undo,
+    retryFailedSwipe,
+    dismissToast,
+    reload,
+  } = useDiscoverDeck();
+
+  const onSwipe = useCallback(
+    (direction: SwipeDirection) => {
+      void commitSwipe(direction);
+    },
+    [commitSwipe],
+  );
+
+  const onOpenDetail = useCallback((card: DiscoverCard) => {
+    router.push(`/design/${card.id}`);
+  }, []);
+
+  const onPass = useCallback(() => {
+    deckRef.current?.swipe('left');
+  }, []);
+
+  const onSave = useCallback(() => {
+    deckRef.current?.swipe('right');
+  }, []);
+
+  const onMoveToCollection = useCallback(() => {
+    dismissToast();
+    router.push('/(tabs)/collections');
+  }, [dismissToast]);
+
   return (
-    <Screen contentStyle={styles.content}>
-      <View style={styles.header}>
-        <Text variant="label" tone="tertiary">
-          Discover
-        </Text>
-        <Text variant="heading">Taste</Text>
+    <Screen edges={['top', 'left', 'right']} contentStyle={styles.content}>
+      <View style={styles.top}>
+        <DiscoverHeader />
+        <BatchProgress considered={sessionSwipes} saved={sessionSaves} />
       </View>
-      <EmptyState
-        label="Deck"
-        title="Swipe deck coming next"
-        description="Gesture Handler and Reanimated are wired. The discover deck will land in features/discover."
+
+      {isOffline ? (
+        <NetworkErrorBanner
+          offline
+          message="You are offline. Swipes will retry when connected."
+          actionLabel="Reload"
+          onAction={() => void reload()}
+        />
+      ) : null}
+
+      {errorMessage && !failedSwipe ? (
+        <NetworkErrorBanner message={errorMessage} onAction={() => void reload()} />
+      ) : null}
+
+      {failedSwipe ? (
+        <NetworkErrorBanner
+          message={errorMessage ?? 'Could not save that swipe.'}
+          actionLabel="Retry swipe"
+          onAction={() => void retryFailedSwipe()}
+        />
+      ) : null}
+
+      <View style={styles.deckArea}>
+        {status === 'loading' ? <LoadingIndicator label="Preparing your deck" /> : null}
+
+        {status === 'error' && !activeCard ? (
+          <NetworkErrorBanner
+            message={errorMessage ?? 'Could not load designs.'}
+            onAction={() => void reload()}
+          />
+        ) : null}
+
+        {status === 'empty' && !activeCard ? (
+          <EmptyDeckState onRefresh={() => void reload()} />
+        ) : null}
+
+        {activeCard ? (
+          <SwipeDeck
+            ref={deckRef}
+            activeCard={activeCard}
+            nextCard={nextCards[0] ?? null}
+            disabled={interactionsDisabled}
+            onSwipe={onSwipe}
+            onOpenDetail={onOpenDetail}
+          />
+        ) : null}
+      </View>
+
+      {activeCard ? (
+        <SwipeActions
+          disabled={interactionsDisabled}
+          onPass={onPass}
+          onSave={onSave}
+          onUndo={() => void undo()}
+          canUndo={sessionSwipes > 0}
+        />
+      ) : null}
+
+      <UndoToast
+        toast={toast}
+        undoing={isUndoing}
+        onUndo={() => void undo()}
+        onDismiss={dismissToast}
+        onMoveToCollection={onMoveToCollection}
       />
     </Screen>
   );
@@ -23,9 +137,15 @@ export default function DiscoverScreen() {
 
 const styles = StyleSheet.create({
   content: {
-    gap: spacing.xl,
+    flex: 1,
+    paddingBottom: spacing.md,
   },
-  header: {
-    gap: spacing.sm,
+  top: {
+    gap: spacing.md,
+    marginBottom: spacing.md,
+  },
+  deckArea: {
+    flex: 1,
+    minHeight: 360,
   },
 });
