@@ -188,6 +188,8 @@ export type Database = {
           is_featured: boolean;
           save_count: number;
           view_count: number;
+          style_slugs: string[];
+          colour_families: string[];
           created_at: string;
           updated_at: string;
         };
@@ -205,6 +207,8 @@ export type Database = {
           is_featured?: boolean;
           save_count?: number;
           view_count?: number;
+          style_slugs?: string[];
+          colour_families?: string[];
           created_at?: string;
           updated_at?: string;
         };
@@ -222,6 +226,8 @@ export type Database = {
           is_featured?: boolean;
           save_count?: number;
           view_count?: number;
+          style_slugs?: string[];
+          colour_families?: string[];
           created_at?: string;
           updated_at?: string;
         };
@@ -659,6 +665,81 @@ export type Database = {
       get_public_collection: {
         Args: { p_collection_id: string };
         Returns: Json;
+      };
+      search_designs: {
+        Args: {
+          p_query?: string | null;
+          p_limit?: number;
+          p_offset?: number;
+          p_category_slugs?: string[] | null;
+          p_style_slugs?: string[] | null;
+          p_platforms?: string[] | null;
+          p_industries?: string[] | null;
+          p_colour_families?: string[] | null;
+          p_provenances?: DesignProvenance[] | null;
+          p_creator_id?: string | null;
+          p_date_from?: string | null;
+          p_date_to?: string | null;
+          p_popularity?: string;
+          p_saved_status?: string;
+          p_sort?: string;
+        };
+        Returns: {
+          id: string;
+          creator_id: string;
+          title: string;
+          description: string | null;
+          platform: string | null;
+          industry: string | null;
+          provenance: DesignProvenance;
+          save_count: number;
+          view_count: number;
+          created_at: string;
+          category_name: string | null;
+          category_slug: string | null;
+          creator_username: string | null;
+          creator_display_name: string | null;
+          creator_avatar_url: string | null;
+          primary_image_url: string | null;
+          primary_thumbnail_url: string | null;
+          tags: string[];
+          style_slugs: string[];
+          colour_families: string[];
+          rank: number;
+          total_count: number;
+        }[];
+      };
+      search_creators: {
+        Args: { p_query?: string | null; p_limit?: number; p_offset?: number };
+        Returns: {
+          id: string;
+          username: string | null;
+          display_name: string | null;
+          avatar_url: string | null;
+          bio: string | null;
+          published_design_count: number;
+          rank: number;
+          total_count: number;
+        }[];
+      };
+      search_taxonomy: {
+        Args: { p_query?: string | null; p_kind?: string; p_limit?: number };
+        Returns: {
+          kind: string;
+          id: string;
+          label: string;
+          slug: string;
+          meta: string | null;
+        }[];
+      };
+      get_trending_categories: {
+        Args: { p_limit?: number };
+        Returns: {
+          id: string;
+          name: string;
+          slug: string;
+          design_count: number;
+        }[];
       };
       add_right_swipe_to_default_collection: {
         Args: { p_user_id: string; p_design_id: string };

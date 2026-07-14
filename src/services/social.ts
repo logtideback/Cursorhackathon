@@ -110,3 +110,62 @@ export async function reportDesign(params: {
   }
   return data;
 }
+
+export async function recordDesignFeedback(params: {
+  designId: string;
+  feedbackType: 'show_less' | 'hide_creator' | 'hide_tag' | 'hide_style';
+  metadata?: Record<string, string>;
+}): Promise<Tables<'design_feedback'>> {
+  assertEnvConfigured();
+
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+  throwOnError(userError, 'Failed to resolve authenticated user');
+  if (!user) {
+    throw new Error('Not authenticated');
+  }
+
+  const { data, error } = await supabase
+    .from('design_feedback')
+    .insert({
+      user_id: user.id,
+      design_id: params.designId,
+      feedback_type: params.feedbackType,
+      metadata: params.metadata ?? {},
+    })
+    .select('*')
+    .single();
+
+  throwOnError(error, 'Failed to record feedback');
+  if (!data) {
+    throw new Error('Failed to record feedback');
+  }
+  return data;
+}
+
+export async function blockCreator(blockedId: string): Promise<Tables<'blocks'>> {
+  assertEnvConfigured();
+
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+  throwOnError(userError, 'Failed to resolve authenticated user');
+  if (!user) {
+    throw new Error('Not authenticated');
+  }
+
+  const { data, error } = await supabase
+    .from('blocks')
+    .insert({ blocker_id: user.id, blocked_id: blockedId })
+    .select('*')
+    .single();
+
+  throwOnError(error, 'Failed to block creator');
+  if (!data) {
+    throw new Error('Failed to block creator');
+  }
+  return data;
+}
