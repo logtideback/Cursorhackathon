@@ -14,6 +14,7 @@ Database migrations, RLS, storage policies, and RPCs for the Taste mobile app.
 8. `20260714000008_storage.sql`
 9. `20260714000009_rpc_functions.sql`
 10. `20260714000010_seed_categories_tags.sql`
+11. `20260714000011_recommendation_ranking.sql`
 
 ## Apply migrations
 
@@ -68,7 +69,8 @@ Upload paths must start with the authenticated user’s UUID folder or the stora
 
 | Function | Purpose |
 | --- | --- |
-| `get_unseen_designs(limit)` | Published designs not yet swiped |
+| `get_unseen_designs(limit)` | Published designs not yet swiped (legacy chronological feed) |
+| `get_recommended_designs(limit, exclude_ids)` | Deterministic preference ranking for Discover |
 | `record_swipe(design_id, direction)` | Atomic swipe + default save |
 | `undo_last_swipe()` | Undo latest swipe + fix counts |
 | `increment_design_view_count(design_id)` | View counter |

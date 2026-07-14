@@ -595,6 +595,10 @@ export type Database = {
         Args: { p_limit?: number };
         Returns: UnseenDesignRow[];
       };
+      get_recommended_designs: {
+        Args: { p_limit?: number; p_exclude_ids?: string[] };
+        Returns: Json;
+      };
       record_swipe: {
         Args: { p_design_id: string; p_direction: SwipeDirection };
         Returns: Json;

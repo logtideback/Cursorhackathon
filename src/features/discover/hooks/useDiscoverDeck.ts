@@ -7,9 +7,9 @@ import {
   DECK_REFILL_THRESHOLD,
   DISCOVER_QUERY_KEY,
 } from '@/features/discover/constants';
-import { getMockDiscoverCards, isMockDesignId } from '@/features/discover/data/mock-designs';
+import { isMockDesignId } from '@/features/discover/data/mock-designs';
 import { useImagePreload } from '@/features/discover/hooks/useImagePreload';
-import { mapUnseenDesign } from '@/features/discover/map-design';
+import { fetchRecommendedFeed } from '@/features/discover/recommendation/feed';
 import type {
   DeckStatus,
   DiscoverCard,
@@ -17,7 +17,7 @@ import type {
   UndoToastState,
 } from '@/features/discover/types';
 import { isEnvConfigured } from '@/lib/env';
-import { fetchUnseenDesigns, recordSwipe, undoLastSwipe } from '@/services/designs';
+import { recordSwipe, undoLastSwipe } from '@/services/designs';
 import type { SwipeDirection } from '@/types/database';
 import { friendlyAuthError } from '@/utils/auth-errors';
 
@@ -30,27 +30,11 @@ const emptyToast: UndoToastState = {
 };
 
 async function loadDesignPage(existingIds: Set<string>): Promise<DiscoverCard[]> {
-  if (!isEnvConfigured()) {
-    return getMockDiscoverCards(DECK_PAGE_SIZE).filter((card) => !existingIds.has(card.id));
-  }
-
-  try {
-    const rows = await fetchUnseenDesigns(DECK_PAGE_SIZE);
-    const mapped = rows
-      .map((row) => mapUnseenDesign(row, 'remote'))
-      .filter((card) => !existingIds.has(card.id) && Boolean(card.imageUrl));
-
-    if (mapped.length === 0 && existingIds.size === 0) {
-      return getMockDiscoverCards(DECK_PAGE_SIZE);
-    }
-
-    return mapped;
-  } catch (error) {
-    if (existingIds.size === 0) {
-      return getMockDiscoverCards(DECK_PAGE_SIZE);
-    }
-    throw error;
-  }
+  const page = await fetchRecommendedFeed({
+    limit: DECK_PAGE_SIZE,
+    excludeIds: [...existingIds],
+  });
+  return page.filter((card) => !existingIds.has(card.id) && Boolean(card.imageUrl));
 }
 
 export function useDiscoverDeck() {

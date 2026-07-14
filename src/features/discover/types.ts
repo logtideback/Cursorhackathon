@@ -1,3 +1,4 @@
+import type { RecommendationReasonCode } from '@/features/discover/recommendation/types';
 import type { SwipeDirection } from '@/types/database';
 
 export type DiscoverCard = {
@@ -14,6 +15,8 @@ export type DiscoverCard = {
   imageUrl: string;
   thumbnailUrl: string | null;
   source: 'remote' | 'mock';
+  reasons?: RecommendationReasonCode[];
+  score?: number;
 };
 
 export type SwipeHistoryEntry = {
