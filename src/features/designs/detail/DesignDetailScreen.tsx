@@ -1,7 +1,8 @@
+import { router } from 'expo-router';
 import { useState } from 'react';
 import { Alert, StyleSheet, View } from 'react-native';
 
-import { EmptyState, ErrorState, LoadingIndicator, Screen, Text } from '@/components';
+import { Button, EmptyState, ErrorState, LoadingIndicator, Screen, Text } from '@/components';
 import { ChooseCollectionSheet } from '@/features/collections';
 import { CreatorSummary } from '@/features/designs/detail/components/CreatorSummary';
 import { DesignActions } from '@/features/designs/detail/components/DesignActions';
@@ -140,6 +141,14 @@ export function DesignDetailScreen({ designId }: DesignDetailScreenProps) {
 
         <ProvenanceLabel provenance={design.provenance} />
         <SourceLinkRow designId={design.id} sourceUrl={design.sourceUrl} />
+
+        {design.creator.isSelf ? (
+          <Button
+            label="Edit design"
+            variant="secondary"
+            onPress={() => router.push(`/design/${design.id}/edit`)}
+          />
+        ) : null}
 
         <DesignActions
           isSaved={isSaved}

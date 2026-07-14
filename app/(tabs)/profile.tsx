@@ -1,61 +1,19 @@
-import { StyleSheet, View } from 'react-native';
+import { Redirect } from 'expo-router';
 
-import { Button, Divider, Screen, Text } from '@/components';
-import { authApi } from '@/features/auth';
+import { CreatorProfileScreen } from '@/features/creators';
 import { useAuthStore } from '@/store/auth-store';
-import { useOnboardingStore } from '@/store/onboarding-store';
-import { spacing } from '@/theme';
-import { router } from 'expo-router';
 
 export default function ProfileScreen() {
   const user = useAuthStore((s) => s.user);
-  const resetOnboarding = useOnboardingStore((s) => s.resetOnboarding);
+  const status = useAuthStore((s) => s.status);
 
-  return (
-    <Screen contentStyle={styles.content}>
-      <View style={styles.header}>
-        <Text variant="label" tone="tertiary">
-          Profile
-        </Text>
-        <Text variant="title">Account</Text>
-        <Text variant="body" tone="secondary">
-          {user?.email ?? 'Signed in'}
-        </Text>
-      </View>
+  if (status === 'unauthenticated') {
+    return <Redirect href="/(auth)/sign-in" />;
+  }
 
-      <Divider />
+  if (!user?.id) {
+    return null;
+  }
 
-      <View style={styles.actions}>
-        <Button
-          label="Sign out"
-          variant="secondary"
-          onPress={() => {
-            void authApi.signOut().then(() => {
-              router.replace('/(auth)');
-            });
-          }}
-        />
-        <Button
-          label="Replay onboarding"
-          variant="ghost"
-          onPress={() => {
-            resetOnboarding();
-            router.replace('/(onboarding)/preferences');
-          }}
-        />
-      </View>
-    </Screen>
-  );
+  return <CreatorProfileScreen creatorId={user.id} showAccountActions />;
 }
-
-const styles = StyleSheet.create({
-  content: {
-    gap: spacing.md,
-  },
-  header: {
-    gap: spacing.sm,
-  },
-  actions: {
-    gap: spacing.sm,
-  },
-});

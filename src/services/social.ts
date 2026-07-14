@@ -169,3 +169,24 @@ export async function blockCreator(blockedId: string): Promise<Tables<'blocks'>>
   }
   return data;
 }
+
+export async function unblockCreator(blockedId: string): Promise<void> {
+  assertEnvConfigured();
+
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+  throwOnError(userError, 'Failed to resolve authenticated user');
+  if (!user) {
+    throw new Error('Not authenticated');
+  }
+
+  const { error } = await supabase
+    .from('blocks')
+    .delete()
+    .eq('blocker_id', user.id)
+    .eq('blocked_id', blockedId);
+
+  throwOnError(error, 'Failed to unblock creator');
+}

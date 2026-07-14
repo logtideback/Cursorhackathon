@@ -22,6 +22,10 @@ export default function RootLayout() {
         <Stack.Screen name="design" options={{ animation: 'slide_from_right' }} />
         <Stack.Screen name="creator" options={{ animation: 'slide_from_right' }} />
         <Stack.Screen name="collection" options={{ animation: 'slide_from_right' }} />
+        <Stack.Screen
+          name="upload"
+          options={{ animation: 'slide_from_bottom', presentation: 'modal' }}
+        />
       </Stack>
     </AppProviders>
   );

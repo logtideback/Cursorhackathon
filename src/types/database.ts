@@ -28,6 +28,10 @@ export type ReportStatus = 'open' | 'reviewing' | 'resolved' | 'dismissed';
 
 export type FeedbackType = 'show_less' | 'hide_creator' | 'hide_tag' | 'hide_style';
 
+export type ModerationFlagKind = 'image_safety' | 'duplicate_image' | 'design_similarity';
+
+export type ModerationFlagStatus = 'open' | 'reviewing' | 'cleared' | 'actioned';
+
 export type Database = {
   public: {
     Tables: {
@@ -480,11 +484,56 @@ export type Database = {
           },
         ];
       };
+      design_moderation_flags: {
+        Row: {
+          id: string;
+          design_id: string;
+          kind: ModerationFlagKind;
+          status: ModerationFlagStatus;
+          score: number | null;
+          related_design_ids: string[];
+          details: Json;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          design_id: string;
+          kind: ModerationFlagKind;
+          status?: ModerationFlagStatus;
+          score?: number | null;
+          related_design_ids?: string[];
+          details?: Json;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          design_id?: string;
+          kind?: ModerationFlagKind;
+          status?: ModerationFlagStatus;
+          score?: number | null;
+          related_design_ids?: string[];
+          details?: Json;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'design_moderation_flags_design_id_fkey';
+            columns: ['design_id'];
+            isOneToOne: false;
+            referencedRelation: 'designs';
+            referencedColumns: ['id'];
+          },
+        ];
+      };
       reports: {
         Row: {
           id: string;
           reporter_id: string;
-          design_id: string;
+          design_id: string | null;
+          reported_creator_id: string | null;
           reason: ReportReason;
           notes: string | null;
           status: ReportStatus;
@@ -493,7 +542,8 @@ export type Database = {
         Insert: {
           id?: string;
           reporter_id: string;
-          design_id: string;
+          design_id?: string | null;
+          reported_creator_id?: string | null;
           reason: ReportReason;
           notes?: string | null;
           status?: ReportStatus;
@@ -502,7 +552,8 @@ export type Database = {
         Update: {
           id?: string;
           reporter_id?: string;
-          design_id?: string;
+          design_id?: string | null;
+          reported_creator_id?: string | null;
           reason?: ReportReason;
           notes?: string | null;
           status?: ReportStatus;
@@ -521,6 +572,13 @@ export type Database = {
             columns: ['design_id'];
             isOneToOne: false;
             referencedRelation: 'designs';
+            referencedColumns: ['id'];
+          },
+          {
+            foreignKeyName: 'reports_reported_creator_id_fkey';
+            columns: ['reported_creator_id'];
+            isOneToOne: false;
+            referencedRelation: 'profiles';
             referencedColumns: ['id'];
           },
         ];
@@ -749,6 +807,14 @@ export type Database = {
         Args: Record<string, never>;
         Returns: boolean;
       };
+      get_creator_profile: {
+        Args: { p_creator_id: string };
+        Returns: Json;
+      };
+      delete_own_design: {
+        Args: { p_design_id: string };
+        Returns: boolean;
+      };
     };
     Enums: {
       user_role: UserRole;
@@ -760,6 +826,8 @@ export type Database = {
       report_reason: ReportReason;
       report_status: ReportStatus;
       feedback_type: FeedbackType;
+      moderation_flag_kind: ModerationFlagKind;
+      moderation_flag_status: ModerationFlagStatus;
     };
     CompositeTypes: Record<string, never>;
   };

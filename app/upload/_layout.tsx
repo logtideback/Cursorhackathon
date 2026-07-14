@@ -2,7 +2,7 @@ import { Stack } from 'expo-router';
 
 import { colors, fontFamilies } from '@/theme';
 
-export default function DesignLayout() {
+export default function UploadLayout() {
   return (
     <Stack
       screenOptions={{
@@ -12,16 +12,6 @@ export default function DesignLayout() {
         headerShadowVisible: false,
         contentStyle: { backgroundColor: colors.background },
       }}
-    >
-      <Stack.Screen
-        name="[id]/index"
-        options={{
-          title: '',
-          headerTransparent: true,
-          headerStyle: { backgroundColor: 'transparent' },
-        }}
-      />
-      <Stack.Screen name="[id]/edit" options={{ headerShown: false, title: 'Edit design' }} />
-    </Stack>
+    />
   );
 }
