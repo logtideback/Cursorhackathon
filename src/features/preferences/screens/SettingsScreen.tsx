@@ -8,12 +8,9 @@ import { LEGAL, openSupportEmail } from '@/lib/legal';
 import {
   fetchPreferenceControls,
   getMockPreferenceControls,
-  resetHiddenPreferences,
   resetRecommendationHistory,
-  unhideCreator,
   updateRecommendationSettings,
 } from '@/services/preferences';
-import { unblockCreator } from '@/services/social';
 import { colors, spacing } from '@/theme';
 import type { ExplorationLevel } from '@/types/database';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
@@ -146,104 +143,21 @@ export function SettingsScreen() {
       </View>
 
       <View style={styles.section}>
-        <Text variant="subtitle">Hidden creators</Text>
-        {controls.hiddenCreators.length === 0 ? (
-          <Text variant="body" tone="secondary">
-            No creators hidden. Hide keeps someone out of recommendations without a full block.
-          </Text>
-        ) : (
-          controls.hiddenCreators.map((creator) => (
-            <View key={creator.id} style={styles.listRow}>
-              <Text variant="body">{creator.displayName || creator.username || 'Creator'}</Text>
-              <Button
-                label="Unhide"
-                variant="ghost"
-                fullWidth={false}
-                onPress={() => {
-                  void unhideCreator(creator.id).then(() => {
-                    void query.refetch();
-                  });
-                }}
-              />
-            </View>
-          ))
-        )}
-      </View>
-
-      <View style={styles.section}>
-        <Text variant="subtitle">Blocked creators</Text>
-        {controls.blockedCreators.length === 0 ? (
-          <Text variant="body" tone="secondary">
-            No blocks yet. Blocking is reversible here.
-          </Text>
-        ) : (
-          controls.blockedCreators.map((creator) => (
-            <View key={creator.id} style={styles.listRow}>
-              <Text variant="body">{creator.displayName || creator.username || 'Creator'}</Text>
-              <Button
-                label="Unblock"
-                variant="ghost"
-                fullWidth={false}
-                onPress={() => {
-                  void unblockCreator(creator.id).then(() => {
-                    void query.refetch();
-                  });
-                }}
-              />
-            </View>
-          ))
-        )}
-      </View>
-
-      <View style={styles.section}>
-        <Text variant="subtitle">Disliked styles and tags</Text>
-        <Text variant="body" tone="secondary">
-          Styles: {controls.dislikedStyles.join(', ') || 'none'}
-        </Text>
-        <Text variant="body" tone="secondary">
-          Tags: {controls.dislikedTags.join(', ') || 'none'}
-        </Text>
-        <Text variant="body" tone="secondary">
-          Colour families: {controls.dislikedColourFamilies.join(', ') || 'none'}
-        </Text>
-        <Text variant="body" tone="secondary">
-          Layout patterns: {controls.dislikedLayoutPatterns.join(', ') || 'none'}
-        </Text>
-        <Text variant="body" tone="secondary">
-          Categories: {controls.dislikedCategories.join(', ') || 'none'}
-        </Text>
-      </View>
-
-      <View style={styles.section}>
+        <Text variant="subtitle">Safety and taste controls</Text>
+        <Button
+          label="Hidden preferences"
+          variant="ghost"
+          onPress={() => router.push('/settings/hidden-preferences')}
+        />
+        <Button
+          label="Blocked creators"
+          variant="ghost"
+          onPress={() => router.push('/settings/blocked')}
+        />
         <Button
           label="Open Taste Profile"
           variant="secondary"
           onPress={() => router.push('/settings/taste-profile')}
-        />
-        <Button
-          label="Reset hidden preferences"
-          variant="ghost"
-          onPress={() => {
-            Alert.alert(
-              'Reset hidden preferences?',
-              'Clears show-me-less signals and disliked styles, tags, colours, and layouts.',
-              [
-                { text: 'Cancel', style: 'cancel' },
-                {
-                  text: 'Reset',
-                  style: 'destructive',
-                  onPress: () => {
-                    void (async () => {
-                      if (isEnvConfigured()) {
-                        await resetHiddenPreferences();
-                      }
-                      void query.refetch();
-                    })();
-                  },
-                },
-              ],
-            );
-          }}
         />
         <Button
           label="Reset recommendation history"

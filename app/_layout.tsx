@@ -30,6 +30,10 @@ function RootNavigator() {
         />
         <Stack.Screen name="settings" options={{ animation: 'slide_from_right' }} />
         <Stack.Screen name="legal" options={{ animation: 'slide_from_right' }} />
+        <Stack.Screen
+          name="report"
+          options={{ animation: 'slide_from_bottom', presentation: 'modal' }}
+        />
       </Stack>
     </>
   );

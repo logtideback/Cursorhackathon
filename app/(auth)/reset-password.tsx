@@ -5,6 +5,7 @@ import { StyleSheet, View } from 'react-native';
 import { AuthScreen, Button, FormError, Text, TextField } from '@/components';
 import { isEnvConfigured } from '@/lib/env';
 import { supabase } from '@/lib/supabase';
+import { useAuthStore } from '@/store/auth-store';
 import { spacing } from '@/theme';
 import { friendlyAuthError } from '@/utils/auth-errors';
 
@@ -12,6 +13,7 @@ import { friendlyAuthError } from '@/utils/auth-errors';
  * Destination for password-reset deep links (`taste://reset-password`).
  */
 export default function ResetPasswordScreen() {
+  const setPasswordRecoveryPending = useAuthStore((s) => s.setPasswordRecoveryPending);
   const [password, setPassword] = useState('');
   const [confirm, setConfirm] = useState('');
   const [busy, setBusy] = useState(false);
@@ -38,6 +40,7 @@ export default function ResetPasswordScreen() {
       if (updateError) {
         throw updateError;
       }
+      setPasswordRecoveryPending(false);
       setDone(true);
     } catch (err) {
       setError(friendlyAuthError(err));
@@ -65,7 +68,13 @@ export default function ResetPasswordScreen() {
           <Text variant="body" tone="accent">
             Password updated.
           </Text>
-          <Button label="Continue" onPress={() => router.replace('/(tabs)')} />
+          <Button
+            label="Continue"
+            onPress={() => {
+              setPasswordRecoveryPending(false);
+              router.replace('/');
+            }}
+          />
         </View>
       ) : (
         <>
@@ -90,7 +99,10 @@ export default function ResetPasswordScreen() {
             <Button
               label="Back to sign in"
               variant="ghost"
-              onPress={() => router.replace('/(auth)/sign-in')}
+              onPress={() => {
+                setPasswordRecoveryPending(false);
+                router.replace('/(auth)/sign-in');
+              }}
             />
           </View>
         </>

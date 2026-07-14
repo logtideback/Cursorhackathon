@@ -6,6 +6,9 @@ export { AnalyticsConsentCard } from '@/features/preferences/components/Analytic
 export { AppearancePreferenceCard } from '@/features/preferences/components/AppearancePreferenceCard';
 export { DesignFeedbackActionsSheet } from '@/features/preferences/components/DesignFeedbackActionsSheet';
 export { ShowMeLessSheet } from '@/features/preferences/components/ShowMeLessSheet';
+export { BlockedUsersScreen } from '@/features/preferences/screens/BlockedUsersScreen';
+export { HiddenPreferencesScreen } from '@/features/preferences/screens/HiddenPreferencesScreen';
+export { ReportScreen } from '@/features/preferences/screens/ReportScreen';
 export { SettingsScreen } from '@/features/preferences/screens/SettingsScreen';
 export { TasteProfileScreen } from '@/features/preferences/screens/TasteProfileScreen';
 export { SHOW_ME_LESS_OPTIONS } from '@/features/preferences/types';

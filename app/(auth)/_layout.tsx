@@ -1,12 +1,15 @@
-import { Redirect, Stack } from 'expo-router';
+import { Redirect, Stack, useSegments } from 'expo-router';
 
 import { LoadingIndicator, Screen } from '@/components';
 import { useAuthStore } from '@/store/auth-store';
 import { colors } from '@/theme';
 
-/** Public auth group — welcome, carousel, sign-in/up, magic link, forgot password. */
+/** Public auth group — welcome, carousel, sign-in/up, magic link, forgot/reset password. */
 export default function AuthLayout() {
   const status = useAuthStore((s) => s.status);
+  const passwordRecoveryPending = useAuthStore((s) => s.passwordRecoveryPending);
+  const segments = useSegments();
+  const onResetPassword = segments.includes('reset-password');
 
   if (status === 'loading') {
     return (
@@ -16,7 +19,8 @@ export default function AuthLayout() {
     );
   }
 
-  if (status === 'authenticated') {
+  // Keep recovery users on the reset screen even though a session is already active.
+  if (status === 'authenticated' && !(passwordRecoveryPending || onResetPassword)) {
     return <Redirect href="/" />;
   }
 

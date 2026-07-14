@@ -7,12 +7,14 @@ import { useOnboardingStore } from '@/store/onboarding-store';
 /**
  * Root gate:
  * - loading/hydration → spinner
+ * - password recovery session → reset-password
  * - unauthenticated → welcome
  * - authenticated + incomplete onboarding → preferences flow
  * - otherwise → Discover tabs
  */
 export default function Index() {
   const status = useAuthStore((s) => s.status);
+  const passwordRecoveryPending = useAuthStore((s) => s.passwordRecoveryPending);
   const hasCompletedOnboarding = useOnboardingStore((s) => s.hasCompletedOnboarding);
   const hasHydrated = useOnboardingStore((s) => s.hasHydrated);
 
@@ -22,6 +24,10 @@ export default function Index() {
         <LoadingIndicator label="Loading Taste" />
       </Screen>
     );
+  }
+
+  if (passwordRecoveryPending) {
+    return <Redirect href="/(auth)/reset-password" />;
   }
 
   if (status !== 'authenticated') {

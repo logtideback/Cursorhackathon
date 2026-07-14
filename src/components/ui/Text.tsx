@@ -1,6 +1,7 @@
 import { Text as RNText, TextProps as RNTextProps, StyleSheet } from 'react-native';
 
-import { colors, typography, type TypographyVariant } from '@/theme';
+import { useTheme } from '@/providers/ThemeProvider';
+import { typography, type TypographyVariant } from '@/theme';
 
 type TextTone = 'primary' | 'secondary' | 'tertiary' | 'inverse' | 'accent' | 'danger';
 
@@ -9,18 +10,10 @@ export type TextProps = RNTextProps & {
   tone?: TextTone;
 };
 
-const toneColor: Record<TextTone, string> = {
-  primary: colors.text,
-  secondary: colors.textSecondary,
-  tertiary: colors.textTertiary,
-  inverse: colors.textInverse,
-  accent: colors.accent,
-  danger: colors.danger,
-};
-
 /**
  * Typography respects Dynamic Type via `allowFontScaling` (default true).
  * Caps extreme scaling so editorial layouts remain usable.
+ * Colour comes from ThemeProvider so dark mode updates live.
  */
 export function Text({
   variant = 'body',
@@ -31,7 +24,16 @@ export function Text({
   maxFontSizeMultiplier = 1.35,
   ...rest
 }: TextProps) {
+  const { colors } = useTheme();
   const variantStyle = typography[variant];
+  const toneColor: Record<TextTone, string> = {
+    primary: colors.text,
+    secondary: colors.textSecondary,
+    tertiary: colors.textTertiary,
+    inverse: colors.textInverse,
+    accent: colors.accent,
+    danger: colors.danger,
+  };
 
   return (
     <RNText

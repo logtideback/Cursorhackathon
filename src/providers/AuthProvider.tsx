@@ -8,6 +8,20 @@ import { fetchCurrentProfile } from '@/services/profiles';
 import { useAuthStore } from '@/store/auth-store';
 import { useOnboardingStore } from '@/store/onboarding-store';
 
+function urlLooksLikePasswordRecovery(url: string): boolean {
+  const parsed = Linking.parse(url);
+  const hash = url.split('#')[1];
+  const hashParams = new URLSearchParams(hash ?? '');
+  const type =
+    (typeof parsed.queryParams?.type === 'string' ? parsed.queryParams.type : null) ??
+    hashParams.get('type');
+  if (type === 'recovery') {
+    return true;
+  }
+  const path = (parsed.path ?? '').replace(/^\//, '');
+  return path === 'reset-password' || path.endsWith('reset-password');
+}
+
 async function createSessionFromUrl(url: string) {
   const parsed = Linking.parse(url);
   const accessToken =
@@ -15,7 +29,6 @@ async function createSessionFromUrl(url: string) {
   const refreshToken =
     typeof parsed.queryParams?.refresh_token === 'string' ? parsed.queryParams.refresh_token : null;
 
-  // Prefer hash fragment tokens from Supabase email redirects when present.
   const hash = url.split('#')[1];
   const hashParams = new URLSearchParams(hash ?? '');
   const hashAccess = hashParams.get('access_token');
@@ -23,6 +36,10 @@ async function createSessionFromUrl(url: string) {
 
   const access = hashAccess ?? accessToken;
   const refresh = hashRefresh ?? refreshToken;
+
+  if (urlLooksLikePasswordRecovery(url)) {
+    useAuthStore.getState().setPasswordRecoveryPending(true);
+  }
 
   if (access && refresh) {
     await supabase.auth.setSession({ access_token: access, refresh_token: refresh });
@@ -39,6 +56,7 @@ async function createSessionFromUrl(url: string) {
 export function AuthProvider({ children }: PropsWithChildren) {
   const setSession = useAuthStore((s) => s.setSession);
   const setStatus = useAuthStore((s) => s.setStatus);
+  const setPasswordRecoveryPending = useAuthStore((s) => s.setPasswordRecoveryPending);
   const syncFromProfile = useOnboardingStore((s) => s.syncFromProfile);
 
   useEffect(() => {
@@ -74,12 +92,16 @@ export function AuthProvider({ children }: PropsWithChildren) {
 
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
+    } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === 'PASSWORD_RECOVERY') {
+        setPasswordRecoveryPending(true);
+      }
       setSession(session);
       crashReporting.setUser(session?.user?.id ?? null);
       if (session) {
         void hydrateProfile();
       } else {
+        setPasswordRecoveryPending(false);
         syncFromProfile(false);
       }
     });
@@ -100,7 +122,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
       subscription.unsubscribe();
       linkingSub.remove();
     };
-  }, [setSession, setStatus, syncFromProfile]);
+  }, [setSession, setStatus, setPasswordRecoveryPending, syncFromProfile]);
 
   return children;
 }

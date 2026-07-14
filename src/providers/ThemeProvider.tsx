@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createContext, PropsWithChildren, useContext, useEffect, useMemo, useState } from 'react';
 import { Appearance, ColorSchemeName as RNColorSchemeName } from 'react-native';
 
@@ -17,6 +18,8 @@ type ThemeContextValue = {
   setPreference: (preference: ThemePreference) => void;
 };
 
+const STORAGE_KEY = 'taste.theme.preference';
+
 const ThemeContext = createContext<ThemeContextValue>({
   preference: 'light',
   scheme: 'light',
@@ -32,15 +35,22 @@ function resolveScheme(preference: ThemePreference, system: RNColorSchemeName): 
 }
 
 /**
- * Theme provider. Default preference is `light` so the editorial paper UI stays
- * stable across StyleSheet-bound screens. Set preference to `system` or `dark`
- * when a screen is fully theme-aware.
+ * Theme provider. Default preference is `light` for the editorial paper UI.
+ * Preference is persisted; Screen + Text respond live via context.
  */
 export function ThemeProvider({ children }: PropsWithChildren) {
-  const [preference, setPreference] = useState<ThemePreference>('light');
+  const [preference, setPreferenceState] = useState<ThemePreference>('light');
   const [systemScheme, setSystemScheme] = useState<RNColorSchemeName>(
     () => Appearance.getColorScheme() ?? 'light',
   );
+
+  useEffect(() => {
+    void AsyncStorage.getItem(STORAGE_KEY).then((stored) => {
+      if (stored === 'light' || stored === 'dark' || stored === 'system') {
+        setPreferenceState(stored);
+      }
+    });
+  }, []);
 
   useEffect(() => {
     const sub = Appearance.addChangeListener(({ colorScheme }) => {
@@ -48,6 +58,11 @@ export function ThemeProvider({ children }: PropsWithChildren) {
     });
     return () => sub.remove();
   }, []);
+
+  const setPreference = (next: ThemePreference) => {
+    setPreferenceState(next);
+    void AsyncStorage.setItem(STORAGE_KEY, next);
+  };
 
   const value = useMemo<ThemeContextValue>(() => {
     const scheme = resolveScheme(preference, systemScheme);
