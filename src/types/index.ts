@@ -2,8 +2,6 @@ export type DesignId = string;
 export type CreatorId = string;
 export type CollectionId = string;
 
-export type SwipeDirection = 'left' | 'right';
-
 export type AuthStatus = 'loading' | 'authenticated' | 'unauthenticated';
 
 export type DesignCard = {
@@ -15,4 +13,21 @@ export type DesignCard = {
   tags: string[];
 };
 
-export type { Database, Json } from './database';
+export type {
+  Database,
+  DesignProvenance,
+  DesignStatus,
+  FeedbackType,
+  Json,
+  RecordSwipeResult,
+  ReportReason,
+  ReportStatus,
+  SavedAspect,
+  SwipeDirection,
+  Tables,
+  TablesInsert,
+  TablesUpdate,
+  UndoSwipeResult,
+  UnseenDesignRow,
+  UserRole,
+} from './database';

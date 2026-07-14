@@ -21,7 +21,7 @@ npm install
 cp .env.example .env
 ```
 
-Fill in Supabase values in `.env`, then:
+Fill in Supabase values in `.env`, apply migrations (see below), then:
 
 ```bash
 npm start
@@ -36,6 +36,17 @@ Press `i` for iOS simulator, `a` for Android emulator, or scan the QR code with 
 | `EXPO_PUBLIC_SUPABASE_URL` | Yes | Supabase project URL |
 | `EXPO_PUBLIC_SUPABASE_ANON_KEY` | Yes | Supabase anon/public key |
 | `EAS_PROJECT_ID` | No | EAS project id for builds |
+
+Never put `SUPABASE_SERVICE_ROLE_KEY` in the mobile app or Expo env.
+
+## Database migrations
+
+See [`supabase/README.md`](./supabase/README.md). Apply in order:
+
+```bash
+supabase link --project-ref <project-ref>
+supabase db push
+```
 
 ## Scripts
 
@@ -53,29 +64,27 @@ npm run typecheck  # TypeScript
 
 ```text
 app/                      # Expo Router screens
-  (auth)/                 # Public auth routes
-  (onboarding)/           # Authenticated onboarding
-  (tabs)/                 # Protected main tabs
-  design/                 # Design detail
-  creator/                # Creator profile
-  collection/             # Collection detail
 src/
-  components/ui/          # Reusable primitives
-  features/               # Feature modules
+  components/ui/
+  features/
   hooks/
-  lib/                    # Env, Supabase, Query client
+  lib/
   providers/
-  services/
-  store/                  # Zustand stores
-  theme/                  # Design tokens
-  types/
+  services/               # Auth + designs/swipes/collections/social
+  store/
+  theme/
+  types/                  # Database types matching migrations
   utils/
+supabase/
+  migrations/             # Ordered SQL migrations
+  config.toml
 ```
 
 ## Manual setup
 
 1. Create a Supabase project and copy the URL + anon key into `.env`.
-2. Enable Email auth in the Supabase dashboard (or your preferred providers).
-3. Replace `src/types/database.ts` with generated types when tables exist:
-   `npx supabase gen types typescript --project-id <id> > src/types/database.ts`
-4. (Optional) Create an EAS project and set `EAS_PROJECT_ID` for cloud builds.
+2. Enable Email auth in the Supabase dashboard.
+3. Apply migrations with `supabase db push` (or run SQL files in order).
+4. Confirm storage buckets `avatars` and `design-images` exist.
+5. Optional: regenerate types with `supabase gen types typescript --linked`.
+6. Optional: create an EAS project and set `EAS_PROJECT_ID`.
