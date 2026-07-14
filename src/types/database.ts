@@ -902,6 +902,14 @@ export type Database = {
         Args: Record<string, never>;
         Returns: Json;
       };
+      delete_own_account: {
+        Args: Record<string, never>;
+        Returns: Json;
+      };
+      request_data_export: {
+        Args: Record<string, never>;
+        Returns: Json;
+      };
     };
     Enums: {
       user_role: UserRole;

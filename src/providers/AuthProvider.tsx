@@ -1,6 +1,7 @@
 import * as Linking from 'expo-linking';
 import { PropsWithChildren, useEffect } from 'react';
 
+import { crashReporting } from '@/lib/crash-reporting';
 import { isEnvConfigured } from '@/lib/env';
 import { supabase } from '@/lib/supabase';
 import { fetchCurrentProfile } from '@/services/profiles';
@@ -75,6 +76,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
+      crashReporting.setUser(session?.user?.id ?? null);
       if (session) {
         void hydrateProfile();
       } else {

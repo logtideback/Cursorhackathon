@@ -51,14 +51,34 @@ supabase db push
 ## Scripts
 
 ```bash
-npm start          # Expo dev server
-npm run ios        # iOS
-npm run android    # Android
-npm run web        # Web
-npm run lint       # ESLint
-npm run format     # Prettier
-npm run typecheck  # TypeScript
+npm start                 # Expo dev server
+npm run ios               # iOS
+npm run android           # Android
+npm run web               # Web
+npm run lint              # ESLint
+npm run format            # Prettier
+npm run typecheck         # TypeScript
+npm run test              # Unit tests
+npm run release:check     # typecheck + lint + test
+npm run eas:dev           # EAS development builds
+npm run eas:preview       # EAS preview builds
+npm run eas:production    # EAS production builds
 ```
+
+## Store builds (TestFlight / Play internal)
+
+Full commands, store-console setup, and known limitations:
+
+- [`docs/release/LAUNCH.md`](./docs/release/LAUNCH.md)
+- [`docs/release/CHECKLIST.md`](./docs/release/CHECKLIST.md)
+
+```bash
+eas build --profile development --platform all
+eas build --profile preview --platform all
+eas build --profile production --platform all
+```
+
+Never commit secrets. Use `.env` (gitignored), EAS Secrets, and `secrets/` (gitignored except README).
 
 ## Folder structure
 
@@ -96,3 +116,5 @@ Magic-link and password-reset emails must allow redirect URLs for the `taste://`
 4. Apply migrations with `supabase db push`.
 5. Confirm storage buckets `avatars` and `design-images` exist.
 6. Optional: create an EAS project and set `EAS_PROJECT_ID`.
+7. Apply the account-deletion migration and set Auth redirect URLs for `taste://reset-password`.
+8. Replace privacy/terms placeholders before public store submission (see Settings → Privacy).

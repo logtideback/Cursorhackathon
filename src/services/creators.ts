@@ -1,4 +1,5 @@
 import type { CreatorProfile } from '@/features/creators/types';
+import { emitModerationHook } from '@/lib/content-moderation';
 import { assertEnvConfigured } from '@/lib/env';
 import { supabase } from '@/lib/supabase';
 import type { DesignProvenance, ReportReason, Tables } from '@/types/database';
@@ -95,5 +96,14 @@ export async function reportCreator(params: {
   if (!data) {
     throw new Error('Failed to report creator');
   }
+
+  void emitModerationHook({
+    event: 'report_submitted',
+    targetKind: 'creator',
+    targetId: params.creatorId,
+    reason: params.reason,
+    reporterId: user.id,
+  });
+
   return data;
 }

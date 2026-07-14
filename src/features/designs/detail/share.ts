@@ -1,11 +1,10 @@
-import * as Linking from 'expo-linking';
 import { Share } from 'react-native';
 
 import { track } from '@/lib/analytics';
+import { buildDesignDeepLink } from '@/lib/deep-links';
 
 export function buildDesignShareUrl(designId: string): string {
-  // Prefer a deep link when the Taste scheme is configured.
-  return Linking.createURL(`design/${designId}`);
+  return buildDesignDeepLink(designId);
 }
 
 export function buildDesignShareMessage(params: {

@@ -3,7 +3,8 @@ import { AnalyticsConsentCard } from '@/features/preferences/components/Analytic
 import { AppearancePreferenceCard } from '@/features/preferences/components/AppearancePreferenceCard';
 import { flushPreferenceQueue } from '@/features/preferences/offline-queue';
 import type { PreferenceControls } from '@/features/preferences/types';
-import { isEnvConfigured } from '@/lib/env';
+import { isEnvConfigured, validatePublicEnv } from '@/lib/env';
+import { LEGAL, openSupportEmail } from '@/lib/legal';
 import {
   fetchPreferenceControls,
   getMockPreferenceControls,
@@ -268,6 +269,59 @@ export function SettingsScreen() {
             );
           }}
         />
+      </View>
+
+      <View style={styles.section}>
+        <Text variant="subtitle">Privacy and account</Text>
+        <Button
+          label="Privacy policy"
+          variant="ghost"
+          onPress={() => router.push('/legal/privacy')}
+        />
+        <Button
+          label="Terms of service"
+          variant="ghost"
+          onPress={() => router.push('/legal/terms')}
+        />
+        <Button
+          label={`Email support (${LEGAL.supportEmail})`}
+          variant="ghost"
+          onPress={() => {
+            void openSupportEmail().catch((error: unknown) => {
+              Alert.alert(
+                'Unable to open mail',
+                error instanceof Error ? error.message : 'No mail app available.',
+              );
+            });
+          }}
+        />
+        <Button
+          label="Request my data"
+          variant="ghost"
+          onPress={() => router.push('/settings/data-export')}
+        />
+        <Button
+          label="Delete account"
+          variant="danger"
+          onPress={() => router.push('/settings/delete-account')}
+        />
+        {__DEV__ ? (
+          <Button
+            label="Audit public env"
+            variant="ghost"
+            onPress={() => {
+              const issues = validatePublicEnv();
+              Alert.alert(
+                'Env audit',
+                issues.length
+                  ? issues
+                      .map((issue) => `${issue.level}: ${issue.key} — ${issue.message}`)
+                      .join('\n')
+                  : 'No issues found.',
+              );
+            }}
+          />
+        ) : null}
       </View>
     </Screen>
   );

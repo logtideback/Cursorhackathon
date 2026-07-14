@@ -19,7 +19,12 @@
     "seed:small": "tsx scripts/seed/index.ts --size=small --reset",
     "seed:medium": "tsx scripts/seed/index.ts --size=medium --reset",
     "seed:full": "tsx scripts/seed/index.ts --size=full --reset",
-    "seed:reset": "tsx scripts/seed/index.ts --reset-only"
+    "seed:reset": "tsx scripts/seed/index.ts --reset-only",
+    "eas:dev": "eas build --profile development --platform all",
+    "eas:preview": "eas build --profile preview --platform all",
+    "eas:production": "eas build --profile production --platform all",
+    "audit:deps": "npm audit --omit=dev",
+    "release:check": "npm run typecheck && npm run lint && npm run test"
   },
   "dependencies": {
     "@expo-google-fonts/dm-sans": "^0.4.2",

@@ -26,6 +26,7 @@ import {
   validateImageCount,
 } from '@/features/upload/validation';
 import { track } from '@/lib/analytics';
+import { emitModerationHook } from '@/lib/content-moderation';
 import { isEnvConfigured } from '@/lib/env';
 import {
   deleteOwnDesign,
@@ -417,6 +418,15 @@ export function useUploadWizard(options?: {
           details: {
             safety: moderation.safety,
             duplicate: moderation.duplicate,
+          },
+        });
+        void emitModerationHook({
+          event: 'pre_publish_reviewed',
+          targetKind: 'design',
+          targetId: result.designId,
+          metadata: {
+            safetyFlagged: moderation.safety.flaggedForReview,
+            duplicateFlagged: moderation.duplicate.flaggedForReview,
           },
         });
       }

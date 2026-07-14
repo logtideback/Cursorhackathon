@@ -29,6 +29,7 @@ function RootNavigator() {
           options={{ animation: 'slide_from_bottom', presentation: 'modal' }}
         />
         <Stack.Screen name="settings" options={{ animation: 'slide_from_right' }} />
+        <Stack.Screen name="legal" options={{ animation: 'slide_from_right' }} />
       </Stack>
     </>
   );

@@ -1,3 +1,4 @@
+import { emitModerationHook } from '@/lib/content-moderation';
 import { assertEnvConfigured } from '@/lib/env';
 import { supabase } from '@/lib/supabase';
 import type { ReportReason, Tables } from '@/types/database';
@@ -108,6 +109,15 @@ export async function reportDesign(params: {
   if (!data) {
     throw new Error('Failed to report design');
   }
+
+  void emitModerationHook({
+    event: 'report_submitted',
+    targetKind: 'design',
+    targetId: params.designId,
+    reason: params.reason,
+    reporterId: user.id,
+  });
+
   return data;
 }
 
@@ -167,6 +177,14 @@ export async function blockCreator(blockedId: string): Promise<Tables<'blocks'>>
   if (!data) {
     throw new Error('Failed to block creator');
   }
+
+  void emitModerationHook({
+    event: 'user_blocked',
+    targetKind: 'creator',
+    targetId: blockedId,
+    reporterId: user.id,
+  });
+
   return data;
 }
 

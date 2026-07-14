@@ -1,11 +1,11 @@
-import * as Linking from 'expo-linking';
 import { Share } from 'react-native';
 
 import { track } from '@/lib/analytics';
+import { buildCollectionDeepLink } from '@/lib/deep-links';
 
-/** Placeholder deep-link format for public collections. */
+/** Public collection share URL (universal link or scheme by APP_ENV). */
 export function buildPublicCollectionShareUrl(collectionId: string): string {
-  return Linking.createURL(`collection/${collectionId}`);
+  return buildCollectionDeepLink(collectionId);
 }
 
 export async function sharePublicCollection(params: {

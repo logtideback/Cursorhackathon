@@ -35,6 +35,10 @@ yarn-error.*
 .env.*
 !.env.example
 
+# local secrets (Play service account, signing material)
+secrets/**
+!secrets/README.md
+
 # typescript
 *.tsbuildinfo
 

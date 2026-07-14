@@ -1,9 +1,9 @@
 import 'react-native-url-polyfill/auto';
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
 import { env, isEnvConfigured } from '@/lib/env';
+import { secureAuthStorage } from '@/lib/secure-storage';
 import type { Database } from '@/types/database';
 
 let client: SupabaseClient<Database> | null = null;
@@ -11,6 +11,7 @@ let client: SupabaseClient<Database> | null = null;
 /**
  * Lazily creates the Supabase client so the JS bundle can load without credentials.
  * Network calls should go through feature services after `assertEnvConfigured()`.
+ * Session tokens are persisted via SecureStore where available.
  */
 export function getSupabase(): SupabaseClient<Database> {
   if (client) {
@@ -18,10 +19,9 @@ export function getSupabase(): SupabaseClient<Database> {
   }
 
   if (!isEnvConfigured()) {
-    // Placeholder client for UI-only development; real requests will fail until env is set.
     client = createClient<Database>('https://placeholder.supabase.co', 'public-anon-key', {
       auth: {
-        storage: AsyncStorage,
+        storage: secureAuthStorage,
         autoRefreshToken: false,
         persistSession: false,
         detectSessionInUrl: false,
@@ -32,7 +32,7 @@ export function getSupabase(): SupabaseClient<Database> {
 
   client = createClient<Database>(env.supabaseUrl, env.supabaseAnonKey, {
     auth: {
-      storage: AsyncStorage,
+      storage: secureAuthStorage,
       autoRefreshToken: true,
       persistSession: true,
       detectSessionInUrl: false,

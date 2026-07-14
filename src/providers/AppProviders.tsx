@@ -15,6 +15,7 @@ import { PropsWithChildren, useEffect } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
+import { initCrashReporting } from '@/lib/crash-reporting';
 import { AnalyticsBootstrap } from '@/providers/AnalyticsBootstrap';
 import { AuthProvider } from '@/providers/AuthProvider';
 import { QueryProvider } from '@/providers/QueryProvider';
@@ -22,6 +23,7 @@ import { ThemeProvider } from '@/providers/ThemeProvider';
 import { colors } from '@/theme';
 
 SplashScreen.preventAutoHideAsync().catch(() => undefined);
+initCrashReporting();
 
 export function AppProviders({ children }: PropsWithChildren) {
   const [fontsLoaded, fontError] = useFonts({
