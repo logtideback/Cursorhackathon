@@ -1,0 +1,10 @@
+export { AmplitudeAnalyticsProvider } from '@/lib/analytics/adapters/amplitude';
+export { ConsoleAnalyticsProvider } from '@/lib/analytics/adapters/console';
+export { PostHogAnalyticsProvider } from '@/lib/analytics/adapters/posthog';
+export { analytics, identify, resetAnalytics, screen, track } from '@/lib/analytics/client';
+export { useAnalyticsConsentStore } from '@/lib/analytics/consent-store';
+export type { AnalyticsEvent, AnalyticsEventName, AnalyticsTraits } from '@/lib/analytics/events';
+export type { AnalyticsClientConfig, AnalyticsProvider } from '@/lib/analytics/provider';
+export { sanitizeProperties } from '@/lib/analytics/sanitize';
+export { trackEvent } from '@/lib/analytics/track';
+export { validateAnalyticsEvent } from '@/lib/analytics/validate';
