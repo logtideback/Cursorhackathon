@@ -14,7 +14,12 @@
     "format:check": "prettier --check .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "seed": "tsx scripts/seed/index.ts",
+    "seed:small": "tsx scripts/seed/index.ts --size=small --reset",
+    "seed:medium": "tsx scripts/seed/index.ts --size=medium --reset",
+    "seed:full": "tsx scripts/seed/index.ts --size=full --reset",
+    "seed:reset": "tsx scripts/seed/index.ts --reset-only"
   },
   "dependencies": {
     "@expo-google-fonts/dm-sans": "^0.4.2",
@@ -66,6 +71,7 @@
     "prettier": "^3.9.5",
     "prettier-plugin-organize-imports": "^4.3.0",
     "typescript": "~6.0.3",
+    "tsx": "^4.20.5",
     "vitest": "^4.1.10"
   }
 }

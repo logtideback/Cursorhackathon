@@ -1,0 +1,3589 @@
+[
+  {
+    "title": "Quiet ledger for slow mornings",
+    "description": "Study 1: uses cream stock to invite a slower scan while the kit stays unmistakably primary.",
+    "categorySlug": "mobile-apps",
+    "platform": "ios",
+    "industry": "saas",
+    "provenance": "original_work",
+    "styleSlugs": [
+      "brutalist",
+      "geometric",
+      "grid-based"
+    ],
+    "colourFamilies": [
+      "warm-neutrals",
+      "forest"
+    ],
+    "tagSlugs": [
+      "brutalist",
+      "monochrome",
+      "dark",
+      "y2k"
+    ]
+  },
+  {
+    "title": "Sparse schedule for clinic halls",
+    "description": "Study 2: uses ink black bars to survive a cropped screenshot while the module stays unmistakably primary.",
+    "categorySlug": "portfolios",
+    "platform": "desktop-web",
+    "industry": "media",
+    "provenance": "client_work",
+    "styleSlugs": [
+      "editorial",
+      "y2k",
+      "photography-led"
+    ],
+    "colourFamilies": [
+      "cool-greys",
+      "ochre"
+    ],
+    "tagSlugs": [
+      "swiss",
+      "maximalist",
+      "neumorphic",
+      "high-contrast",
+      "editorial"
+    ]
+  },
+  {
+    "title": "Measured atlas for first-time users",
+    "description": "Study 3: uses ochre rules to keep secondary actions quiet while the surface stays unmistakably primary.",
+    "categorySlug": "social",
+    "platform": "brand-identity",
+    "industry": "health",
+    "provenance": "concept",
+    "styleSlugs": [
+      "retro",
+      "motion-led",
+      "sans-serif"
+    ],
+    "colourFamilies": [
+      "ink-black",
+      "terracotta"
+    ],
+    "tagSlugs": [
+      "typographic",
+      "geometric",
+      "motion-led",
+      "luxury",
+      "retro"
+    ]
+  },
+  {
+    "title": "Honest kit during a soft beta",
+    "description": "Study 4: uses slate chips to respect screen-reader order while the frame stays unmistakably primary.",
+    "categorySlug": "editorial",
+    "platform": "android",
+    "industry": "travel",
+    "provenance": "redesign",
+    "styleSlugs": [
+      "typographic",
+      "soft",
+      "bold-colour"
+    ],
+    "colourFamilies": [
+      "forest",
+      "slate-blue"
+    ],
+    "tagSlugs": [
+      "dark",
+      "accessible",
+      "industrial",
+      "spacious",
+      "typographic"
+    ]
+  },
+  {
+    "title": "Soft frame with bilingual labels",
+    "description": "Study 5: uses cream stock to make totals readable at dusk while the passage stays unmistakably primary.",
+    "categorySlug": "health",
+    "platform": "tablet",
+    "industry": "ecommerce",
+    "provenance": "ai_assisted",
+    "styleSlugs": [
+      "maximalist",
+      "luxury",
+      "responsive"
+    ],
+    "colourFamilies": [
+      "ochre",
+      "soft-pink"
+    ],
+    "tagSlugs": [
+      "neumorphic",
+      "soft",
+      "data-dense",
+      "photography-led",
+      "maximalist"
+    ]
+  },
+  {
+    "title": "Sharp console after the redesign",
+    "description": "Study 6: uses ink black bars to feel hand-composed rather than generated while the gallery stays unmistakably primary.",
+    "categorySlug": "web-apps",
+    "platform": "print",
+    "industry": "fintech",
+    "provenance": "fully_ai_generated",
+    "styleSlugs": [
+      "organic",
+      "data-dense",
+      "conversion-focused"
+    ],
+    "colourFamilies": [
+      "terracotta",
+      "warm-neutrals"
+    ],
+    "tagSlugs": [
+      "motion-led",
+      "hand-drawn",
+      "illustration-led",
+      "experimental-navigation",
+      "organic"
+    ]
+  },
+  {
+    "title": "Warm beacon for night shifts",
+    "description": "Study 7: uses ochre rules to support a second language label while the console stays unmistakably primary.",
+    "categorySlug": "dashboards",
+    "platform": "responsive-web",
+    "industry": "education",
+    "provenance": "original_work",
+    "styleSlugs": [
+      "neumorphic",
+      "grid-based",
+      "functional"
+    ],
+    "colourFamilies": [
+      "slate-blue",
+      "cool-greys"
+    ],
+    "tagSlugs": [
+      "industrial",
+      "grid-based",
+      "sans-serif",
+      "responsive",
+      "neumorphic"
+    ]
+  },
+  {
+    "title": "Cool specimen for watch glances",
+    "description": "Study 8: uses slate chips to hold up beside real product photography while the timeline stays unmistakably primary.",
+    "categorySlug": "experimental",
+    "platform": "watch",
+    "industry": "lifestyle",
+    "provenance": "client_work",
+    "styleSlugs": [
+      "accessible",
+      "photography-led",
+      "nostalgic"
+    ],
+    "colourFamilies": [
+      "soft-pink",
+      "ink-black"
+    ],
+    "tagSlugs": [
+      "data-dense",
+      "serif",
+      "muted-colour",
+      "content-first",
+      "accessible"
+    ]
+  },
+  {
+    "title": "Wide paywall after rain delays",
+    "description": "Study 9: uses cream stock to avoid floating chrome distractions while the receipt stays unmistakably primary.",
+    "categorySlug": "branding",
+    "platform": "ios",
+    "industry": "saas",
+    "provenance": "concept",
+    "styleSlugs": [
+      "high-contrast",
+      "sans-serif",
+      "minimal-navigation"
+    ],
+    "colourFamilies": [
+      "warm-neutrals",
+      "forest"
+    ],
+    "tagSlugs": [
+      "illustration-led",
+      "bold-colour",
+      "conversion-focused",
+      "nostalgic",
+      "high-contrast"
+    ]
+  },
+  {
+    "title": "Tight checkout without chrome noise",
+    "description": "Study 10: uses ink black bars to leave margin for anxious first visits while the beacon stays unmistakably primary.",
+    "categorySlug": "travel",
+    "platform": "desktop-web",
+    "industry": "media",
+    "provenance": "redesign",
+    "styleSlugs": [
+      "industrial",
+      "bold-colour",
+      "minimal"
+    ],
+    "colourFamilies": [
+      "cool-greys",
+      "ochre"
+    ],
+    "tagSlugs": [
+      "sans-serif",
+      "mobile-first",
+      "futuristic",
+      "empty-state",
+      "industrial"
+    ]
+  },
+  {
+    "title": "Patient ledger on paper stock",
+    "description": "Study 11: uses ochre rules to invite a slower scan while the signal stays unmistakably primary.",
+    "categorySlug": "ecommerce",
+    "platform": "brand-identity",
+    "industry": "health",
+    "provenance": "ai_assisted",
+    "styleSlugs": [
+      "hand-drawn",
+      "responsive",
+      "swiss"
+    ],
+    "colourFamilies": [
+      "ink-black",
+      "terracotta"
+    ],
+    "tagSlugs": [
+      "muted-colour",
+      "functional",
+      "minimal-navigation",
+      "typography-focus",
+      "hand-drawn"
+    ]
+  },
+  {
+    "title": "Urgent schedule for radio hosts",
+    "description": "Study 12: uses slate chips to survive a cropped screenshot while the montage stays unmistakably primary.",
+    "categorySlug": "fintech",
+    "platform": "android",
+    "industry": "travel",
+    "provenance": "fully_ai_generated",
+    "styleSlugs": [
+      "spacious",
+      "conversion-focused",
+      "monochrome"
+    ],
+    "colourFamilies": [
+      "forest",
+      "slate-blue"
+    ],
+    "tagSlugs": [
+      "conversion-focused",
+      "modular",
+      "paywall",
+      "minimal",
+      "spacious"
+    ]
+  },
+  {
+    "title": "Late atlas under warehouse lights",
+    "description": "Study 13: uses cream stock to keep secondary actions quiet while the specimen stays unmistakably primary.",
+    "categorySlug": "mobile-apps",
+    "platform": "tablet",
+    "industry": "ecommerce",
+    "provenance": "original_work",
+    "styleSlugs": [
+      "illustration-led",
+      "functional",
+      "playful"
+    ],
+    "colourFamilies": [
+      "ochre",
+      "soft-pink"
+    ],
+    "tagSlugs": [
+      "futuristic",
+      "onboarding",
+      "brutalist",
+      "retro",
+      "illustration-led"
+    ]
+  },
+  {
+    "title": "Early kit with reserved type",
+    "description": "Study 14: uses ink black bars to respect screen-reader order while the terminal stays unmistakably primary.",
+    "categorySlug": "portfolios",
+    "platform": "print",
+    "industry": "fintech",
+    "provenance": "client_work",
+    "styleSlugs": [
+      "serif",
+      "nostalgic",
+      "dark"
+    ],
+    "colourFamilies": [
+      "terracotta",
+      "warm-neutrals"
+    ],
+    "tagSlugs": [
+      "minimal-navigation",
+      "card-ui",
+      "swiss",
+      "playful",
+      "serif"
+    ]
+  },
+  {
+    "title": "Northern frame inside a toolbox",
+    "description": "Study 15: uses ochre rules to make totals readable at dusk while the portfolio stays unmistakably primary.",
+    "categorySlug": "social",
+    "platform": "responsive-web",
+    "industry": "education",
+    "provenance": "concept",
+    "styleSlugs": [
+      "experimental-navigation",
+      "minimal-navigation",
+      "geometric"
+    ],
+    "colourFamilies": [
+      "slate-blue",
+      "cool-greys"
+    ],
+    "tagSlugs": [
+      "paywall",
+      "editorial",
+      "typographic",
+      "organic",
+      "experimental-navigation"
+    ]
+  },
+  {
+    "title": "Coastal console with delayed shipping",
+    "description": "Study 16: uses slate chips to feel hand-composed rather than generated while the paywall stays unmistakably primary.",
+    "categorySlug": "editorial",
+    "platform": "watch",
+    "industry": "lifestyle",
+    "provenance": "redesign",
+    "styleSlugs": [
+      "muted-colour",
+      "minimal",
+      "y2k"
+    ],
+    "colourFamilies": [
+      "soft-pink",
+      "ink-black"
+    ],
+    "tagSlugs": [
+      "brutalist",
+      "monochrome",
+      "dark",
+      "y2k",
+      "muted-colour"
+    ]
+  },
+  {
+    "title": "Urban beacon for teachers on call",
+    "description": "Study 17: uses cream stock to support a second language label while the onboarding stays unmistakably primary.",
+    "categorySlug": "health",
+    "platform": "ios",
+    "industry": "saas",
+    "provenance": "ai_assisted",
+    "styleSlugs": [
+      "mobile-first",
+      "swiss",
+      "motion-led"
+    ],
+    "colourFamilies": [
+      "warm-neutrals",
+      "forest"
+    ],
+    "tagSlugs": [
+      "swiss",
+      "maximalist",
+      "neumorphic",
+      "high-contrast",
+      "mobile-first"
+    ]
+  },
+  {
+    "title": "Studio specimen for weekend markets",
+    "description": "Study 18: uses ink black bars to hold up beside real product photography while the empty-state stays unmistakably primary.",
+    "categorySlug": "web-apps",
+    "platform": "desktop-web",
+    "industry": "media",
+    "provenance": "fully_ai_generated",
+    "styleSlugs": [
+      "content-first",
+      "monochrome",
+      "soft"
+    ],
+    "colourFamilies": [
+      "cool-greys",
+      "ochre"
+    ],
+    "tagSlugs": [
+      "typographic",
+      "geometric",
+      "motion-led",
+      "luxury",
+      "content-first"
+    ]
+  },
+  {
+    "title": "Field paywall from a ferry desk",
+    "description": "Study 19: uses ochre rules to avoid floating chrome distractions while the checkout stays unmistakably primary.",
+    "categorySlug": "dashboards",
+    "platform": "brand-identity",
+    "industry": "health",
+    "provenance": "original_work",
+    "styleSlugs": [
+      "futuristic",
+      "playful",
+      "luxury"
+    ],
+    "colourFamilies": [
+      "ink-black",
+      "terracotta"
+    ],
+    "tagSlugs": [
+      "dark",
+      "accessible",
+      "industrial",
+      "spacious",
+      "futuristic"
+    ]
+  },
+  {
+    "title": "Archive checkout from a shared desk",
+    "description": "Study 20: uses slate chips to leave margin for anxious first visits while the map stays unmistakably primary.",
+    "categorySlug": "experimental",
+    "platform": "android",
+    "industry": "travel",
+    "provenance": "client_work",
+    "styleSlugs": [
+      "modular",
+      "dark",
+      "data-dense"
+    ],
+    "colourFamilies": [
+      "forest",
+      "slate-blue"
+    ],
+    "tagSlugs": [
+      "neumorphic",
+      "soft",
+      "data-dense",
+      "photography-led",
+      "modular"
+    ]
+  },
+  {
+    "title": "Copper ledger before the launch week",
+    "description": "Study 21: uses cream stock to invite a slower scan while the roster-board stays unmistakably primary.",
+    "categorySlug": "branding",
+    "platform": "tablet",
+    "industry": "ecommerce",
+    "provenance": "concept",
+    "styleSlugs": [
+      "brutalist",
+      "geometric",
+      "grid-based"
+    ],
+    "colourFamilies": [
+      "ochre",
+      "soft-pink"
+    ],
+    "tagSlugs": [
+      "motion-led",
+      "hand-drawn",
+      "illustration-led",
+      "experimental-navigation",
+      "brutalist"
+    ]
+  },
+  {
+    "title": "Linen schedule for archive volunteers",
+    "description": "Study 22: uses ink black bars to survive a cropped screenshot while the ledger stays unmistakably primary.",
+    "categorySlug": "travel",
+    "platform": "print",
+    "industry": "fintech",
+    "provenance": "redesign",
+    "styleSlugs": [
+      "editorial",
+      "y2k",
+      "photography-led"
+    ],
+    "colourFamilies": [
+      "terracotta",
+      "warm-neutrals"
+    ],
+    "tagSlugs": [
+      "industrial",
+      "grid-based",
+      "sans-serif",
+      "responsive",
+      "editorial"
+    ]
+  },
+  {
+    "title": "Fog atlas for careful buyers",
+    "description": "Study 23: uses ochre rules to keep secondary actions quiet while the catalog stays unmistakably primary.",
+    "categorySlug": "ecommerce",
+    "platform": "responsive-web",
+    "industry": "education",
+    "provenance": "ai_assisted",
+    "styleSlugs": [
+      "retro",
+      "motion-led",
+      "sans-serif"
+    ],
+    "colourFamilies": [
+      "slate-blue",
+      "cool-greys"
+    ],
+    "tagSlugs": [
+      "data-dense",
+      "serif",
+      "muted-colour",
+      "content-first",
+      "retro"
+    ]
+  },
+  {
+    "title": "Cedar kit with one accent",
+    "description": "Study 24: uses slate chips to respect screen-reader order while the canvas stays unmistakably primary.",
+    "categorySlug": "fintech",
+    "platform": "watch",
+    "industry": "lifestyle",
+    "provenance": "fully_ai_generated",
+    "styleSlugs": [
+      "typographic",
+      "soft",
+      "bold-colour"
+    ],
+    "colourFamilies": [
+      "soft-pink",
+      "ink-black"
+    ],
+    "tagSlugs": [
+      "illustration-led",
+      "bold-colour",
+      "conversion-focused",
+      "nostalgic",
+      "typographic"
+    ]
+  },
+  {
+    "title": "Amber frame with printed margins",
+    "description": "Study 25: uses cream stock to make totals readable at dusk while the schedule stays unmistakably primary.",
+    "categorySlug": "mobile-apps",
+    "platform": "ios",
+    "industry": "saas",
+    "provenance": "original_work",
+    "styleSlugs": [
+      "maximalist",
+      "luxury",
+      "responsive"
+    ],
+    "colourFamilies": [
+      "warm-neutrals",
+      "forest"
+    ],
+    "tagSlugs": [
+      "sans-serif",
+      "mobile-first",
+      "futuristic",
+      "empty-state",
+      "maximalist"
+    ]
+  },
+  {
+    "title": "Slate console beside a ceramics kiln",
+    "description": "Study 26: uses ink black bars to feel hand-composed rather than generated while the roster stays unmistakably primary.",
+    "categorySlug": "portfolios",
+    "platform": "desktop-web",
+    "industry": "media",
+    "provenance": "client_work",
+    "styleSlugs": [
+      "organic",
+      "data-dense",
+      "conversion-focused"
+    ],
+    "colourFamilies": [
+      "cool-greys",
+      "ochre"
+    ],
+    "tagSlugs": [
+      "muted-colour",
+      "functional",
+      "minimal-navigation",
+      "typography-focus",
+      "organic"
+    ]
+  },
+  {
+    "title": "Paper beacon built for dusk",
+    "description": "Study 27: uses ochre rules to support a second language label while the journal stays unmistakably primary.",
+    "categorySlug": "social",
+    "platform": "brand-identity",
+    "industry": "health",
+    "provenance": "concept",
+    "styleSlugs": [
+      "neumorphic",
+      "grid-based",
+      "functional"
+    ],
+    "colourFamilies": [
+      "ink-black",
+      "terracotta"
+    ],
+    "tagSlugs": [
+      "conversion-focused",
+      "modular",
+      "paywall",
+      "minimal",
+      "neumorphic"
+    ]
+  },
+  {
+    "title": "Ink specimen for festival weeks",
+    "description": "Study 28: uses slate chips to hold up beside real product photography while the atlas stays unmistakably primary.",
+    "categorySlug": "editorial",
+    "platform": "android",
+    "industry": "travel",
+    "provenance": "redesign",
+    "styleSlugs": [
+      "accessible",
+      "photography-led",
+      "nostalgic"
+    ],
+    "colourFamilies": [
+      "forest",
+      "slate-blue"
+    ],
+    "tagSlugs": [
+      "futuristic",
+      "onboarding",
+      "brutalist",
+      "retro",
+      "accessible"
+    ]
+  },
+  {
+    "title": "Clay paywall for neighbourhood maps",
+    "description": "Study 29: uses cream stock to avoid floating chrome distractions while the dossier stays unmistakably primary.",
+    "categorySlug": "health",
+    "platform": "tablet",
+    "industry": "ecommerce",
+    "provenance": "ai_assisted",
+    "styleSlugs": [
+      "high-contrast",
+      "sans-serif",
+      "minimal-navigation"
+    ],
+    "colourFamilies": [
+      "ochre",
+      "soft-pink"
+    ],
+    "tagSlugs": [
+      "minimal-navigation",
+      "card-ui",
+      "swiss",
+      "playful",
+      "high-contrast"
+    ]
+  },
+  {
+    "title": "Glass checkout for museum evenings",
+    "description": "Study 30: uses ink black bars to leave margin for anxious first visits while the palette stays unmistakably primary.",
+    "categorySlug": "web-apps",
+    "platform": "print",
+    "industry": "fintech",
+    "provenance": "fully_ai_generated",
+    "styleSlugs": [
+      "industrial",
+      "bold-colour",
+      "minimal"
+    ],
+    "colourFamilies": [
+      "terracotta",
+      "warm-neutrals"
+    ],
+    "tagSlugs": [
+      "paywall",
+      "editorial",
+      "typographic",
+      "organic",
+      "industrial"
+    ]
+  },
+  {
+    "title": "Studio surface after the redesign",
+    "description": "Study 31: uses ochre rules to invite a slower scan while the kit stays unmistakably primary.",
+    "categorySlug": "dashboards",
+    "platform": "responsive-web",
+    "industry": "education",
+    "provenance": "original_work",
+    "styleSlugs": [
+      "hand-drawn",
+      "responsive",
+      "swiss"
+    ],
+    "colourFamilies": [
+      "slate-blue",
+      "cool-greys"
+    ],
+    "tagSlugs": [
+      "brutalist",
+      "monochrome",
+      "dark",
+      "y2k",
+      "hand-drawn"
+    ]
+  },
+  {
+    "title": "Field gallery for night shifts",
+    "description": "Study 32: uses slate chips to survive a cropped screenshot while the module stays unmistakably primary.",
+    "categorySlug": "experimental",
+    "platform": "watch",
+    "industry": "lifestyle",
+    "provenance": "client_work",
+    "styleSlugs": [
+      "spacious",
+      "conversion-focused",
+      "monochrome"
+    ],
+    "colourFamilies": [
+      "soft-pink",
+      "ink-black"
+    ],
+    "tagSlugs": [
+      "swiss",
+      "maximalist",
+      "neumorphic",
+      "high-contrast",
+      "spacious"
+    ]
+  },
+  {
+    "title": "Archive receipt for watch glances",
+    "description": "Study 33: uses cream stock to keep secondary actions quiet while the surface stays unmistakably primary.",
+    "categorySlug": "branding",
+    "platform": "ios",
+    "industry": "saas",
+    "provenance": "concept",
+    "styleSlugs": [
+      "illustration-led",
+      "functional",
+      "playful"
+    ],
+    "colourFamilies": [
+      "warm-neutrals",
+      "forest"
+    ],
+    "tagSlugs": [
+      "typographic",
+      "geometric",
+      "motion-led",
+      "luxury",
+      "illustration-led"
+    ]
+  },
+  {
+    "title": "Copper montage after rain delays",
+    "description": "Study 34: uses ink black bars to respect screen-reader order while the frame stays unmistakably primary.",
+    "categorySlug": "travel",
+    "platform": "desktop-web",
+    "industry": "media",
+    "provenance": "redesign",
+    "styleSlugs": [
+      "serif",
+      "nostalgic",
+      "dark"
+    ],
+    "colourFamilies": [
+      "cool-greys",
+      "ochre"
+    ],
+    "tagSlugs": [
+      "dark",
+      "accessible",
+      "industrial",
+      "spacious",
+      "serif"
+    ]
+  },
+  {
+    "title": "Linen portfolio without chrome noise",
+    "description": "Study 35: uses ochre rules to make totals readable at dusk while the passage stays unmistakably primary.",
+    "categorySlug": "ecommerce",
+    "platform": "brand-identity",
+    "industry": "health",
+    "provenance": "ai_assisted",
+    "styleSlugs": [
+      "experimental-navigation",
+      "minimal-navigation",
+      "geometric"
+    ],
+    "colourFamilies": [
+      "ink-black",
+      "terracotta"
+    ],
+    "tagSlugs": [
+      "neumorphic",
+      "soft",
+      "data-dense",
+      "photography-led",
+      "experimental-navigation"
+    ]
+  },
+  {
+    "title": "Fog empty-state on paper stock",
+    "description": "Study 36: uses slate chips to feel hand-composed rather than generated while the gallery stays unmistakably primary.",
+    "categorySlug": "fintech",
+    "platform": "android",
+    "industry": "travel",
+    "provenance": "fully_ai_generated",
+    "styleSlugs": [
+      "muted-colour",
+      "minimal",
+      "y2k"
+    ],
+    "colourFamilies": [
+      "forest",
+      "slate-blue"
+    ],
+    "tagSlugs": [
+      "motion-led",
+      "hand-drawn",
+      "illustration-led",
+      "experimental-navigation",
+      "muted-colour"
+    ]
+  },
+  {
+    "title": "Cedar roster-board for radio hosts",
+    "description": "Study 37: uses cream stock to support a second language label while the console stays unmistakably primary.",
+    "categorySlug": "mobile-apps",
+    "platform": "tablet",
+    "industry": "ecommerce",
+    "provenance": "original_work",
+    "styleSlugs": [
+      "mobile-first",
+      "swiss",
+      "motion-led"
+    ],
+    "colourFamilies": [
+      "ochre",
+      "soft-pink"
+    ],
+    "tagSlugs": [
+      "industrial",
+      "grid-based",
+      "sans-serif",
+      "responsive",
+      "mobile-first"
+    ]
+  },
+  {
+    "title": "Amber canvas under warehouse lights",
+    "description": "Study 38: uses ink black bars to hold up beside real product photography while the timeline stays unmistakably primary.",
+    "categorySlug": "portfolios",
+    "platform": "print",
+    "industry": "fintech",
+    "provenance": "client_work",
+    "styleSlugs": [
+      "content-first",
+      "monochrome",
+      "soft"
+    ],
+    "colourFamilies": [
+      "terracotta",
+      "warm-neutrals"
+    ],
+    "tagSlugs": [
+      "data-dense",
+      "serif",
+      "muted-colour",
+      "content-first"
+    ]
+  },
+  {
+    "title": "Slate journal with reserved type",
+    "description": "Study 39: uses ochre rules to avoid floating chrome distractions while the receipt stays unmistakably primary.",
+    "categorySlug": "social",
+    "platform": "responsive-web",
+    "industry": "education",
+    "provenance": "concept",
+    "styleSlugs": [
+      "futuristic",
+      "playful",
+      "luxury"
+    ],
+    "colourFamilies": [
+      "slate-blue",
+      "cool-greys"
+    ],
+    "tagSlugs": [
+      "illustration-led",
+      "bold-colour",
+      "conversion-focused",
+      "nostalgic",
+      "futuristic"
+    ]
+  },
+  {
+    "title": "Paper palette inside a toolbox",
+    "description": "Study 40: uses slate chips to leave margin for anxious first visits while the beacon stays unmistakably primary.",
+    "categorySlug": "editorial",
+    "platform": "watch",
+    "industry": "lifestyle",
+    "provenance": "redesign",
+    "styleSlugs": [
+      "modular",
+      "dark",
+      "data-dense"
+    ],
+    "colourFamilies": [
+      "soft-pink",
+      "ink-black"
+    ],
+    "tagSlugs": [
+      "sans-serif",
+      "mobile-first",
+      "futuristic",
+      "empty-state",
+      "modular"
+    ]
+  },
+  {
+    "title": "Ink surface with delayed shipping",
+    "description": "Study 41: uses cream stock to invite a slower scan while the signal stays unmistakably primary.",
+    "categorySlug": "health",
+    "platform": "ios",
+    "industry": "saas",
+    "provenance": "ai_assisted",
+    "styleSlugs": [
+      "brutalist",
+      "geometric",
+      "grid-based"
+    ],
+    "colourFamilies": [
+      "warm-neutrals",
+      "forest"
+    ],
+    "tagSlugs": [
+      "muted-colour",
+      "functional",
+      "minimal-navigation",
+      "typography-focus",
+      "brutalist"
+    ]
+  },
+  {
+    "title": "Clay gallery for teachers on call",
+    "description": "Study 42: uses ink black bars to survive a cropped screenshot while the montage stays unmistakably primary.",
+    "categorySlug": "web-apps",
+    "platform": "desktop-web",
+    "industry": "media",
+    "provenance": "fully_ai_generated",
+    "styleSlugs": [
+      "editorial",
+      "y2k",
+      "photography-led"
+    ],
+    "colourFamilies": [
+      "cool-greys",
+      "ochre"
+    ],
+    "tagSlugs": [
+      "conversion-focused",
+      "modular",
+      "paywall",
+      "minimal",
+      "editorial"
+    ]
+  },
+  {
+    "title": "Glass receipt for weekend markets",
+    "description": "Study 43: uses ochre rules to keep secondary actions quiet while the specimen stays unmistakably primary.",
+    "categorySlug": "dashboards",
+    "platform": "brand-identity",
+    "industry": "health",
+    "provenance": "original_work",
+    "styleSlugs": [
+      "retro",
+      "motion-led",
+      "sans-serif"
+    ],
+    "colourFamilies": [
+      "ink-black",
+      "terracotta"
+    ],
+    "tagSlugs": [
+      "futuristic",
+      "onboarding",
+      "brutalist",
+      "retro"
+    ]
+  },
+  {
+    "title": "Quiet montage from a ferry desk",
+    "description": "Study 44: uses slate chips to respect screen-reader order while the terminal stays unmistakably primary.",
+    "categorySlug": "experimental",
+    "platform": "android",
+    "industry": "travel",
+    "provenance": "client_work",
+    "styleSlugs": [
+      "typographic",
+      "soft",
+      "bold-colour"
+    ],
+    "colourFamilies": [
+      "forest",
+      "slate-blue"
+    ],
+    "tagSlugs": [
+      "minimal-navigation",
+      "card-ui",
+      "swiss",
+      "playful",
+      "typographic"
+    ]
+  },
+  {
+    "title": "Sparse portfolio from a shared desk",
+    "description": "Study 45: uses cream stock to make totals readable at dusk while the portfolio stays unmistakably primary.",
+    "categorySlug": "branding",
+    "platform": "tablet",
+    "industry": "ecommerce",
+    "provenance": "concept",
+    "styleSlugs": [
+      "maximalist",
+      "luxury",
+      "responsive"
+    ],
+    "colourFamilies": [
+      "ochre",
+      "soft-pink"
+    ],
+    "tagSlugs": [
+      "paywall",
+      "editorial",
+      "typographic",
+      "organic",
+      "maximalist"
+    ]
+  },
+  {
+    "title": "Measured empty-state before the launch week",
+    "description": "Study 46: uses ink black bars to feel hand-composed rather than generated while the paywall stays unmistakably primary.",
+    "categorySlug": "travel",
+    "platform": "print",
+    "industry": "fintech",
+    "provenance": "redesign",
+    "styleSlugs": [
+      "organic",
+      "data-dense",
+      "conversion-focused"
+    ],
+    "colourFamilies": [
+      "terracotta",
+      "warm-neutrals"
+    ],
+    "tagSlugs": [
+      "brutalist",
+      "monochrome",
+      "dark",
+      "y2k",
+      "organic"
+    ]
+  },
+  {
+    "title": "Honest roster-board for archive volunteers",
+    "description": "Study 47: uses ochre rules to support a second language label while the onboarding stays unmistakably primary.",
+    "categorySlug": "ecommerce",
+    "platform": "responsive-web",
+    "industry": "education",
+    "provenance": "ai_assisted",
+    "styleSlugs": [
+      "neumorphic",
+      "grid-based",
+      "functional"
+    ],
+    "colourFamilies": [
+      "slate-blue",
+      "cool-greys"
+    ],
+    "tagSlugs": [
+      "swiss",
+      "maximalist",
+      "neumorphic",
+      "high-contrast"
+    ]
+  },
+  {
+    "title": "Soft canvas for careful buyers",
+    "description": "Study 48: uses slate chips to hold up beside real product photography while the empty-state stays unmistakably primary.",
+    "categorySlug": "fintech",
+    "platform": "watch",
+    "industry": "lifestyle",
+    "provenance": "fully_ai_generated",
+    "styleSlugs": [
+      "accessible",
+      "photography-led",
+      "nostalgic"
+    ],
+    "colourFamilies": [
+      "soft-pink",
+      "ink-black"
+    ],
+    "tagSlugs": [
+      "typographic",
+      "geometric",
+      "motion-led",
+      "luxury",
+      "accessible"
+    ]
+  },
+  {
+    "title": "Sharp journal with one accent",
+    "description": "Study 49: uses cream stock to avoid floating chrome distractions while the checkout stays unmistakably primary.",
+    "categorySlug": "mobile-apps",
+    "platform": "ios",
+    "industry": "saas",
+    "provenance": "original_work",
+    "styleSlugs": [
+      "high-contrast",
+      "sans-serif",
+      "minimal-navigation"
+    ],
+    "colourFamilies": [
+      "warm-neutrals",
+      "forest"
+    ],
+    "tagSlugs": [
+      "dark",
+      "accessible",
+      "industrial",
+      "spacious",
+      "high-contrast"
+    ]
+  },
+  {
+    "title": "Warm palette with printed margins",
+    "description": "Study 50: uses ink black bars to leave margin for anxious first visits while the map stays unmistakably primary.",
+    "categorySlug": "portfolios",
+    "platform": "desktop-web",
+    "industry": "media",
+    "provenance": "client_work",
+    "styleSlugs": [
+      "industrial",
+      "bold-colour",
+      "minimal"
+    ],
+    "colourFamilies": [
+      "cool-greys",
+      "ochre"
+    ],
+    "tagSlugs": [
+      "neumorphic",
+      "soft",
+      "data-dense",
+      "photography-led",
+      "industrial"
+    ]
+  },
+  {
+    "title": "Cool surface beside a ceramics kiln",
+    "description": "Study 51: uses ochre rules to invite a slower scan while the roster-board stays unmistakably primary.",
+    "categorySlug": "social",
+    "platform": "brand-identity",
+    "industry": "health",
+    "provenance": "concept",
+    "styleSlugs": [
+      "hand-drawn",
+      "responsive",
+      "swiss"
+    ],
+    "colourFamilies": [
+      "ink-black",
+      "terracotta"
+    ],
+    "tagSlugs": [
+      "motion-led",
+      "hand-drawn",
+      "illustration-led",
+      "experimental-navigation"
+    ]
+  },
+  {
+    "title": "Wide gallery built for dusk",
+    "description": "Study 52: uses slate chips to survive a cropped screenshot while the ledger stays unmistakably primary.",
+    "categorySlug": "editorial",
+    "platform": "android",
+    "industry": "travel",
+    "provenance": "redesign",
+    "styleSlugs": [
+      "spacious",
+      "conversion-focused",
+      "monochrome"
+    ],
+    "colourFamilies": [
+      "forest",
+      "slate-blue"
+    ],
+    "tagSlugs": [
+      "industrial",
+      "grid-based",
+      "sans-serif",
+      "responsive",
+      "spacious"
+    ]
+  },
+  {
+    "title": "Tight receipt for festival weeks",
+    "description": "Study 53: uses cream stock to keep secondary actions quiet while the catalog stays unmistakably primary.",
+    "categorySlug": "health",
+    "platform": "tablet",
+    "industry": "ecommerce",
+    "provenance": "ai_assisted",
+    "styleSlugs": [
+      "illustration-led",
+      "functional",
+      "playful"
+    ],
+    "colourFamilies": [
+      "ochre",
+      "soft-pink"
+    ],
+    "tagSlugs": [
+      "data-dense",
+      "serif",
+      "muted-colour",
+      "content-first",
+      "illustration-led"
+    ]
+  },
+  {
+    "title": "Patient montage for neighbourhood maps",
+    "description": "Study 54: uses ink black bars to respect screen-reader order while the canvas stays unmistakably primary.",
+    "categorySlug": "web-apps",
+    "platform": "print",
+    "industry": "fintech",
+    "provenance": "fully_ai_generated",
+    "styleSlugs": [
+      "serif",
+      "nostalgic",
+      "dark"
+    ],
+    "colourFamilies": [
+      "terracotta",
+      "warm-neutrals"
+    ],
+    "tagSlugs": [
+      "illustration-led",
+      "bold-colour",
+      "conversion-focused",
+      "nostalgic",
+      "serif"
+    ]
+  },
+  {
+    "title": "Urgent portfolio for museum evenings",
+    "description": "Study 55: uses ochre rules to make totals readable at dusk while the schedule stays unmistakably primary.",
+    "categorySlug": "dashboards",
+    "platform": "responsive-web",
+    "industry": "education",
+    "provenance": "original_work",
+    "styleSlugs": [
+      "experimental-navigation",
+      "minimal-navigation",
+      "geometric"
+    ],
+    "colourFamilies": [
+      "slate-blue",
+      "cool-greys"
+    ],
+    "tagSlugs": [
+      "sans-serif",
+      "mobile-first",
+      "futuristic",
+      "empty-state",
+      "experimental-navigation"
+    ]
+  },
+  {
+    "title": "Late empty-state for slow mornings",
+    "description": "Study 56: uses slate chips to feel hand-composed rather than generated while the roster stays unmistakably primary.",
+    "categorySlug": "experimental",
+    "platform": "watch",
+    "industry": "lifestyle",
+    "provenance": "client_work",
+    "styleSlugs": [
+      "muted-colour",
+      "minimal",
+      "y2k"
+    ],
+    "colourFamilies": [
+      "soft-pink",
+      "ink-black"
+    ],
+    "tagSlugs": [
+      "muted-colour",
+      "functional",
+      "minimal-navigation",
+      "typography-focus"
+    ]
+  },
+  {
+    "title": "Early roster-board for clinic halls",
+    "description": "Study 57: uses cream stock to support a second language label while the journal stays unmistakably primary.",
+    "categorySlug": "branding",
+    "platform": "ios",
+    "industry": "saas",
+    "provenance": "concept",
+    "styleSlugs": [
+      "mobile-first",
+      "swiss",
+      "motion-led"
+    ],
+    "colourFamilies": [
+      "warm-neutrals",
+      "forest"
+    ],
+    "tagSlugs": [
+      "conversion-focused",
+      "modular",
+      "paywall",
+      "minimal",
+      "mobile-first"
+    ]
+  },
+  {
+    "title": "Northern canvas for first-time users",
+    "description": "Study 58: uses ink black bars to hold up beside real product photography while the atlas stays unmistakably primary.",
+    "categorySlug": "travel",
+    "platform": "desktop-web",
+    "industry": "media",
+    "provenance": "redesign",
+    "styleSlugs": [
+      "content-first",
+      "monochrome",
+      "soft"
+    ],
+    "colourFamilies": [
+      "cool-greys",
+      "ochre"
+    ],
+    "tagSlugs": [
+      "futuristic",
+      "onboarding",
+      "brutalist",
+      "retro",
+      "content-first"
+    ]
+  },
+  {
+    "title": "Coastal journal during a soft beta",
+    "description": "Study 59: uses ochre rules to avoid floating chrome distractions while the dossier stays unmistakably primary.",
+    "categorySlug": "ecommerce",
+    "platform": "brand-identity",
+    "industry": "health",
+    "provenance": "ai_assisted",
+    "styleSlugs": [
+      "futuristic",
+      "playful",
+      "luxury"
+    ],
+    "colourFamilies": [
+      "ink-black",
+      "terracotta"
+    ],
+    "tagSlugs": [
+      "minimal-navigation",
+      "card-ui",
+      "swiss",
+      "playful",
+      "futuristic"
+    ]
+  },
+  {
+    "title": "Urban palette with bilingual labels",
+    "description": "Study 60: uses slate chips to leave margin for anxious first visits while the palette stays unmistakably primary.",
+    "categorySlug": "fintech",
+    "platform": "android",
+    "industry": "travel",
+    "provenance": "fully_ai_generated",
+    "styleSlugs": [
+      "modular",
+      "dark",
+      "data-dense"
+    ],
+    "colourFamilies": [
+      "forest",
+      "slate-blue"
+    ],
+    "tagSlugs": [
+      "paywall",
+      "editorial",
+      "typographic",
+      "organic",
+      "modular"
+    ]
+  },
+  {
+    "title": "Soft terminal on paper stock",
+    "description": "Study 61: uses cream stock to invite a slower scan while the kit stays unmistakably primary.",
+    "categorySlug": "mobile-apps",
+    "platform": "tablet",
+    "industry": "ecommerce",
+    "provenance": "original_work",
+    "styleSlugs": [
+      "brutalist",
+      "geometric",
+      "grid-based"
+    ],
+    "colourFamilies": [
+      "ochre",
+      "soft-pink"
+    ],
+    "tagSlugs": [
+      "brutalist",
+      "monochrome",
+      "dark",
+      "y2k"
+    ]
+  },
+  {
+    "title": "Sharp onboarding for radio hosts",
+    "description": "Study 62: uses ink black bars to survive a cropped screenshot while the module stays unmistakably primary.",
+    "categorySlug": "portfolios",
+    "platform": "print",
+    "industry": "fintech",
+    "provenance": "client_work",
+    "styleSlugs": [
+      "editorial",
+      "y2k",
+      "photography-led"
+    ],
+    "colourFamilies": [
+      "terracotta",
+      "warm-neutrals"
+    ],
+    "tagSlugs": [
+      "swiss",
+      "maximalist",
+      "neumorphic",
+      "high-contrast",
+      "editorial"
+    ]
+  },
+  {
+    "title": "Warm map under warehouse lights",
+    "description": "Study 63: uses ochre rules to keep secondary actions quiet while the surface stays unmistakably primary.",
+    "categorySlug": "social",
+    "platform": "responsive-web",
+    "industry": "education",
+    "provenance": "concept",
+    "styleSlugs": [
+      "retro",
+      "motion-led",
+      "sans-serif"
+    ],
+    "colourFamilies": [
+      "slate-blue",
+      "cool-greys"
+    ],
+    "tagSlugs": [
+      "typographic",
+      "geometric",
+      "motion-led",
+      "luxury",
+      "retro"
+    ]
+  },
+  {
+    "title": "Cool catalog with reserved type",
+    "description": "Study 64: uses slate chips to respect screen-reader order while the frame stays unmistakably primary.",
+    "categorySlug": "editorial",
+    "platform": "watch",
+    "industry": "lifestyle",
+    "provenance": "redesign",
+    "styleSlugs": [
+      "typographic",
+      "soft",
+      "bold-colour"
+    ],
+    "colourFamilies": [
+      "soft-pink",
+      "ink-black"
+    ],
+    "tagSlugs": [
+      "dark",
+      "accessible",
+      "industrial",
+      "spacious",
+      "typographic"
+    ]
+  },
+  {
+    "title": "Wide roster inside a toolbox",
+    "description": "Study 65: uses cream stock to make totals readable at dusk while the passage stays unmistakably primary.",
+    "categorySlug": "health",
+    "platform": "ios",
+    "industry": "saas",
+    "provenance": "ai_assisted",
+    "styleSlugs": [
+      "maximalist",
+      "luxury",
+      "responsive"
+    ],
+    "colourFamilies": [
+      "warm-neutrals",
+      "forest"
+    ],
+    "tagSlugs": [
+      "neumorphic",
+      "soft",
+      "data-dense",
+      "photography-led",
+      "maximalist"
+    ]
+  },
+  {
+    "title": "Tight dossier with delayed shipping",
+    "description": "Study 66: uses ink black bars to feel hand-composed rather than generated while the gallery stays unmistakably primary.",
+    "categorySlug": "web-apps",
+    "platform": "desktop-web",
+    "industry": "media",
+    "provenance": "fully_ai_generated",
+    "styleSlugs": [
+      "organic",
+      "data-dense",
+      "conversion-focused"
+    ],
+    "colourFamilies": [
+      "cool-greys",
+      "ochre"
+    ],
+    "tagSlugs": [
+      "motion-led",
+      "hand-drawn",
+      "illustration-led",
+      "experimental-navigation",
+      "organic"
+    ]
+  },
+  {
+    "title": "Patient module for teachers on call",
+    "description": "Study 67: uses ochre rules to support a second language label while the console stays unmistakably primary.",
+    "categorySlug": "dashboards",
+    "platform": "brand-identity",
+    "industry": "health",
+    "provenance": "original_work",
+    "styleSlugs": [
+      "neumorphic",
+      "grid-based",
+      "functional"
+    ],
+    "colourFamilies": [
+      "ink-black",
+      "terracotta"
+    ],
+    "tagSlugs": [
+      "industrial",
+      "grid-based",
+      "sans-serif",
+      "responsive",
+      "neumorphic"
+    ]
+  },
+  {
+    "title": "Urgent passage for weekend markets",
+    "description": "Study 68: uses slate chips to hold up beside real product photography while the timeline stays unmistakably primary.",
+    "categorySlug": "experimental",
+    "platform": "android",
+    "industry": "travel",
+    "provenance": "client_work",
+    "styleSlugs": [
+      "accessible",
+      "photography-led",
+      "nostalgic"
+    ],
+    "colourFamilies": [
+      "forest",
+      "slate-blue"
+    ],
+    "tagSlugs": [
+      "data-dense",
+      "serif",
+      "muted-colour",
+      "content-first",
+      "accessible"
+    ]
+  },
+  {
+    "title": "Late timeline from a ferry desk",
+    "description": "Study 69: uses cream stock to avoid floating chrome distractions while the receipt stays unmistakably primary.",
+    "categorySlug": "branding",
+    "platform": "tablet",
+    "industry": "ecommerce",
+    "provenance": "concept",
+    "styleSlugs": [
+      "high-contrast",
+      "sans-serif",
+      "minimal-navigation"
+    ],
+    "colourFamilies": [
+      "ochre",
+      "soft-pink"
+    ],
+    "tagSlugs": [
+      "illustration-led",
+      "bold-colour",
+      "conversion-focused",
+      "nostalgic",
+      "high-contrast"
+    ]
+  },
+  {
+    "title": "Early signal from a shared desk",
+    "description": "Study 70: uses ink black bars to leave margin for anxious first visits while the beacon stays unmistakably primary.",
+    "categorySlug": "travel",
+    "platform": "print",
+    "industry": "fintech",
+    "provenance": "redesign",
+    "styleSlugs": [
+      "industrial",
+      "bold-colour",
+      "minimal"
+    ],
+    "colourFamilies": [
+      "terracotta",
+      "warm-neutrals"
+    ],
+    "tagSlugs": [
+      "sans-serif",
+      "mobile-first",
+      "futuristic",
+      "empty-state",
+      "industrial"
+    ]
+  },
+  {
+    "title": "Northern terminal before the launch week",
+    "description": "Study 71: uses ochre rules to invite a slower scan while the signal stays unmistakably primary.",
+    "categorySlug": "ecommerce",
+    "platform": "responsive-web",
+    "industry": "education",
+    "provenance": "ai_assisted",
+    "styleSlugs": [
+      "hand-drawn",
+      "responsive",
+      "swiss"
+    ],
+    "colourFamilies": [
+      "slate-blue",
+      "cool-greys"
+    ],
+    "tagSlugs": [
+      "muted-colour",
+      "functional",
+      "minimal-navigation",
+      "typography-focus",
+      "hand-drawn"
+    ]
+  },
+  {
+    "title": "Coastal onboarding for archive volunteers",
+    "description": "Study 72: uses slate chips to survive a cropped screenshot while the montage stays unmistakably primary.",
+    "categorySlug": "fintech",
+    "platform": "watch",
+    "industry": "lifestyle",
+    "provenance": "fully_ai_generated",
+    "styleSlugs": [
+      "spacious",
+      "conversion-focused",
+      "monochrome"
+    ],
+    "colourFamilies": [
+      "soft-pink",
+      "ink-black"
+    ],
+    "tagSlugs": [
+      "conversion-focused",
+      "modular",
+      "paywall",
+      "minimal",
+      "spacious"
+    ]
+  },
+  {
+    "title": "Urban map for careful buyers",
+    "description": "Study 73: uses cream stock to keep secondary actions quiet while the specimen stays unmistakably primary.",
+    "categorySlug": "mobile-apps",
+    "platform": "ios",
+    "industry": "saas",
+    "provenance": "original_work",
+    "styleSlugs": [
+      "illustration-led",
+      "functional",
+      "playful"
+    ],
+    "colourFamilies": [
+      "warm-neutrals",
+      "forest"
+    ],
+    "tagSlugs": [
+      "futuristic",
+      "onboarding",
+      "brutalist",
+      "retro",
+      "illustration-led"
+    ]
+  },
+  {
+    "title": "Studio catalog with one accent",
+    "description": "Study 74: uses ink black bars to respect screen-reader order while the terminal stays unmistakably primary.",
+    "categorySlug": "portfolios",
+    "platform": "desktop-web",
+    "industry": "media",
+    "provenance": "client_work",
+    "styleSlugs": [
+      "serif",
+      "nostalgic",
+      "dark"
+    ],
+    "colourFamilies": [
+      "cool-greys",
+      "ochre"
+    ],
+    "tagSlugs": [
+      "minimal-navigation",
+      "card-ui",
+      "swiss",
+      "playful",
+      "serif"
+    ]
+  },
+  {
+    "title": "Field roster with printed margins",
+    "description": "Study 75: uses ochre rules to make totals readable at dusk while the portfolio stays unmistakably primary.",
+    "categorySlug": "social",
+    "platform": "brand-identity",
+    "industry": "health",
+    "provenance": "concept",
+    "styleSlugs": [
+      "experimental-navigation",
+      "minimal-navigation",
+      "geometric"
+    ],
+    "colourFamilies": [
+      "ink-black",
+      "terracotta"
+    ],
+    "tagSlugs": [
+      "paywall",
+      "editorial",
+      "typographic",
+      "organic",
+      "experimental-navigation"
+    ]
+  },
+  {
+    "title": "Archive dossier beside a ceramics kiln",
+    "description": "Study 76: uses slate chips to feel hand-composed rather than generated while the paywall stays unmistakably primary.",
+    "categorySlug": "editorial",
+    "platform": "android",
+    "industry": "travel",
+    "provenance": "redesign",
+    "styleSlugs": [
+      "muted-colour",
+      "minimal",
+      "y2k"
+    ],
+    "colourFamilies": [
+      "forest",
+      "slate-blue"
+    ],
+    "tagSlugs": [
+      "brutalist",
+      "monochrome",
+      "dark",
+      "y2k",
+      "muted-colour"
+    ]
+  },
+  {
+    "title": "Copper module built for dusk",
+    "description": "Study 77: uses cream stock to support a second language label while the onboarding stays unmistakably primary.",
+    "categorySlug": "health",
+    "platform": "tablet",
+    "industry": "ecommerce",
+    "provenance": "ai_assisted",
+    "styleSlugs": [
+      "mobile-first",
+      "swiss",
+      "motion-led"
+    ],
+    "colourFamilies": [
+      "ochre",
+      "soft-pink"
+    ],
+    "tagSlugs": [
+      "swiss",
+      "maximalist",
+      "neumorphic",
+      "high-contrast",
+      "mobile-first"
+    ]
+  },
+  {
+    "title": "Linen passage for festival weeks",
+    "description": "Study 78: uses ink black bars to hold up beside real product photography while the empty-state stays unmistakably primary.",
+    "categorySlug": "web-apps",
+    "platform": "print",
+    "industry": "fintech",
+    "provenance": "fully_ai_generated",
+    "styleSlugs": [
+      "content-first",
+      "monochrome",
+      "soft"
+    ],
+    "colourFamilies": [
+      "terracotta",
+      "warm-neutrals"
+    ],
+    "tagSlugs": [
+      "typographic",
+      "geometric",
+      "motion-led",
+      "luxury",
+      "content-first"
+    ]
+  },
+  {
+    "title": "Fog timeline for neighbourhood maps",
+    "description": "Study 79: uses ochre rules to avoid floating chrome distractions while the checkout stays unmistakably primary.",
+    "categorySlug": "dashboards",
+    "platform": "responsive-web",
+    "industry": "education",
+    "provenance": "original_work",
+    "styleSlugs": [
+      "futuristic",
+      "playful",
+      "luxury"
+    ],
+    "colourFamilies": [
+      "slate-blue",
+      "cool-greys"
+    ],
+    "tagSlugs": [
+      "dark",
+      "accessible",
+      "industrial",
+      "spacious",
+      "futuristic"
+    ]
+  },
+  {
+    "title": "Cedar signal for museum evenings",
+    "description": "Study 80: uses slate chips to leave margin for anxious first visits while the map stays unmistakably primary.",
+    "categorySlug": "experimental",
+    "platform": "watch",
+    "industry": "lifestyle",
+    "provenance": "client_work",
+    "styleSlugs": [
+      "modular",
+      "dark",
+      "data-dense"
+    ],
+    "colourFamilies": [
+      "soft-pink",
+      "ink-black"
+    ],
+    "tagSlugs": [
+      "neumorphic",
+      "soft",
+      "data-dense",
+      "photography-led",
+      "modular"
+    ]
+  },
+  {
+    "title": "Amber terminal for slow mornings",
+    "description": "Study 81: uses cream stock to invite a slower scan while the roster-board stays unmistakably primary.",
+    "categorySlug": "branding",
+    "platform": "ios",
+    "industry": "saas",
+    "provenance": "concept",
+    "styleSlugs": [
+      "brutalist",
+      "geometric",
+      "grid-based"
+    ],
+    "colourFamilies": [
+      "warm-neutrals",
+      "forest"
+    ],
+    "tagSlugs": [
+      "motion-led",
+      "hand-drawn",
+      "illustration-led",
+      "experimental-navigation",
+      "brutalist"
+    ]
+  },
+  {
+    "title": "Slate onboarding for clinic halls",
+    "description": "Study 82: uses ink black bars to survive a cropped screenshot while the ledger stays unmistakably primary.",
+    "categorySlug": "travel",
+    "platform": "desktop-web",
+    "industry": "media",
+    "provenance": "redesign",
+    "styleSlugs": [
+      "editorial",
+      "y2k",
+      "photography-led"
+    ],
+    "colourFamilies": [
+      "cool-greys",
+      "ochre"
+    ],
+    "tagSlugs": [
+      "industrial",
+      "grid-based",
+      "sans-serif",
+      "responsive",
+      "editorial"
+    ]
+  },
+  {
+    "title": "Paper map for first-time users",
+    "description": "Study 83: uses ochre rules to keep secondary actions quiet while the catalog stays unmistakably primary.",
+    "categorySlug": "ecommerce",
+    "platform": "brand-identity",
+    "industry": "health",
+    "provenance": "ai_assisted",
+    "styleSlugs": [
+      "retro",
+      "motion-led",
+      "sans-serif"
+    ],
+    "colourFamilies": [
+      "ink-black",
+      "terracotta"
+    ],
+    "tagSlugs": [
+      "data-dense",
+      "serif",
+      "muted-colour",
+      "content-first",
+      "retro"
+    ]
+  },
+  {
+    "title": "Ink catalog during a soft beta",
+    "description": "Study 84: uses slate chips to respect screen-reader order while the canvas stays unmistakably primary.",
+    "categorySlug": "fintech",
+    "platform": "android",
+    "industry": "travel",
+    "provenance": "fully_ai_generated",
+    "styleSlugs": [
+      "typographic",
+      "soft",
+      "bold-colour"
+    ],
+    "colourFamilies": [
+      "forest",
+      "slate-blue"
+    ],
+    "tagSlugs": [
+      "illustration-led",
+      "bold-colour",
+      "conversion-focused",
+      "nostalgic",
+      "typographic"
+    ]
+  },
+  {
+    "title": "Clay roster with bilingual labels",
+    "description": "Study 85: uses cream stock to make totals readable at dusk while the schedule stays unmistakably primary.",
+    "categorySlug": "mobile-apps",
+    "platform": "tablet",
+    "industry": "ecommerce",
+    "provenance": "original_work",
+    "styleSlugs": [
+      "maximalist",
+      "luxury",
+      "responsive"
+    ],
+    "colourFamilies": [
+      "ochre",
+      "soft-pink"
+    ],
+    "tagSlugs": [
+      "sans-serif",
+      "mobile-first",
+      "futuristic",
+      "empty-state",
+      "maximalist"
+    ]
+  },
+  {
+    "title": "Glass dossier after the redesign",
+    "description": "Study 86: uses ink black bars to feel hand-composed rather than generated while the roster stays unmistakably primary.",
+    "categorySlug": "portfolios",
+    "platform": "print",
+    "industry": "fintech",
+    "provenance": "client_work",
+    "styleSlugs": [
+      "organic",
+      "data-dense",
+      "conversion-focused"
+    ],
+    "colourFamilies": [
+      "terracotta",
+      "warm-neutrals"
+    ],
+    "tagSlugs": [
+      "muted-colour",
+      "functional",
+      "minimal-navigation",
+      "typography-focus",
+      "organic"
+    ]
+  },
+  {
+    "title": "Quiet module for night shifts",
+    "description": "Study 87: uses ochre rules to support a second language label while the journal stays unmistakably primary.",
+    "categorySlug": "social",
+    "platform": "responsive-web",
+    "industry": "education",
+    "provenance": "concept",
+    "styleSlugs": [
+      "neumorphic",
+      "grid-based",
+      "functional"
+    ],
+    "colourFamilies": [
+      "slate-blue",
+      "cool-greys"
+    ],
+    "tagSlugs": [
+      "conversion-focused",
+      "modular",
+      "paywall",
+      "minimal",
+      "neumorphic"
+    ]
+  },
+  {
+    "title": "Sparse passage for watch glances",
+    "description": "Study 88: uses slate chips to hold up beside real product photography while the atlas stays unmistakably primary.",
+    "categorySlug": "editorial",
+    "platform": "watch",
+    "industry": "lifestyle",
+    "provenance": "redesign",
+    "styleSlugs": [
+      "accessible",
+      "photography-led",
+      "nostalgic"
+    ],
+    "colourFamilies": [
+      "soft-pink",
+      "ink-black"
+    ],
+    "tagSlugs": [
+      "futuristic",
+      "onboarding",
+      "brutalist",
+      "retro",
+      "accessible"
+    ]
+  },
+  {
+    "title": "Measured timeline after rain delays",
+    "description": "Study 89: uses cream stock to avoid floating chrome distractions while the dossier stays unmistakably primary.",
+    "categorySlug": "health",
+    "platform": "ios",
+    "industry": "saas",
+    "provenance": "ai_assisted",
+    "styleSlugs": [
+      "high-contrast",
+      "sans-serif",
+      "minimal-navigation"
+    ],
+    "colourFamilies": [
+      "warm-neutrals",
+      "forest"
+    ],
+    "tagSlugs": [
+      "minimal-navigation",
+      "card-ui",
+      "swiss",
+      "playful",
+      "high-contrast"
+    ]
+  },
+  {
+    "title": "Honest signal without chrome noise",
+    "description": "Study 90: uses ink black bars to leave margin for anxious first visits while the palette stays unmistakably primary.",
+    "categorySlug": "web-apps",
+    "platform": "desktop-web",
+    "industry": "media",
+    "provenance": "fully_ai_generated",
+    "styleSlugs": [
+      "industrial",
+      "bold-colour",
+      "minimal"
+    ],
+    "colourFamilies": [
+      "cool-greys",
+      "ochre"
+    ],
+    "tagSlugs": [
+      "paywall",
+      "editorial",
+      "typographic",
+      "organic",
+      "industrial"
+    ]
+  },
+  {
+    "title": "Linen schedule with delayed shipping",
+    "description": "Study 91: uses ochre rules to invite a slower scan while the kit stays unmistakably primary.",
+    "categorySlug": "dashboards",
+    "platform": "brand-identity",
+    "industry": "health",
+    "provenance": "original_work",
+    "styleSlugs": [
+      "hand-drawn",
+      "responsive",
+      "swiss"
+    ],
+    "colourFamilies": [
+      "ink-black",
+      "terracotta"
+    ],
+    "tagSlugs": [
+      "brutalist",
+      "monochrome",
+      "dark",
+      "y2k",
+      "hand-drawn"
+    ]
+  },
+  {
+    "title": "Fog atlas for teachers on call",
+    "description": "Study 92: uses slate chips to survive a cropped screenshot while the module stays unmistakably primary.",
+    "categorySlug": "experimental",
+    "platform": "android",
+    "industry": "travel",
+    "provenance": "client_work",
+    "styleSlugs": [
+      "spacious",
+      "conversion-focused",
+      "monochrome"
+    ],
+    "colourFamilies": [
+      "forest",
+      "slate-blue"
+    ],
+    "tagSlugs": [
+      "swiss",
+      "maximalist",
+      "neumorphic",
+      "high-contrast",
+      "spacious"
+    ]
+  },
+  {
+    "title": "Cedar kit for weekend markets",
+    "description": "Study 93: uses cream stock to keep secondary actions quiet while the surface stays unmistakably primary.",
+    "categorySlug": "branding",
+    "platform": "tablet",
+    "industry": "ecommerce",
+    "provenance": "concept",
+    "styleSlugs": [
+      "illustration-led",
+      "functional",
+      "playful"
+    ],
+    "colourFamilies": [
+      "ochre",
+      "soft-pink"
+    ],
+    "tagSlugs": [
+      "typographic",
+      "geometric",
+      "motion-led",
+      "luxury",
+      "illustration-led"
+    ]
+  },
+  {
+    "title": "Amber frame from a ferry desk",
+    "description": "Study 94: uses ink black bars to respect screen-reader order while the frame stays unmistakably primary.",
+    "categorySlug": "travel",
+    "platform": "print",
+    "industry": "fintech",
+    "provenance": "redesign",
+    "styleSlugs": [
+      "serif",
+      "nostalgic",
+      "dark"
+    ],
+    "colourFamilies": [
+      "terracotta",
+      "warm-neutrals"
+    ],
+    "tagSlugs": [
+      "dark",
+      "accessible",
+      "industrial",
+      "spacious",
+      "serif"
+    ]
+  },
+  {
+    "title": "Slate console from a shared desk",
+    "description": "Study 95: uses ochre rules to make totals readable at dusk while the passage stays unmistakably primary.",
+    "categorySlug": "ecommerce",
+    "platform": "responsive-web",
+    "industry": "education",
+    "provenance": "ai_assisted",
+    "styleSlugs": [
+      "experimental-navigation",
+      "minimal-navigation",
+      "geometric"
+    ],
+    "colourFamilies": [
+      "slate-blue",
+      "cool-greys"
+    ],
+    "tagSlugs": [
+      "neumorphic",
+      "soft",
+      "data-dense",
+      "photography-led",
+      "experimental-navigation"
+    ]
+  },
+  {
+    "title": "Paper beacon before the launch week",
+    "description": "Study 96: uses slate chips to feel hand-composed rather than generated while the gallery stays unmistakably primary.",
+    "categorySlug": "fintech",
+    "platform": "watch",
+    "industry": "lifestyle",
+    "provenance": "fully_ai_generated",
+    "styleSlugs": [
+      "muted-colour",
+      "minimal",
+      "y2k"
+    ],
+    "colourFamilies": [
+      "soft-pink",
+      "ink-black"
+    ],
+    "tagSlugs": [
+      "motion-led",
+      "hand-drawn",
+      "illustration-led",
+      "experimental-navigation",
+      "muted-colour"
+    ]
+  },
+  {
+    "title": "Ink specimen for archive volunteers",
+    "description": "Study 97: uses cream stock to support a second language label while the console stays unmistakably primary.",
+    "categorySlug": "mobile-apps",
+    "platform": "ios",
+    "industry": "saas",
+    "provenance": "original_work",
+    "styleSlugs": [
+      "mobile-first",
+      "swiss",
+      "motion-led"
+    ],
+    "colourFamilies": [
+      "warm-neutrals",
+      "forest"
+    ],
+    "tagSlugs": [
+      "industrial",
+      "grid-based",
+      "sans-serif",
+      "responsive",
+      "mobile-first"
+    ]
+  },
+  {
+    "title": "Clay paywall for careful buyers",
+    "description": "Study 98: uses ink black bars to hold up beside real product photography while the timeline stays unmistakably primary.",
+    "categorySlug": "portfolios",
+    "platform": "desktop-web",
+    "industry": "media",
+    "provenance": "client_work",
+    "styleSlugs": [
+      "content-first",
+      "monochrome",
+      "soft"
+    ],
+    "colourFamilies": [
+      "cool-greys",
+      "ochre"
+    ],
+    "tagSlugs": [
+      "data-dense",
+      "serif",
+      "muted-colour",
+      "content-first"
+    ]
+  },
+  {
+    "title": "Glass checkout with one accent",
+    "description": "Study 99: uses ochre rules to avoid floating chrome distractions while the receipt stays unmistakably primary.",
+    "categorySlug": "social",
+    "platform": "brand-identity",
+    "industry": "health",
+    "provenance": "concept",
+    "styleSlugs": [
+      "futuristic",
+      "playful",
+      "luxury"
+    ],
+    "colourFamilies": [
+      "ink-black",
+      "terracotta"
+    ],
+    "tagSlugs": [
+      "illustration-led",
+      "bold-colour",
+      "conversion-focused",
+      "nostalgic",
+      "futuristic"
+    ]
+  },
+  {
+    "title": "Quiet ledger with printed margins",
+    "description": "Study 100: uses slate chips to leave margin for anxious first visits while the beacon stays unmistakably primary.",
+    "categorySlug": "editorial",
+    "platform": "android",
+    "industry": "travel",
+    "provenance": "redesign",
+    "styleSlugs": [
+      "modular",
+      "dark",
+      "data-dense"
+    ],
+    "colourFamilies": [
+      "forest",
+      "slate-blue"
+    ],
+    "tagSlugs": [
+      "sans-serif",
+      "mobile-first",
+      "futuristic",
+      "empty-state",
+      "modular"
+    ]
+  },
+  {
+    "title": "Sparse schedule beside a ceramics kiln",
+    "description": "Study 101: uses cream stock to invite a slower scan while the signal stays unmistakably primary.",
+    "categorySlug": "health",
+    "platform": "tablet",
+    "industry": "ecommerce",
+    "provenance": "ai_assisted",
+    "styleSlugs": [
+      "brutalist",
+      "geometric",
+      "grid-based"
+    ],
+    "colourFamilies": [
+      "ochre",
+      "soft-pink"
+    ],
+    "tagSlugs": [
+      "muted-colour",
+      "functional",
+      "minimal-navigation",
+      "typography-focus",
+      "brutalist"
+    ]
+  },
+  {
+    "title": "Measured atlas built for dusk",
+    "description": "Study 102: uses ink black bars to survive a cropped screenshot while the montage stays unmistakably primary.",
+    "categorySlug": "web-apps",
+    "platform": "print",
+    "industry": "fintech",
+    "provenance": "fully_ai_generated",
+    "styleSlugs": [
+      "editorial",
+      "y2k",
+      "photography-led"
+    ],
+    "colourFamilies": [
+      "terracotta",
+      "warm-neutrals"
+    ],
+    "tagSlugs": [
+      "conversion-focused",
+      "modular",
+      "paywall",
+      "minimal",
+      "editorial"
+    ]
+  },
+  {
+    "title": "Honest kit for festival weeks",
+    "description": "Study 103: uses ochre rules to keep secondary actions quiet while the specimen stays unmistakably primary.",
+    "categorySlug": "dashboards",
+    "platform": "responsive-web",
+    "industry": "education",
+    "provenance": "original_work",
+    "styleSlugs": [
+      "retro",
+      "motion-led",
+      "sans-serif"
+    ],
+    "colourFamilies": [
+      "slate-blue",
+      "cool-greys"
+    ],
+    "tagSlugs": [
+      "futuristic",
+      "onboarding",
+      "brutalist",
+      "retro"
+    ]
+  },
+  {
+    "title": "Soft frame for neighbourhood maps",
+    "description": "Study 104: uses slate chips to respect screen-reader order while the terminal stays unmistakably primary.",
+    "categorySlug": "experimental",
+    "platform": "watch",
+    "industry": "lifestyle",
+    "provenance": "client_work",
+    "styleSlugs": [
+      "typographic",
+      "soft",
+      "bold-colour"
+    ],
+    "colourFamilies": [
+      "soft-pink",
+      "ink-black"
+    ],
+    "tagSlugs": [
+      "minimal-navigation",
+      "card-ui",
+      "swiss",
+      "playful",
+      "typographic"
+    ]
+  },
+  {
+    "title": "Sharp console for museum evenings",
+    "description": "Study 105: uses cream stock to make totals readable at dusk while the portfolio stays unmistakably primary.",
+    "categorySlug": "branding",
+    "platform": "ios",
+    "industry": "saas",
+    "provenance": "concept",
+    "styleSlugs": [
+      "maximalist",
+      "luxury",
+      "responsive"
+    ],
+    "colourFamilies": [
+      "warm-neutrals",
+      "forest"
+    ],
+    "tagSlugs": [
+      "paywall",
+      "editorial",
+      "typographic",
+      "organic",
+      "maximalist"
+    ]
+  },
+  {
+    "title": "Warm beacon for slow mornings",
+    "description": "Study 106: uses ink black bars to feel hand-composed rather than generated while the paywall stays unmistakably primary.",
+    "categorySlug": "travel",
+    "platform": "desktop-web",
+    "industry": "media",
+    "provenance": "redesign",
+    "styleSlugs": [
+      "organic",
+      "data-dense",
+      "conversion-focused"
+    ],
+    "colourFamilies": [
+      "cool-greys",
+      "ochre"
+    ],
+    "tagSlugs": [
+      "brutalist",
+      "monochrome",
+      "dark",
+      "y2k",
+      "organic"
+    ]
+  },
+  {
+    "title": "Cool specimen for clinic halls",
+    "description": "Study 107: uses ochre rules to support a second language label while the onboarding stays unmistakably primary.",
+    "categorySlug": "ecommerce",
+    "platform": "brand-identity",
+    "industry": "health",
+    "provenance": "ai_assisted",
+    "styleSlugs": [
+      "neumorphic",
+      "grid-based",
+      "functional"
+    ],
+    "colourFamilies": [
+      "ink-black",
+      "terracotta"
+    ],
+    "tagSlugs": [
+      "swiss",
+      "maximalist",
+      "neumorphic",
+      "high-contrast"
+    ]
+  },
+  {
+    "title": "Wide paywall for first-time users",
+    "description": "Study 108: uses slate chips to hold up beside real product photography while the empty-state stays unmistakably primary.",
+    "categorySlug": "fintech",
+    "platform": "android",
+    "industry": "travel",
+    "provenance": "fully_ai_generated",
+    "styleSlugs": [
+      "accessible",
+      "photography-led",
+      "nostalgic"
+    ],
+    "colourFamilies": [
+      "forest",
+      "slate-blue"
+    ],
+    "tagSlugs": [
+      "typographic",
+      "geometric",
+      "motion-led",
+      "luxury",
+      "accessible"
+    ]
+  },
+  {
+    "title": "Tight checkout during a soft beta",
+    "description": "Study 109: uses cream stock to avoid floating chrome distractions while the checkout stays unmistakably primary.",
+    "categorySlug": "mobile-apps",
+    "platform": "tablet",
+    "industry": "ecommerce",
+    "provenance": "original_work",
+    "styleSlugs": [
+      "high-contrast",
+      "sans-serif",
+      "minimal-navigation"
+    ],
+    "colourFamilies": [
+      "ochre",
+      "soft-pink"
+    ],
+    "tagSlugs": [
+      "dark",
+      "accessible",
+      "industrial",
+      "spacious",
+      "high-contrast"
+    ]
+  },
+  {
+    "title": "Patient ledger with bilingual labels",
+    "description": "Study 110: uses ink black bars to leave margin for anxious first visits while the map stays unmistakably primary.",
+    "categorySlug": "portfolios",
+    "platform": "print",
+    "industry": "fintech",
+    "provenance": "client_work",
+    "styleSlugs": [
+      "industrial",
+      "bold-colour",
+      "minimal"
+    ],
+    "colourFamilies": [
+      "terracotta",
+      "warm-neutrals"
+    ],
+    "tagSlugs": [
+      "neumorphic",
+      "soft",
+      "data-dense",
+      "photography-led",
+      "industrial"
+    ]
+  },
+  {
+    "title": "Urgent schedule after the redesign",
+    "description": "Study 111: uses ochre rules to invite a slower scan while the roster-board stays unmistakably primary.",
+    "categorySlug": "social",
+    "platform": "responsive-web",
+    "industry": "education",
+    "provenance": "concept",
+    "styleSlugs": [
+      "hand-drawn",
+      "responsive",
+      "swiss"
+    ],
+    "colourFamilies": [
+      "slate-blue",
+      "cool-greys"
+    ],
+    "tagSlugs": [
+      "motion-led",
+      "hand-drawn",
+      "illustration-led",
+      "experimental-navigation"
+    ]
+  },
+  {
+    "title": "Late atlas for night shifts",
+    "description": "Study 112: uses slate chips to survive a cropped screenshot while the ledger stays unmistakably primary.",
+    "categorySlug": "editorial",
+    "platform": "watch",
+    "industry": "lifestyle",
+    "provenance": "redesign",
+    "styleSlugs": [
+      "spacious",
+      "conversion-focused",
+      "monochrome"
+    ],
+    "colourFamilies": [
+      "soft-pink",
+      "ink-black"
+    ],
+    "tagSlugs": [
+      "industrial",
+      "grid-based",
+      "sans-serif",
+      "responsive",
+      "spacious"
+    ]
+  },
+  {
+    "title": "Early kit for watch glances",
+    "description": "Study 113: uses cream stock to keep secondary actions quiet while the catalog stays unmistakably primary.",
+    "categorySlug": "health",
+    "platform": "ios",
+    "industry": "saas",
+    "provenance": "ai_assisted",
+    "styleSlugs": [
+      "illustration-led",
+      "functional",
+      "playful"
+    ],
+    "colourFamilies": [
+      "warm-neutrals",
+      "forest"
+    ],
+    "tagSlugs": [
+      "data-dense",
+      "serif",
+      "muted-colour",
+      "content-first",
+      "illustration-led"
+    ]
+  },
+  {
+    "title": "Northern frame after rain delays",
+    "description": "Study 114: uses ink black bars to respect screen-reader order while the canvas stays unmistakably primary.",
+    "categorySlug": "web-apps",
+    "platform": "desktop-web",
+    "industry": "media",
+    "provenance": "fully_ai_generated",
+    "styleSlugs": [
+      "serif",
+      "nostalgic",
+      "dark"
+    ],
+    "colourFamilies": [
+      "cool-greys",
+      "ochre"
+    ],
+    "tagSlugs": [
+      "illustration-led",
+      "bold-colour",
+      "conversion-focused",
+      "nostalgic",
+      "serif"
+    ]
+  },
+  {
+    "title": "Coastal console without chrome noise",
+    "description": "Study 115: uses ochre rules to make totals readable at dusk while the schedule stays unmistakably primary.",
+    "categorySlug": "dashboards",
+    "platform": "brand-identity",
+    "industry": "health",
+    "provenance": "original_work",
+    "styleSlugs": [
+      "experimental-navigation",
+      "minimal-navigation",
+      "geometric"
+    ],
+    "colourFamilies": [
+      "ink-black",
+      "terracotta"
+    ],
+    "tagSlugs": [
+      "sans-serif",
+      "mobile-first",
+      "futuristic",
+      "empty-state",
+      "experimental-navigation"
+    ]
+  },
+  {
+    "title": "Urban beacon on paper stock",
+    "description": "Study 116: uses slate chips to feel hand-composed rather than generated while the roster stays unmistakably primary.",
+    "categorySlug": "experimental",
+    "platform": "android",
+    "industry": "travel",
+    "provenance": "client_work",
+    "styleSlugs": [
+      "muted-colour",
+      "minimal",
+      "y2k"
+    ],
+    "colourFamilies": [
+      "forest",
+      "slate-blue"
+    ],
+    "tagSlugs": [
+      "muted-colour",
+      "functional",
+      "minimal-navigation",
+      "typography-focus"
+    ]
+  },
+  {
+    "title": "Studio specimen for radio hosts",
+    "description": "Study 117: uses cream stock to support a second language label while the journal stays unmistakably primary.",
+    "categorySlug": "branding",
+    "platform": "tablet",
+    "industry": "ecommerce",
+    "provenance": "concept",
+    "styleSlugs": [
+      "mobile-first",
+      "swiss",
+      "motion-led"
+    ],
+    "colourFamilies": [
+      "ochre",
+      "soft-pink"
+    ],
+    "tagSlugs": [
+      "conversion-focused",
+      "modular",
+      "paywall",
+      "minimal",
+      "mobile-first"
+    ]
+  },
+  {
+    "title": "Field paywall under warehouse lights",
+    "description": "Study 118: uses ink black bars to hold up beside real product photography while the atlas stays unmistakably primary.",
+    "categorySlug": "travel",
+    "platform": "print",
+    "industry": "fintech",
+    "provenance": "redesign",
+    "styleSlugs": [
+      "content-first",
+      "monochrome",
+      "soft"
+    ],
+    "colourFamilies": [
+      "terracotta",
+      "warm-neutrals"
+    ],
+    "tagSlugs": [
+      "futuristic",
+      "onboarding",
+      "brutalist",
+      "retro",
+      "content-first"
+    ]
+  },
+  {
+    "title": "Archive checkout with reserved type",
+    "description": "Study 119: uses ochre rules to avoid floating chrome distractions while the dossier stays unmistakably primary.",
+    "categorySlug": "ecommerce",
+    "platform": "responsive-web",
+    "industry": "education",
+    "provenance": "ai_assisted",
+    "styleSlugs": [
+      "futuristic",
+      "playful",
+      "luxury"
+    ],
+    "colourFamilies": [
+      "slate-blue",
+      "cool-greys"
+    ],
+    "tagSlugs": [
+      "minimal-navigation",
+      "card-ui",
+      "swiss",
+      "playful",
+      "futuristic"
+    ]
+  },
+  {
+    "title": "Copper ledger inside a toolbox",
+    "description": "Study 120: uses slate chips to leave margin for anxious first visits while the palette stays unmistakably primary.",
+    "categorySlug": "fintech",
+    "platform": "watch",
+    "industry": "lifestyle",
+    "provenance": "fully_ai_generated",
+    "styleSlugs": [
+      "modular",
+      "dark",
+      "data-dense"
+    ],
+    "colourFamilies": [
+      "soft-pink",
+      "ink-black"
+    ],
+    "tagSlugs": [
+      "paywall",
+      "editorial",
+      "typographic",
+      "organic",
+      "modular"
+    ]
+  },
+  {
+    "title": "Wide gallery before the launch week",
+    "description": "Study 121: uses cream stock to invite a slower scan while the kit stays unmistakably primary.",
+    "categorySlug": "mobile-apps",
+    "platform": "ios",
+    "industry": "saas",
+    "provenance": "original_work",
+    "styleSlugs": [
+      "brutalist",
+      "geometric",
+      "grid-based"
+    ],
+    "colourFamilies": [
+      "warm-neutrals",
+      "forest"
+    ],
+    "tagSlugs": [
+      "brutalist",
+      "monochrome",
+      "dark",
+      "y2k"
+    ]
+  },
+  {
+    "title": "Tight receipt for archive volunteers",
+    "description": "Study 122: uses ink black bars to survive a cropped screenshot while the module stays unmistakably primary.",
+    "categorySlug": "portfolios",
+    "platform": "desktop-web",
+    "industry": "media",
+    "provenance": "client_work",
+    "styleSlugs": [
+      "editorial",
+      "y2k",
+      "photography-led"
+    ],
+    "colourFamilies": [
+      "cool-greys",
+      "ochre"
+    ],
+    "tagSlugs": [
+      "swiss",
+      "maximalist",
+      "neumorphic",
+      "high-contrast",
+      "editorial"
+    ]
+  },
+  {
+    "title": "Patient montage for careful buyers",
+    "description": "Study 123: uses ochre rules to keep secondary actions quiet while the surface stays unmistakably primary.",
+    "categorySlug": "social",
+    "platform": "brand-identity",
+    "industry": "health",
+    "provenance": "concept",
+    "styleSlugs": [
+      "retro",
+      "motion-led",
+      "sans-serif"
+    ],
+    "colourFamilies": [
+      "ink-black",
+      "terracotta"
+    ],
+    "tagSlugs": [
+      "typographic",
+      "geometric",
+      "motion-led",
+      "luxury",
+      "retro"
+    ]
+  },
+  {
+    "title": "Urgent portfolio with one accent",
+    "description": "Study 124: uses slate chips to respect screen-reader order while the frame stays unmistakably primary.",
+    "categorySlug": "editorial",
+    "platform": "android",
+    "industry": "travel",
+    "provenance": "redesign",
+    "styleSlugs": [
+      "typographic",
+      "soft",
+      "bold-colour"
+    ],
+    "colourFamilies": [
+      "forest",
+      "slate-blue"
+    ],
+    "tagSlugs": [
+      "dark",
+      "accessible",
+      "industrial",
+      "spacious",
+      "typographic"
+    ]
+  },
+  {
+    "title": "Late empty-state with printed margins",
+    "description": "Study 125: uses cream stock to make totals readable at dusk while the passage stays unmistakably primary.",
+    "categorySlug": "health",
+    "platform": "tablet",
+    "industry": "ecommerce",
+    "provenance": "ai_assisted",
+    "styleSlugs": [
+      "maximalist",
+      "luxury",
+      "responsive"
+    ],
+    "colourFamilies": [
+      "ochre",
+      "soft-pink"
+    ],
+    "tagSlugs": [
+      "neumorphic",
+      "soft",
+      "data-dense",
+      "photography-led",
+      "maximalist"
+    ]
+  },
+  {
+    "title": "Early roster-board beside a ceramics kiln",
+    "description": "Study 126: uses ink black bars to feel hand-composed rather than generated while the gallery stays unmistakably primary.",
+    "categorySlug": "web-apps",
+    "platform": "print",
+    "industry": "fintech",
+    "provenance": "fully_ai_generated",
+    "styleSlugs": [
+      "organic",
+      "data-dense",
+      "conversion-focused"
+    ],
+    "colourFamilies": [
+      "terracotta",
+      "warm-neutrals"
+    ],
+    "tagSlugs": [
+      "motion-led",
+      "hand-drawn",
+      "illustration-led",
+      "experimental-navigation",
+      "organic"
+    ]
+  },
+  {
+    "title": "Northern canvas built for dusk",
+    "description": "Study 127: uses ochre rules to support a second language label while the console stays unmistakably primary.",
+    "categorySlug": "dashboards",
+    "platform": "responsive-web",
+    "industry": "education",
+    "provenance": "original_work",
+    "styleSlugs": [
+      "neumorphic",
+      "grid-based",
+      "functional"
+    ],
+    "colourFamilies": [
+      "slate-blue",
+      "cool-greys"
+    ],
+    "tagSlugs": [
+      "industrial",
+      "grid-based",
+      "sans-serif",
+      "responsive",
+      "neumorphic"
+    ]
+  },
+  {
+    "title": "Coastal journal for festival weeks",
+    "description": "Study 128: uses slate chips to hold up beside real product photography while the timeline stays unmistakably primary.",
+    "categorySlug": "experimental",
+    "platform": "watch",
+    "industry": "lifestyle",
+    "provenance": "client_work",
+    "styleSlugs": [
+      "accessible",
+      "photography-led",
+      "nostalgic"
+    ],
+    "colourFamilies": [
+      "soft-pink",
+      "ink-black"
+    ],
+    "tagSlugs": [
+      "data-dense",
+      "serif",
+      "muted-colour",
+      "content-first",
+      "accessible"
+    ]
+  },
+  {
+    "title": "Urban palette for neighbourhood maps",
+    "description": "Study 129: uses cream stock to avoid floating chrome distractions while the receipt stays unmistakably primary.",
+    "categorySlug": "branding",
+    "platform": "ios",
+    "industry": "saas",
+    "provenance": "concept",
+    "styleSlugs": [
+      "high-contrast",
+      "sans-serif",
+      "minimal-navigation"
+    ],
+    "colourFamilies": [
+      "warm-neutrals",
+      "forest"
+    ],
+    "tagSlugs": [
+      "illustration-led",
+      "bold-colour",
+      "conversion-focused",
+      "nostalgic",
+      "high-contrast"
+    ]
+  },
+  {
+    "title": "Studio surface for museum evenings",
+    "description": "Study 130: uses ink black bars to leave margin for anxious first visits while the beacon stays unmistakably primary.",
+    "categorySlug": "travel",
+    "platform": "desktop-web",
+    "industry": "media",
+    "provenance": "redesign",
+    "styleSlugs": [
+      "industrial",
+      "bold-colour",
+      "minimal"
+    ],
+    "colourFamilies": [
+      "cool-greys",
+      "ochre"
+    ],
+    "tagSlugs": [
+      "sans-serif",
+      "mobile-first",
+      "futuristic",
+      "empty-state",
+      "industrial"
+    ]
+  },
+  {
+    "title": "Field gallery for slow mornings",
+    "description": "Study 131: uses ochre rules to invite a slower scan while the signal stays unmistakably primary.",
+    "categorySlug": "ecommerce",
+    "platform": "brand-identity",
+    "industry": "health",
+    "provenance": "ai_assisted",
+    "styleSlugs": [
+      "hand-drawn",
+      "responsive",
+      "swiss"
+    ],
+    "colourFamilies": [
+      "ink-black",
+      "terracotta"
+    ],
+    "tagSlugs": [
+      "muted-colour",
+      "functional",
+      "minimal-navigation",
+      "typography-focus",
+      "hand-drawn"
+    ]
+  },
+  {
+    "title": "Archive receipt for clinic halls",
+    "description": "Study 132: uses slate chips to survive a cropped screenshot while the montage stays unmistakably primary.",
+    "categorySlug": "fintech",
+    "platform": "android",
+    "industry": "travel",
+    "provenance": "fully_ai_generated",
+    "styleSlugs": [
+      "spacious",
+      "conversion-focused",
+      "monochrome"
+    ],
+    "colourFamilies": [
+      "forest",
+      "slate-blue"
+    ],
+    "tagSlugs": [
+      "conversion-focused",
+      "modular",
+      "paywall",
+      "minimal",
+      "spacious"
+    ]
+  },
+  {
+    "title": "Copper montage for first-time users",
+    "description": "Study 133: uses cream stock to keep secondary actions quiet while the specimen stays unmistakably primary.",
+    "categorySlug": "mobile-apps",
+    "platform": "tablet",
+    "industry": "ecommerce",
+    "provenance": "original_work",
+    "styleSlugs": [
+      "illustration-led",
+      "functional",
+      "playful"
+    ],
+    "colourFamilies": [
+      "ochre",
+      "soft-pink"
+    ],
+    "tagSlugs": [
+      "futuristic",
+      "onboarding",
+      "brutalist",
+      "retro",
+      "illustration-led"
+    ]
+  },
+  {
+    "title": "Linen portfolio during a soft beta",
+    "description": "Study 134: uses ink black bars to respect screen-reader order while the terminal stays unmistakably primary.",
+    "categorySlug": "portfolios",
+    "platform": "print",
+    "industry": "fintech",
+    "provenance": "client_work",
+    "styleSlugs": [
+      "serif",
+      "nostalgic",
+      "dark"
+    ],
+    "colourFamilies": [
+      "terracotta",
+      "warm-neutrals"
+    ],
+    "tagSlugs": [
+      "minimal-navigation",
+      "card-ui",
+      "swiss",
+      "playful",
+      "serif"
+    ]
+  },
+  {
+    "title": "Fog empty-state with bilingual labels",
+    "description": "Study 135: uses ochre rules to make totals readable at dusk while the portfolio stays unmistakably primary.",
+    "categorySlug": "social",
+    "platform": "responsive-web",
+    "industry": "education",
+    "provenance": "concept",
+    "styleSlugs": [
+      "experimental-navigation",
+      "minimal-navigation",
+      "geometric"
+    ],
+    "colourFamilies": [
+      "slate-blue",
+      "cool-greys"
+    ],
+    "tagSlugs": [
+      "paywall",
+      "editorial",
+      "typographic",
+      "organic",
+      "experimental-navigation"
+    ]
+  },
+  {
+    "title": "Cedar roster-board after the redesign",
+    "description": "Study 136: uses slate chips to feel hand-composed rather than generated while the paywall stays unmistakably primary.",
+    "categorySlug": "editorial",
+    "platform": "watch",
+    "industry": "lifestyle",
+    "provenance": "redesign",
+    "styleSlugs": [
+      "muted-colour",
+      "minimal",
+      "y2k"
+    ],
+    "colourFamilies": [
+      "soft-pink",
+      "ink-black"
+    ],
+    "tagSlugs": [
+      "brutalist",
+      "monochrome",
+      "dark",
+      "y2k",
+      "muted-colour"
+    ]
+  },
+  {
+    "title": "Amber canvas for night shifts",
+    "description": "Study 137: uses cream stock to support a second language label while the onboarding stays unmistakably primary.",
+    "categorySlug": "health",
+    "platform": "ios",
+    "industry": "saas",
+    "provenance": "ai_assisted",
+    "styleSlugs": [
+      "mobile-first",
+      "swiss",
+      "motion-led"
+    ],
+    "colourFamilies": [
+      "warm-neutrals",
+      "forest"
+    ],
+    "tagSlugs": [
+      "swiss",
+      "maximalist",
+      "neumorphic",
+      "high-contrast",
+      "mobile-first"
+    ]
+  },
+  {
+    "title": "Slate journal for watch glances",
+    "description": "Study 138: uses ink black bars to hold up beside real product photography while the empty-state stays unmistakably primary.",
+    "categorySlug": "web-apps",
+    "platform": "desktop-web",
+    "industry": "media",
+    "provenance": "fully_ai_generated",
+    "styleSlugs": [
+      "content-first",
+      "monochrome",
+      "soft"
+    ],
+    "colourFamilies": [
+      "cool-greys",
+      "ochre"
+    ],
+    "tagSlugs": [
+      "typographic",
+      "geometric",
+      "motion-led",
+      "luxury",
+      "content-first"
+    ]
+  },
+  {
+    "title": "Paper palette after rain delays",
+    "description": "Study 139: uses ochre rules to avoid floating chrome distractions while the checkout stays unmistakably primary.",
+    "categorySlug": "dashboards",
+    "platform": "brand-identity",
+    "industry": "health",
+    "provenance": "original_work",
+    "styleSlugs": [
+      "futuristic",
+      "playful",
+      "luxury"
+    ],
+    "colourFamilies": [
+      "ink-black",
+      "terracotta"
+    ],
+    "tagSlugs": [
+      "dark",
+      "accessible",
+      "industrial",
+      "spacious",
+      "futuristic"
+    ]
+  },
+  {
+    "title": "Ink surface without chrome noise",
+    "description": "Study 140: uses slate chips to leave margin for anxious first visits while the map stays unmistakably primary.",
+    "categorySlug": "experimental",
+    "platform": "android",
+    "industry": "travel",
+    "provenance": "client_work",
+    "styleSlugs": [
+      "modular",
+      "dark",
+      "data-dense"
+    ],
+    "colourFamilies": [
+      "forest",
+      "slate-blue"
+    ],
+    "tagSlugs": [
+      "neumorphic",
+      "soft",
+      "data-dense",
+      "photography-led",
+      "modular"
+    ]
+  },
+  {
+    "title": "Clay gallery on paper stock",
+    "description": "Study 141: uses cream stock to invite a slower scan while the roster-board stays unmistakably primary.",
+    "categorySlug": "branding",
+    "platform": "tablet",
+    "industry": "ecommerce",
+    "provenance": "concept",
+    "styleSlugs": [
+      "brutalist",
+      "geometric",
+      "grid-based"
+    ],
+    "colourFamilies": [
+      "ochre",
+      "soft-pink"
+    ],
+    "tagSlugs": [
+      "motion-led",
+      "hand-drawn",
+      "illustration-led",
+      "experimental-navigation",
+      "brutalist"
+    ]
+  },
+  {
+    "title": "Glass receipt for radio hosts",
+    "description": "Study 142: uses ink black bars to survive a cropped screenshot while the ledger stays unmistakably primary.",
+    "categorySlug": "travel",
+    "platform": "print",
+    "industry": "fintech",
+    "provenance": "redesign",
+    "styleSlugs": [
+      "editorial",
+      "y2k",
+      "photography-led"
+    ],
+    "colourFamilies": [
+      "terracotta",
+      "warm-neutrals"
+    ],
+    "tagSlugs": [
+      "industrial",
+      "grid-based",
+      "sans-serif",
+      "responsive",
+      "editorial"
+    ]
+  },
+  {
+    "title": "Quiet montage under warehouse lights",
+    "description": "Study 143: uses ochre rules to keep secondary actions quiet while the catalog stays unmistakably primary.",
+    "categorySlug": "ecommerce",
+    "platform": "responsive-web",
+    "industry": "education",
+    "provenance": "ai_assisted",
+    "styleSlugs": [
+      "retro",
+      "motion-led",
+      "sans-serif"
+    ],
+    "colourFamilies": [
+      "slate-blue",
+      "cool-greys"
+    ],
+    "tagSlugs": [
+      "data-dense",
+      "serif",
+      "muted-colour",
+      "content-first",
+      "retro"
+    ]
+  },
+  {
+    "title": "Sparse portfolio with reserved type",
+    "description": "Study 144: uses slate chips to respect screen-reader order while the canvas stays unmistakably primary.",
+    "categorySlug": "fintech",
+    "platform": "watch",
+    "industry": "lifestyle",
+    "provenance": "fully_ai_generated",
+    "styleSlugs": [
+      "typographic",
+      "soft",
+      "bold-colour"
+    ],
+    "colourFamilies": [
+      "soft-pink",
+      "ink-black"
+    ],
+    "tagSlugs": [
+      "illustration-led",
+      "bold-colour",
+      "conversion-focused",
+      "nostalgic",
+      "typographic"
+    ]
+  },
+  {
+    "title": "Measured empty-state inside a toolbox",
+    "description": "Study 145: uses cream stock to make totals readable at dusk while the schedule stays unmistakably primary.",
+    "categorySlug": "mobile-apps",
+    "platform": "ios",
+    "industry": "saas",
+    "provenance": "original_work",
+    "styleSlugs": [
+      "maximalist",
+      "luxury",
+      "responsive"
+    ],
+    "colourFamilies": [
+      "warm-neutrals",
+      "forest"
+    ],
+    "tagSlugs": [
+      "sans-serif",
+      "mobile-first",
+      "futuristic",
+      "empty-state",
+      "maximalist"
+    ]
+  },
+  {
+    "title": "Honest roster-board with delayed shipping",
+    "description": "Study 146: uses ink black bars to feel hand-composed rather than generated while the roster stays unmistakably primary.",
+    "categorySlug": "portfolios",
+    "platform": "desktop-web",
+    "industry": "media",
+    "provenance": "client_work",
+    "styleSlugs": [
+      "organic",
+      "data-dense",
+      "conversion-focused"
+    ],
+    "colourFamilies": [
+      "cool-greys",
+      "ochre"
+    ],
+    "tagSlugs": [
+      "muted-colour",
+      "functional",
+      "minimal-navigation",
+      "typography-focus",
+      "organic"
+    ]
+  },
+  {
+    "title": "Soft canvas for teachers on call",
+    "description": "Study 147: uses ochre rules to support a second language label while the journal stays unmistakably primary.",
+    "categorySlug": "social",
+    "platform": "brand-identity",
+    "industry": "health",
+    "provenance": "concept",
+    "styleSlugs": [
+      "neumorphic",
+      "grid-based",
+      "functional"
+    ],
+    "colourFamilies": [
+      "ink-black",
+      "terracotta"
+    ],
+    "tagSlugs": [
+      "conversion-focused",
+      "modular",
+      "paywall",
+      "minimal",
+      "neumorphic"
+    ]
+  },
+  {
+    "title": "Sharp journal for weekend markets",
+    "description": "Study 148: uses slate chips to hold up beside real product photography while the atlas stays unmistakably primary.",
+    "categorySlug": "editorial",
+    "platform": "android",
+    "industry": "travel",
+    "provenance": "redesign",
+    "styleSlugs": [
+      "accessible",
+      "photography-led",
+      "nostalgic"
+    ],
+    "colourFamilies": [
+      "forest",
+      "slate-blue"
+    ],
+    "tagSlugs": [
+      "futuristic",
+      "onboarding",
+      "brutalist",
+      "retro",
+      "accessible"
+    ]
+  },
+  {
+    "title": "Warm palette from a ferry desk",
+    "description": "Study 149: uses cream stock to avoid floating chrome distractions while the dossier stays unmistakably primary.",
+    "categorySlug": "health",
+    "platform": "tablet",
+    "industry": "ecommerce",
+    "provenance": "ai_assisted",
+    "styleSlugs": [
+      "high-contrast",
+      "sans-serif",
+      "minimal-navigation"
+    ],
+    "colourFamilies": [
+      "ochre",
+      "soft-pink"
+    ],
+    "tagSlugs": [
+      "minimal-navigation",
+      "card-ui",
+      "swiss",
+      "playful",
+      "high-contrast"
+    ]
+  },
+  {
+    "title": "Cool surface from a shared desk",
+    "description": "Study 150: uses ink black bars to leave margin for anxious first visits while the palette stays unmistakably primary.",
+    "categorySlug": "web-apps",
+    "platform": "print",
+    "industry": "fintech",
+    "provenance": "fully_ai_generated",
+    "styleSlugs": [
+      "industrial",
+      "bold-colour",
+      "minimal"
+    ],
+    "colourFamilies": [
+      "terracotta",
+      "warm-neutrals"
+    ],
+    "tagSlugs": [
+      "paywall",
+      "editorial",
+      "typographic",
+      "organic",
+      "industrial"
+    ]
+  }
+]

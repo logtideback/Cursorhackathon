@@ -82,3 +82,13 @@ Upload paths must start with the authenticated user’s UUID folder or the stora
 ## Bootstrap triggers
 
 - `on_auth_user_created` → `handle_new_user()` creates `profiles`, `user_preferences`, and default `Saved` collection.
+
+## Development seed data
+
+See [`seed/README.md`](./seed/README.md) for small/medium/full datasets, test users, and reset instructions.
+
+```bash
+export SUPABASE_URL=...
+export SUPABASE_SERVICE_ROLE_KEY=...
+npm run seed:full
+```

@@ -53,14 +53,18 @@ export const COLOUR_FAMILIES: (PreferenceOption & { swatch: string })[] = [
 ];
 
 export const CATEGORIES: PreferenceOption[] = [
-  { id: 'mobile-app', label: 'Mobile app', subtitle: 'Handheld interfaces' },
-  { id: 'web-app', label: 'Web app', subtitle: 'Product surfaces' },
-  { id: 'marketing-site', label: 'Marketing site', subtitle: 'Campaign pages' },
-  { id: 'dashboard', label: 'Dashboard', subtitle: 'Data & ops' },
+  { id: 'mobile-apps', label: 'Mobile apps', subtitle: 'Handheld products' },
+  { id: 'web-apps', label: 'Web apps', subtitle: 'Product surfaces' },
   { id: 'ecommerce', label: 'E-commerce', subtitle: 'Buying flows' },
-  { id: 'editorial', label: 'Editorial', subtitle: 'Stories & typography' },
-  { id: 'brand-identity', label: 'Brand identity', subtitle: 'Systems & marks' },
-  { id: 'motion', label: 'Motion', subtitle: 'Movement studies' },
+  { id: 'editorial', label: 'Editorial', subtitle: 'Stories & type' },
+  { id: 'branding', label: 'Branding', subtitle: 'Systems & marks' },
+  { id: 'portfolios', label: 'Portfolios', subtitle: 'Case studies' },
+  { id: 'dashboards', label: 'Dashboards', subtitle: 'Data & ops' },
+  { id: 'fintech', label: 'Fintech', subtitle: 'Money & trust' },
+  { id: 'health', label: 'Health', subtitle: 'Care & wellness' },
+  { id: 'travel', label: 'Travel', subtitle: 'Place & journey' },
+  { id: 'social', label: 'Social', subtitle: 'Feeds & community' },
+  { id: 'experimental', label: 'Experimental', subtitle: 'Boundary work' },
 ];
 
 export const ONBOARDING_CAROUSEL = [
