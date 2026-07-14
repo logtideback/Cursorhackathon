@@ -16,6 +16,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { AuthProvider } from '@/providers/AuthProvider';
+import { AnalyticsBootstrap } from '@/providers/AnalyticsBootstrap';
 import { QueryProvider } from '@/providers/QueryProvider';
 import { colors } from '@/theme';
 
@@ -46,7 +47,9 @@ export function AppProviders({ children }: PropsWithChildren) {
     <GestureHandlerRootView style={{ flex: 1, backgroundColor: colors.background }}>
       <SafeAreaProvider>
         <QueryProvider>
-          <AuthProvider>{children}</AuthProvider>
+          <AuthProvider>
+            <AnalyticsBootstrap>{children}</AnalyticsBootstrap>
+          </AuthProvider>
         </QueryProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>

@@ -12,6 +12,7 @@ import {
   TextField,
 } from '@/components';
 import { authApi } from '@/features/auth';
+import { track } from '@/lib/analytics';
 import { spacing } from '@/theme';
 import { friendlyAuthError } from '@/utils/auth-errors';
 import { fieldErrorsFromZod, firstZodError, signInSchema } from '@/utils/validation';
@@ -37,6 +38,7 @@ export default function SignInScreen() {
     setLoading(true);
     try {
       await authApi.signInWithEmail(parsed.data.email, parsed.data.password);
+      track({ name: 'sign_in_completed', properties: { method: 'email' } });
       router.replace('/');
     } catch (error) {
       setFormError(friendlyAuthError(error));

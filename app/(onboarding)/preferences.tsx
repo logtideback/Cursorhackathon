@@ -1,5 +1,5 @@
 import { router } from 'expo-router';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { AuthScreen, Button, FormError, Text } from '@/components';
@@ -8,6 +8,7 @@ import { PlatformImageTiles } from '@/features/onboarding/components/PlatformIma
 import { SelectionCards } from '@/features/onboarding/components/SelectionCards';
 import { StyleTypographicGrid } from '@/features/onboarding/components/StyleTypographicGrid';
 import { CATEGORIES, DESIGN_STYLES, INDUSTRIES, PLATFORMS } from '@/features/onboarding/constants';
+import { track } from '@/lib/analytics';
 import { usePreferenceDraftStore } from '@/store/preference-draft-store';
 import { spacing } from '@/theme';
 
@@ -18,6 +19,7 @@ export default function PreferencesScreen() {
   const [stepIndex, setStepIndex] = useState(0);
   const [error, setError] = useState<string | null>(null);
   const step = STEPS[stepIndex] ?? 'styles';
+  const startedRef = useRef(false);
 
   const preferredStyles = usePreferenceDraftStore((s) => s.preferredStyles);
   const preferredIndustries = usePreferenceDraftStore((s) => s.preferredIndustries);
@@ -25,6 +27,17 @@ export default function PreferencesScreen() {
   const preferredColourFamilies = usePreferenceDraftStore((s) => s.preferredColourFamilies);
   const preferredCategories = usePreferenceDraftStore((s) => s.preferredCategories);
   const toggle = usePreferenceDraftStore((s) => s.toggle);
+
+  useEffect(() => {
+    if (!startedRef.current) {
+      startedRef.current = true;
+      track({ name: 'onboarding_started', properties: {} });
+    }
+    track({
+      name: 'onboarding_step_viewed',
+      properties: { step, stepIndex },
+    });
+  }, [step, stepIndex]);
 
   const selectionCount = {
     styles: preferredStyles.length,

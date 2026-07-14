@@ -1,5 +1,5 @@
 import { router } from 'expo-router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Alert, StyleSheet, View } from 'react-native';
 
 import {
@@ -42,6 +42,20 @@ export function CreatorProfileScreen({
     useCreatorProfile(creatorId, viewerId);
 
   const [reportVisible, setReportVisible] = useState(false);
+
+  useEffect(() => {
+    if (!profile) {
+      return;
+    }
+    track({
+      name: 'creator_viewed',
+      properties: {
+        creatorId: profile.id,
+        isSelf: profile.isSelf,
+        source: 'profile',
+      },
+    });
+  }, [profile?.id]);
 
   if (isLoading) {
     return (

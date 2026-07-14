@@ -204,6 +204,17 @@ function SaveSheetBody({
                     note: draft.note.trim() || null,
                     savedAspect: draft.aspect,
                   });
+                  track({
+                    name: 'design_added_to_collection',
+                    properties: {
+                      designId,
+                      collectionId: activeCollectionId,
+                      isDefaultCollection: Boolean(
+                        collections.find((c) => c.id === activeCollectionId)?.is_default,
+                      ),
+                      source: 'detail',
+                    },
+                  });
                 }
                 track({
                   name: 'design_saved',
@@ -233,7 +244,26 @@ function SaveSheetBody({
                   return;
                 }
                 try {
+                  const collection = collections.find((c) => c.id === activeCollectionId);
                   await onRemoveFromCollection(activeCollectionId);
+                  track({
+                    name: 'design_removed_from_collection',
+                    properties: {
+                      designId,
+                      collectionId: activeCollectionId,
+                      source: 'detail',
+                    },
+                  });
+                  if (collection?.is_default) {
+                    track({
+                      name: 'design_removed_from_saved',
+                      properties: {
+                        designId,
+                        collectionId: activeCollectionId,
+                        source: 'detail',
+                      },
+                    });
+                  }
                   onClose();
                 } catch (err) {
                   const message =

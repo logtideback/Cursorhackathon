@@ -12,6 +12,7 @@ import {
   mockReorder,
 } from '@/features/collections/mock-data';
 import type { CollectionDesignItem, CollectionDetail } from '@/features/collections/types';
+import { track } from '@/lib/analytics';
 import { isEnvConfigured } from '@/lib/env';
 import {
   copyDesignToCollection,
@@ -59,6 +60,27 @@ export function useCollectionDetail(collectionId: string) {
         return mockRemoveDesign(collectionId, designId);
       }
       return removeDesignFromCollection(collectionId, designId);
+    },
+    onSuccess: (_data, designId) => {
+      const isDefault = Boolean(detailQuery.data?.collection.is_default);
+      track({
+        name: 'design_removed_from_collection',
+        properties: {
+          designId,
+          collectionId,
+          source: 'detail',
+        },
+      });
+      if (isDefault) {
+        track({
+          name: 'design_removed_from_saved',
+          properties: {
+            designId,
+            collectionId,
+            source: 'detail',
+          },
+        });
+      }
     },
     onMutate: async (designId) => {
       await queryClient.cancelQueries({

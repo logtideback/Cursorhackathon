@@ -14,6 +14,7 @@ import {
 } from '@/features/collections/mock-data';
 import type { ChooseCollectionOption, CreateCollectionInput } from '@/features/collections/types';
 import { DESIGN_SAVES_QUERY_KEY } from '@/features/designs/detail/constants';
+import { track } from '@/lib/analytics';
 import { isEnvConfigured } from '@/lib/env';
 import {
   addDesignToCollection,
@@ -87,6 +88,55 @@ export function useChooseCollection(designId: string | null) {
       }
       return params;
     },
+    onSuccess: (params) => {
+      if (!designId) {
+        return;
+      }
+      const option = options.find((item) => item.id === params.collectionId);
+      const isDefault = Boolean(option?.isDefault);
+      if (params.shouldContain) {
+        track({
+          name: 'design_added_to_collection',
+          properties: {
+            designId,
+            collectionId: params.collectionId,
+            isDefaultCollection: isDefault,
+            source: 'detail',
+          },
+        });
+        if (isDefault) {
+          track({
+            name: 'design_saved',
+            properties: {
+              designId,
+              collectionId: params.collectionId,
+              hasAspect: false,
+              hasNote: false,
+              source: 'detail',
+            },
+          });
+        }
+      } else {
+        track({
+          name: 'design_removed_from_collection',
+          properties: {
+            designId,
+            collectionId: params.collectionId,
+            source: 'detail',
+          },
+        });
+        if (isDefault) {
+          track({
+            name: 'design_removed_from_saved',
+            properties: {
+              designId,
+              collectionId: params.collectionId,
+              source: 'detail',
+            },
+          });
+        }
+      }
+    },
     onMutate: async (params) => {
       if (!designId) {
         return { previous: undefined };
@@ -143,7 +193,27 @@ export function useChooseCollection(designId: string | null) {
       }
       return created;
     },
-    onSuccess: invalidate,
+    onSuccess: (created) => {
+      track({
+        name: 'collection_created',
+        properties: {
+          collectionId: created.id,
+          isPrivate: Boolean(created.is_private),
+        },
+      });
+      if (designId) {
+        track({
+          name: 'design_added_to_collection',
+          properties: {
+            designId,
+            collectionId: created.id,
+            isDefaultCollection: false,
+            source: 'detail',
+          },
+        });
+      }
+      invalidate();
+    },
   });
 
   return {

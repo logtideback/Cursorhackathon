@@ -1,5 +1,5 @@
 import { router } from 'expo-router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Alert, StyleSheet, View } from 'react-native';
 
 import { Button, EmptyState, ErrorState, LoadingIndicator, Screen, Text } from '@/components';
@@ -18,6 +18,7 @@ import { useDesignDetail } from '@/features/designs/detail/hooks/useDesignDetail
 import { useDesignSave } from '@/features/designs/detail/hooks/useDesignSave';
 import { shareDesign } from '@/features/designs/detail/share';
 import { DesignFeedbackActionsSheet } from '@/features/preferences';
+import { track } from '@/lib/analytics';
 import { spacing } from '@/theme';
 
 type DesignDetailScreenProps = {
@@ -46,6 +47,21 @@ export function DesignDetailScreen({ designId }: DesignDetailScreenProps) {
   const [reportVisible, setReportVisible] = useState(false);
   const [chooseVisible, setChooseVisible] = useState(false);
   const [feedbackVisible, setFeedbackVisible] = useState(false);
+
+  useEffect(() => {
+    if (!design) {
+      return;
+    }
+    track({
+      name: 'design_viewed',
+      properties: {
+        designId: design.id,
+        creatorId: design.creator.id,
+        source: 'detail',
+        provenance: design.provenance,
+      },
+    });
+  }, [design?.id]);
 
   if (isLoading) {
     return (

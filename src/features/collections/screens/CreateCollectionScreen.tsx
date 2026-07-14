@@ -4,6 +4,7 @@ import { Alert, StyleSheet } from 'react-native';
 import { Screen, Text } from '@/components';
 import { CollectionForm } from '@/features/collections/components/CollectionForm';
 import { useCollectionMutations } from '@/features/collections/hooks/useCollectionsOverview';
+import { track } from '@/lib/analytics';
 import { isEnvConfigured } from '@/lib/env';
 import { uploadCollectionCover } from '@/services/collections';
 import { useAuthStore } from '@/store/auth-store';
@@ -37,6 +38,13 @@ export function CreateCollectionScreen() {
             description: input.description ?? null,
             isPrivate: input.isPrivate ?? true,
             coverImageUrl: input.coverImageUrl ?? null,
+          });
+          track({
+            name: 'collection_created',
+            properties: {
+              collectionId: created.id,
+              isPrivate: Boolean(created.is_private),
+            },
           });
           Alert.alert('Collection created', created.name);
           router.replace(`/collection/${created.id}`);

@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { AuthScreen, Button, FormError, Image, Text, TextField } from '@/components';
+import { track } from '@/lib/analytics';
 import { completeOnboarding } from '@/services/onboarding';
 import { isUsernameAvailable, uploadAvatar } from '@/services/profiles';
 import { useAuthStore } from '@/store/auth-store';
@@ -133,6 +134,17 @@ export default function ProfileSetupScreen() {
         bio: parsed.data.bio || undefined,
         websiteUrl: parsed.data.websiteUrl || undefined,
         avatarUrl,
+      });
+
+      const selections = getSelections();
+      track({
+        name: 'onboarding_completed',
+        properties: {
+          categoryCount: selections.preferredCategories.length,
+          styleCount: selections.preferredStyles.length,
+          platformCount: selections.preferredPlatforms.length,
+          industryCount: selections.preferredIndustries.length,
+        },
       });
 
       completeLocalOnboarding();

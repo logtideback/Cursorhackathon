@@ -1,6 +1,7 @@
 import * as Linking from 'expo-linking';
 
 import { assertEnvConfigured } from '@/lib/env';
+import { resetAnalytics } from '@/lib/analytics';
 import { supabase } from '@/lib/supabase';
 
 const magicRedirectTo = Linking.createURL('magic-link');
@@ -65,6 +66,7 @@ export async function signOut() {
   if (error) {
     throw error;
   }
+  resetAnalytics();
 }
 
 export async function getSession() {

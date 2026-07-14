@@ -17,6 +17,7 @@ import type {
   SwipeHistoryEntry,
   UndoToastState,
 } from '@/features/discover/types';
+import { track } from '@/lib/analytics';
 import { isEnvConfigured } from '@/lib/env';
 import { recordSwipe, undoLastSwipe } from '@/services/designs';
 import type { SwipeDirection } from '@/types/database';
@@ -224,6 +225,37 @@ export function useDiscoverDeck() {
           swipeId: result.swipe_id,
         });
 
+        track({
+          name: direction === 'right' ? 'design_swiped_right' : 'design_swiped_left',
+          properties: {
+            designId: card.id,
+            creatorId: card.creatorId,
+            categoryId: card.category ?? undefined,
+            source: 'discover',
+          },
+        });
+        if (direction === 'right') {
+          track({
+            name: 'design_saved',
+            properties: {
+              designId: card.id,
+              collectionId: 'default',
+              hasAspect: false,
+              hasNote: false,
+              source: 'discover',
+            },
+          });
+          track({
+            name: 'design_added_to_collection',
+            properties: {
+              designId: card.id,
+              collectionId: 'default',
+              isDefaultCollection: true,
+              source: 'discover',
+            },
+          });
+        }
+
         setToast({
           visible: true,
           direction,
@@ -265,6 +297,14 @@ export function useDiscoverDeck() {
     try {
       await undoMutation.mutateAsync(entry);
       historyRef.current.pop();
+      track({
+        name: 'swipe_undone',
+        properties: {
+          designId: entry.card.id,
+          previousDirection: entry.direction,
+          source: 'discover',
+        },
+      });
       setDeck((current) => {
         if (current.some((card) => card.id === entry.card.id)) {
           return current;

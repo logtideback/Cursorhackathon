@@ -1,7 +1,9 @@
 import { StyleSheet, View } from 'react-native';
+import { useEffect, useRef } from 'react';
 
 import { Text } from '@/components';
 import { explainReasons } from '@/features/discover/recommendation/explanations';
+import { track } from '@/lib/analytics';
 import { useRecommendationMetaStore } from '@/store/recommendation-meta-store';
 import { colors, radii, spacing } from '@/theme';
 
@@ -12,6 +14,22 @@ type WhySeeingThisProps = {
 export function WhySeeingThis({ designId }: WhySeeingThisProps) {
   const meta = useRecommendationMetaStore((s) => s.getMeta(designId));
   const explanations = meta ? explainReasons(meta.reasons) : [];
+  const trackedRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (!meta || explanations.length === 0 || trackedRef.current === designId) {
+      return;
+    }
+    trackedRef.current = designId;
+    track({
+      name: 'recommendation_explanation_viewed',
+      properties: {
+        designId,
+        reasonCount: explanations.length,
+        primaryReason: meta.reasons[0],
+      },
+    });
+  }, [designId, explanations.length, meta]);
 
   return (
     <View style={styles.root} accessibilityLabel="Why am I seeing this">

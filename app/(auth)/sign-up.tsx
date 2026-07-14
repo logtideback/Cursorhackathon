@@ -12,6 +12,7 @@ import {
   TextField,
 } from '@/components';
 import { authApi } from '@/features/auth';
+import { track } from '@/lib/analytics';
 import { spacing } from '@/theme';
 import { friendlyAuthError } from '@/utils/auth-errors';
 import { fieldErrorsFromZod, firstZodError, signUpSchema } from '@/utils/validation';
@@ -37,6 +38,7 @@ export default function SignUpScreen() {
     setLoading(true);
     try {
       const result = await authApi.signUpWithEmail(parsed.data.email, parsed.data.password);
+      track({ name: 'sign_up_completed', properties: { method: 'email' } });
       if (!result.session) {
         router.push({ pathname: '/(auth)/magic-link', params: { email: parsed.data.email } });
         return;

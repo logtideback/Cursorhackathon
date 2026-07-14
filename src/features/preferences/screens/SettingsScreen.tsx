@@ -80,7 +80,7 @@ export function SettingsScreen() {
       </Text>
 
       <View style={styles.section}>
-        <AnalyticsConsentCard compact />
+        <AnalyticsConsentCard />
       </View>
 
       <View style={styles.section}>
