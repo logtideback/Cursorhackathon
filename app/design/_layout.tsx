@@ -12,6 +12,15 @@ export default function DesignLayout() {
         headerShadowVisible: false,
         contentStyle: { backgroundColor: colors.background },
       }}
-    />
+    >
+      <Stack.Screen
+        name="[id]"
+        options={{
+          title: '',
+          headerTransparent: true,
+          headerStyle: { backgroundColor: 'transparent' },
+        }}
+      />
+    </Stack>
   );
 }

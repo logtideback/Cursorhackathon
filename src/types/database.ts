@@ -19,7 +19,10 @@ export type SavedAspect =
   | 'interaction'
   | 'other';
 
-export type ReportReason = 'spam' | 'inappropriate' | 'copyright' | 'misleading' | 'other';
+export type ReportReason =
+  'spam' | 'inappropriate' | 'copyright' | 'misleading' | 'stolen_work' | 'broken_source' | 'other';
+
+export type AccountStatus = 'active' | 'suspended';
 
 export type ReportStatus = 'open' | 'reviewing' | 'resolved' | 'dismissed';
 
@@ -37,6 +40,7 @@ export type Database = {
           bio: string | null;
           website_url: string | null;
           role: UserRole;
+          account_status: AccountStatus;
           onboarding_completed: boolean;
           created_at: string;
           updated_at: string;
@@ -49,6 +53,7 @@ export type Database = {
           bio?: string | null;
           website_url?: string | null;
           role?: UserRole;
+          account_status?: AccountStatus;
           onboarding_completed?: boolean;
           created_at?: string;
           updated_at?: string;
@@ -61,6 +66,7 @@ export type Database = {
           bio?: string | null;
           website_url?: string | null;
           role?: UserRole;
+          account_status?: AccountStatus;
           onboarding_completed?: boolean;
           created_at?: string;
           updated_at?: string;
@@ -599,6 +605,14 @@ export type Database = {
         Args: { p_limit?: number; p_exclude_ids?: string[] };
         Returns: Json;
       };
+      get_similar_designs: {
+        Args: { p_design_id: string; p_limit?: number };
+        Returns: UnseenDesignRow[];
+      };
+      count_published_designs: {
+        Args: { p_creator_id: string };
+        Returns: number;
+      };
       record_swipe: {
         Args: { p_design_id: string; p_direction: SwipeDirection };
         Returns: Json;
@@ -639,6 +653,7 @@ export type Database = {
     };
     Enums: {
       user_role: UserRole;
+      account_status: AccountStatus;
       design_provenance: DesignProvenance;
       design_status: DesignStatus;
       swipe_direction: SwipeDirection;
