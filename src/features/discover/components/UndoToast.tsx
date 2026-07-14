@@ -68,7 +68,7 @@ export function UndoToast({
           onPress={onUndo}
         />
         {direction === 'right' && onMoveToCollection ? (
-          <Button label="Move" variant="ghost" fullWidth={false} onPress={onMoveToCollection} />
+          <Button label="Organise" variant="ghost" fullWidth={false} onPress={onMoveToCollection} />
         ) : null}
       </View>
     </Animated.View>

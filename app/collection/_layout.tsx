@@ -12,6 +12,10 @@ export default function CollectionLayout() {
         headerShadowVisible: false,
         contentStyle: { backgroundColor: colors.background },
       }}
-    />
+    >
+      <Stack.Screen name="create" options={{ title: 'New collection' }} />
+      <Stack.Screen name="[id]/index" options={{ title: 'Collection' }} />
+      <Stack.Screen name="[id]/edit" options={{ title: 'Edit collection' }} />
+    </Stack>
   );
 }

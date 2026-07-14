@@ -2,6 +2,7 @@ import NetInfo from '@react-native-community/netinfo';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
+import { COLLECTIONS_QUERY_KEY } from '@/features/collections/constants';
 import {
   DECK_PAGE_SIZE,
   DECK_REFILL_THRESHOLD,
@@ -230,11 +231,14 @@ export function useDiscoverDeck() {
           title: card.title,
           message:
             direction === 'right'
-              ? 'Saved to your collection'
+              ? 'Saved to your Saved collection'
               : 'Passed — we will show fewer like this',
         });
 
         void queryClient.invalidateQueries({ queryKey: DISCOVER_QUERY_KEY });
+        if (direction === 'right') {
+          void queryClient.invalidateQueries({ queryKey: [COLLECTIONS_QUERY_KEY] });
+        }
       } catch (error) {
         setDeck((current) => [card, ...current.filter((item) => item.id !== card.id)]);
         setSessionSwipes((count) => Math.max(0, count - 1));
@@ -320,9 +324,12 @@ export function useDiscoverDeck() {
             title: card.title,
             message:
               direction === 'right'
-                ? 'Saved to your collection'
+                ? 'Saved to your Saved collection'
                 : 'Passed — we will show fewer like this',
           });
+          if (direction === 'right') {
+            void queryClient.invalidateQueries({ queryKey: [COLLECTIONS_QUERY_KEY] });
+          }
         } catch (error) {
           setDeck((current) => [card, ...current.filter((item) => item.id !== card.id)]);
           setFailedSwipe({ card, direction });
@@ -333,7 +340,7 @@ export function useDiscoverDeck() {
         }
       })();
     });
-  }, [deck, failedSwipe, swipeMutation]);
+  }, [deck, failedSwipe, queryClient, swipeMutation]);
 
   const dismissToast = useCallback(() => setToast(emptyToast), []);
 

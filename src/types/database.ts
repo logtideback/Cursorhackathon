@@ -642,6 +642,24 @@ export type Database = {
         Args: { p_collection_id: string; p_design_id: string };
         Returns: boolean;
       };
+      reorder_collection_items: {
+        Args: { p_collection_id: string; p_ordered_item_ids: string[] };
+        Returns: boolean;
+      };
+      move_design_between_collections: {
+        Args: {
+          p_from_collection_id: string;
+          p_to_collection_id: string;
+          p_design_id: string;
+          p_note?: string | null;
+          p_saved_aspect?: SavedAspect | null;
+        };
+        Returns: Database['public']['Tables']['collection_items']['Row'];
+      };
+      get_public_collection: {
+        Args: { p_collection_id: string };
+        Returns: Json;
+      };
       add_right_swipe_to_default_collection: {
         Args: { p_user_id: string; p_design_id: string };
         Returns: string | null;

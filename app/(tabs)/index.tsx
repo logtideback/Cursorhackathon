@@ -1,8 +1,9 @@
 import { router } from 'expo-router';
-import { useCallback, useRef } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { LoadingIndicator, Screen } from '@/components';
+import { ChooseCollectionSheet } from '@/features/collections';
 import { BatchProgress } from '@/features/discover/components/BatchProgress';
 import { DiscoverHeader } from '@/features/discover/components/DiscoverHeader';
 import { EmptyDeckState } from '@/features/discover/components/EmptyDeckState';
@@ -36,6 +37,9 @@ export default function DiscoverScreen() {
     reload,
   } = useDiscoverDeck();
 
+  const [organiseDesignId, setOrganiseDesignId] = useState<string | null>(null);
+  const [organiseTitle, setOrganiseTitle] = useState<string | null>(null);
+
   const onSwipe = useCallback(
     (direction: SwipeDirection) => {
       void commitSwipe(direction);
@@ -55,10 +59,15 @@ export default function DiscoverScreen() {
     deckRef.current?.swipe('right');
   }, []);
 
-  const onMoveToCollection = useCallback(() => {
+  const onOrganise = useCallback(() => {
+    if (!toast.designId) {
+      return;
+    }
+    setOrganiseDesignId(toast.designId);
+    setOrganiseTitle(toast.title);
+    // Keep toast dismiss soft — sheet is lightweight overlay, not a full-screen modal route.
     dismissToast();
-    router.push('/(tabs)/collections');
-  }, [dismissToast]);
+  }, [dismissToast, toast.designId, toast.title]);
 
   return (
     <Screen edges={['top', 'left', 'right']} contentStyle={styles.content}>
@@ -129,7 +138,17 @@ export default function DiscoverScreen() {
         undoing={isUndoing}
         onUndo={() => void undo()}
         onDismiss={dismissToast}
-        onMoveToCollection={onMoveToCollection}
+        onMoveToCollection={onOrganise}
+      />
+
+      <ChooseCollectionSheet
+        visible={Boolean(organiseDesignId)}
+        designId={organiseDesignId}
+        designTitle={organiseTitle}
+        onClose={() => {
+          setOrganiseDesignId(null);
+          setOrganiseTitle(null);
+        }}
       />
     </Screen>
   );

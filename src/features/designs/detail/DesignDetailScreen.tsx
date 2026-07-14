@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Alert, StyleSheet, View } from 'react-native';
 
 import { EmptyState, ErrorState, LoadingIndicator, Screen, Text } from '@/components';
+import { ChooseCollectionSheet } from '@/features/collections';
 import { CreatorSummary } from '@/features/designs/detail/components/CreatorSummary';
 import { DesignActions } from '@/features/designs/detail/components/DesignActions';
 import { DesignGallery } from '@/features/designs/detail/components/DesignGallery';
@@ -41,6 +42,7 @@ export function DesignDetailScreen({ designId }: DesignDetailScreenProps) {
   const [saveSheetVisible, setSaveSheetVisible] = useState(false);
   const [saveSheetMode, setSaveSheetMode] = useState<'quick-save' | 'manage'>('quick-save');
   const [reportVisible, setReportVisible] = useState(false);
+  const [chooseVisible, setChooseVisible] = useState(false);
 
   if (isLoading) {
     return (
@@ -171,8 +173,7 @@ export function DesignDetailScreen({ designId }: DesignDetailScreenProps) {
             );
           }}
           onAddToCollection={() => {
-            setSaveSheetMode('manage');
-            setSaveSheetVisible(true);
+            setChooseVisible(true);
           }}
           onShare={async () => {
             const result = await shareDesign({
@@ -219,6 +220,13 @@ export function DesignDetailScreen({ designId }: DesignDetailScreenProps) {
         visible={reportVisible}
         designId={design.id}
         onClose={() => setReportVisible(false)}
+      />
+
+      <ChooseCollectionSheet
+        visible={chooseVisible}
+        designId={design.id}
+        designTitle={design.title}
+        onClose={() => setChooseVisible(false)}
       />
     </Screen>
   );
