@@ -21,14 +21,22 @@ export type UserTasteProfile = {
   preferredColourFamilies: string[];
   likedTags: string[];
   dislikedTags: string[];
+  dislikedStyles: string[];
+  dislikedCategories: string[];
+  dislikedColourFamilies: string[];
+  dislikedLayoutPatterns: string[];
   showLessDesignIds: string[];
   showLessCreatorIds: string[];
+  hiddenCreatorIds: string[];
   followedCreatorIds: string[];
   blockedCreatorIds: string[];
   recentCreatorIds: string[];
   recentStyleSlugs: string[];
   recentCategorySlugs: string[];
   swipedDesignIds: string[];
+  includeAiAssisted: boolean;
+  includeFullyAiGenerated: boolean;
+  explorationLevel: 'focused' | 'balanced' | 'adventurous';
 };
 
 export type CandidateDesign = {
@@ -45,6 +53,7 @@ export type CandidateDesign = {
   viewCount: number;
   createdAt: string;
   isFeatured: boolean;
+  provenance?: string | null;
 };
 
 export type ScoreComponents = {

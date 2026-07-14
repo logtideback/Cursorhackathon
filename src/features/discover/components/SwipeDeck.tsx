@@ -39,10 +39,11 @@ type SwipeDeckProps = {
   disabled?: boolean;
   onSwipe: (direction: SwipeDirection) => void;
   onOpenDetail: (card: DiscoverCard) => void;
+  onLongPressCard?: (card: DiscoverCard) => void;
 };
 
 export const SwipeDeck = forwardRef<SwipeDeckHandle, SwipeDeckProps>(function SwipeDeck(
-  { activeCard, nextCard = null, disabled = false, onSwipe, onOpenDetail },
+  { activeCard, nextCard = null, disabled = false, onSwipe, onOpenDetail, onLongPressCard },
   ref,
 ) {
   const { haptic } = useHaptics();
@@ -80,6 +81,13 @@ export const SwipeDeck = forwardRef<SwipeDeckHandle, SwipeDeckProps>(function Sw
       onOpenDetail(activeCard);
     }
   }, [activeCard, onOpenDetail]);
+
+  const openFeedback = useCallback(() => {
+    if (activeCard && onLongPressCard) {
+      haptic('medium');
+      onLongPressCard(activeCard);
+    }
+  }, [activeCard, haptic, onLongPressCard]);
 
   const swipeProgrammatically = useCallback(
     (direction: SwipeDirection) => {
@@ -152,7 +160,17 @@ export const SwipeDeck = forwardRef<SwipeDeckHandle, SwipeDeckProps>(function Sw
       runOnJS(openDetail)();
     });
 
-  const gesture = Gesture.Exclusive(pan, tap);
+  const longPress = Gesture.LongPress()
+    .enabled(!disabled && Boolean(activeCard) && Boolean(onLongPressCard))
+    .minDuration(420)
+    .onStart(() => {
+      if (isLeaving.value) {
+        return;
+      }
+      runOnJS(openFeedback)();
+    });
+
+  const gesture = Gesture.Exclusive(pan, longPress, tap);
 
   const activeStyle = useAnimatedStyle(() => {
     const rotate = interpolate(

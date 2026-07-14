@@ -9,6 +9,7 @@ import {
   DEFAULT_RANKING_WEIGHTS,
   type RankingWeights,
 } from '@/features/discover/recommendation/weights';
+import { explorationMultiplier } from '@/features/preferences/apply-feedback';
 
 function normalize(values: string[]): string[] {
   return values.map((value) => value.trim().toLowerCase()).filter(Boolean);
@@ -104,12 +105,23 @@ export function computeScoreComponents(
 
   const followedCreator = profile.followedCreatorIds.includes(design.creatorId) ? 1 : 0;
 
-  const negativeOverlap = overlapRatio(design.tags, dislikedTags);
-  const negativeTagPenalty = negativeOverlap;
+  const negativeOverlap = overlapRatio(design.tags, [
+    ...dislikedTags,
+    ...profile.dislikedStyles,
+    ...profile.dislikedLayoutPatterns,
+  ]);
+  const negativeTagPenalty = Math.max(
+    negativeOverlap,
+    design.categorySlug && setOf(profile.dislikedCategories).has(design.categorySlug.toLowerCase())
+      ? 1
+      : 0,
+    overlapRatio(design.colourFamilies, profile.dislikedColourFamilies),
+  );
 
   const explicitShowLessPenalty =
     profile.showLessDesignIds.includes(design.id) ||
-    profile.showLessCreatorIds.includes(design.creatorId)
+    profile.showLessCreatorIds.includes(design.creatorId) ||
+    profile.hiddenCreatorIds.includes(design.creatorId)
       ? 1
       : 0;
 
@@ -134,11 +146,11 @@ export function computeScoreComponents(
     industryMatch * 0.05;
 
   const explorationBonus =
-    affinity < 0.2
+    (affinity < 0.2
       ? clamp01(0.55 + popularityScore(design.saveCount, design.viewCount) * 0.25)
       : affinity < 0.45
         ? clamp01(0.25)
-        : 0;
+        : 0) * explorationMultiplier(profile.explorationLevel);
 
   return {
     categoryMatch,

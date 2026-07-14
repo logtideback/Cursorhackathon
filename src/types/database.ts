@@ -28,6 +28,8 @@ export type ReportStatus = 'open' | 'reviewing' | 'resolved' | 'dismissed';
 
 export type FeedbackType = 'show_less' | 'hide_creator' | 'hide_tag' | 'hide_style';
 
+export type ExplorationLevel = 'focused' | 'balanced' | 'adventurous';
+
 export type ModerationFlagKind = 'image_safety' | 'duplicate_image' | 'design_similarity';
 
 export type ModerationFlagStatus = 'open' | 'reviewing' | 'cleared' | 'actioned';
@@ -97,6 +99,11 @@ export type Database = {
           disliked_categories: string[];
           disliked_styles: string[];
           disliked_tags: string[];
+          disliked_colour_families: string[];
+          disliked_layout_patterns: string[];
+          include_ai_assisted: boolean;
+          include_fully_ai_generated: boolean;
+          exploration_level: ExplorationLevel;
           created_at: string;
           updated_at: string;
         };
@@ -111,6 +118,11 @@ export type Database = {
           disliked_categories?: string[];
           disliked_styles?: string[];
           disliked_tags?: string[];
+          disliked_colour_families?: string[];
+          disliked_layout_patterns?: string[];
+          include_ai_assisted?: boolean;
+          include_fully_ai_generated?: boolean;
+          exploration_level?: ExplorationLevel;
           created_at?: string;
           updated_at?: string;
         };
@@ -125,6 +137,11 @@ export type Database = {
           disliked_categories?: string[];
           disliked_styles?: string[];
           disliked_tags?: string[];
+          disliked_colour_families?: string[];
+          disliked_layout_patterns?: string[];
+          include_ai_assisted?: boolean;
+          include_fully_ai_generated?: boolean;
+          exploration_level?: ExplorationLevel;
           created_at?: string;
           updated_at?: string;
         };
@@ -133,6 +150,39 @@ export type Database = {
             foreignKeyName: 'user_preferences_user_id_fkey';
             columns: ['user_id'];
             isOneToOne: true;
+            referencedRelation: 'profiles';
+            referencedColumns: ['id'];
+          },
+        ];
+      };
+      hidden_creators: {
+        Row: {
+          hider_id: string;
+          hidden_id: string;
+          created_at: string;
+        };
+        Insert: {
+          hider_id: string;
+          hidden_id: string;
+          created_at?: string;
+        };
+        Update: {
+          hider_id?: string;
+          hidden_id?: string;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'hidden_creators_hider_id_fkey';
+            columns: ['hider_id'];
+            isOneToOne: false;
+            referencedRelation: 'profiles';
+            referencedColumns: ['id'];
+          },
+          {
+            foreignKeyName: 'hidden_creators_hidden_id_fkey';
+            columns: ['hidden_id'];
+            isOneToOne: false;
             referencedRelation: 'profiles';
             referencedColumns: ['id'];
           },
@@ -815,6 +865,43 @@ export type Database = {
         Args: { p_design_id: string };
         Returns: boolean;
       };
+      apply_show_less_feedback: {
+        Args: {
+          p_design_id: string;
+          p_targets?: string[];
+          p_style_slugs?: string[];
+          p_colour_families?: string[];
+          p_layout_patterns?: string[];
+          p_category_slug?: string | null;
+          p_tags?: string[];
+          p_creator_id?: string | null;
+        };
+        Returns: Json;
+      };
+      hide_creator: {
+        Args: { p_creator_id: string };
+        Returns: boolean;
+      };
+      unhide_creator: {
+        Args: { p_creator_id: string };
+        Returns: boolean;
+      };
+      reset_hidden_preferences: {
+        Args: Record<string, never>;
+        Returns: boolean;
+      };
+      reset_recommendation_history: {
+        Args: Record<string, never>;
+        Returns: boolean;
+      };
+      get_taste_profile_summary: {
+        Args: Record<string, never>;
+        Returns: Json;
+      };
+      list_preference_controls: {
+        Args: Record<string, never>;
+        Returns: Json;
+      };
     };
     Enums: {
       user_role: UserRole;
@@ -828,6 +915,7 @@ export type Database = {
       feedback_type: FeedbackType;
       moderation_flag_kind: ModerationFlagKind;
       moderation_flag_status: ModerationFlagStatus;
+      exploration_level: ExplorationLevel;
     };
     CompositeTypes: Record<string, never>;
   };

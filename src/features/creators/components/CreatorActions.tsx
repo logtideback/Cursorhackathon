@@ -9,6 +9,7 @@ type CreatorActionsProps = {
   onReport: () => void;
   onBlock: () => void;
   onUnblock: () => void;
+  onHide?: () => void;
   blockLoading?: boolean;
 };
 
@@ -18,6 +19,7 @@ export function CreatorActions({
   onReport,
   onBlock,
   onUnblock,
+  onHide,
   blockLoading = false,
 }: CreatorActionsProps) {
   if (isSelf) {
@@ -29,6 +31,14 @@ export function CreatorActions({
       <Text variant="label" tone="tertiary">
         Safety
       </Text>
+      {onHide ? (
+        <Button
+          label="Hide creator"
+          variant="secondary"
+          onPress={onHide}
+          accessibilityHint="Hide from recommendations without blocking"
+        />
+      ) : null}
       <Button label="Report creator" variant="secondary" onPress={onReport} />
       {isBlocking ? (
         <Button
@@ -45,7 +55,7 @@ export function CreatorActions({
           onPress={() => {
             Alert.alert(
               'Block this creator?',
-              'You will no longer see their designs in Discover or Search. You can unblock later from this profile.',
+              'You will no longer see their designs. Follow and visible interactions are prevented. You can unblock later from Settings.',
               [
                 { text: 'Cancel', style: 'cancel' },
                 { text: 'Block', style: 'destructive', onPress: onBlock },
@@ -55,7 +65,7 @@ export function CreatorActions({
         />
       )}
       <Text variant="caption" tone="tertiary" style={styles.note}>
-        Reports stay private. Blocks only affect what you see.
+        Hide only affects recommendations. Block is stronger and reversible in Settings.
       </Text>
     </View>
   );

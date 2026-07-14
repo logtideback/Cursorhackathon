@@ -9,6 +9,7 @@ type SwipeActionsProps = {
   onSave: () => void;
   onUndo?: () => void;
   canUndo?: boolean;
+  onMore?: () => void;
 };
 
 export function SwipeActions({
@@ -17,6 +18,7 @@ export function SwipeActions({
   onSave,
   onUndo,
   canUndo = false,
+  onMore,
 }: SwipeActionsProps) {
   return (
     <View style={styles.root}>
@@ -36,6 +38,17 @@ export function SwipeActions({
           fullWidth={false}
           disabled={disabled}
           onPress={onUndo}
+          style={styles.action}
+        />
+      ) : null}
+      {onMore ? (
+        <Button
+          label="Less"
+          variant="ghost"
+          fullWidth={false}
+          disabled={disabled}
+          onPress={onMore}
+          accessibilityHint="Show me less like this or hide the creator"
           style={styles.action}
         />
       ) : null}

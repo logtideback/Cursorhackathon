@@ -1,16 +1,16 @@
 import type { RecommendationReasonCode } from '@/features/discover/recommendation/types';
 
 const REASON_COPY: Record<RecommendationReasonCode, string> = {
-  category_match: 'From a category you selected',
-  style_match: 'Matches styles in your taste profile',
-  tag_similarity: 'Similar to typography and tags you save',
-  platform_match: 'Fits a platform you follow',
-  industry_match: 'Aligned with industries you chose',
-  colour_match: 'Close to colour families you prefer',
+  category_match: 'Similar to editorial designs you save',
+  style_match: 'Matches your typography preferences',
+  tag_similarity: 'Close to tags you keep saving',
+  platform_match: 'Fits a platform you return to',
+  industry_match: 'Aligned with industries you collect',
+  colour_match: 'Near the colour families you favour',
   followed_creator: 'From a creator you follow',
-  popular: 'Popular with people who save editorial design',
+  popular: 'Popular among users with similar saves',
   fresh: 'A recent addition to Taste',
-  exploration: 'An exploratory recommendation outside your usual taste',
+  exploration: 'An exploratory recommendation',
   cold_start: 'A starting point while Taste learns what you save',
 };
 

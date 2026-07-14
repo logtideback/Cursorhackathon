@@ -17,6 +17,7 @@ import { WhySeeingThis } from '@/features/designs/detail/components/WhySeeingThi
 import { useDesignDetail } from '@/features/designs/detail/hooks/useDesignDetail';
 import { useDesignSave } from '@/features/designs/detail/hooks/useDesignSave';
 import { shareDesign } from '@/features/designs/detail/share';
+import { DesignFeedbackActionsSheet } from '@/features/preferences';
 import { spacing } from '@/theme';
 
 type DesignDetailScreenProps = {
@@ -44,6 +45,7 @@ export function DesignDetailScreen({ designId }: DesignDetailScreenProps) {
   const [saveSheetMode, setSaveSheetMode] = useState<'quick-save' | 'manage'>('quick-save');
   const [reportVisible, setReportVisible] = useState(false);
   const [chooseVisible, setChooseVisible] = useState(false);
+  const [feedbackVisible, setFeedbackVisible] = useState(false);
 
   if (isLoading) {
     return (
@@ -148,7 +150,13 @@ export function DesignDetailScreen({ designId }: DesignDetailScreenProps) {
             variant="secondary"
             onPress={() => router.push(`/design/${design.id}/edit`)}
           />
-        ) : null}
+        ) : (
+          <Button
+            label="Show me less like this"
+            variant="secondary"
+            onPress={() => setFeedbackVisible(true)}
+          />
+        )}
 
         <DesignActions
           isSaved={isSaved}
@@ -229,6 +237,22 @@ export function DesignDetailScreen({ designId }: DesignDetailScreenProps) {
         visible={reportVisible}
         designId={design.id}
         onClose={() => setReportVisible(false)}
+      />
+
+      <DesignFeedbackActionsSheet
+        visible={feedbackVisible}
+        design={{
+          designId: design.id,
+          title: design.title,
+          creatorId: design.creator.id,
+          creatorName: design.creator.displayName,
+          categorySlug: design.category,
+          tags: design.tags,
+          styleSlugs: design.tags,
+          colourFamilies: [],
+          provenance: design.provenance,
+        }}
+        onClose={() => setFeedbackVisible(false)}
       />
 
       <ChooseCollectionSheet

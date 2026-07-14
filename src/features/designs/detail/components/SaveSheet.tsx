@@ -5,6 +5,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Button, Text, TextField } from '@/components';
 import { SAVED_ASPECT_OPTIONS } from '@/features/designs/detail/constants';
 import type { DesignSaveState } from '@/features/designs/detail/types';
+import { trackEvent } from '@/lib/analytics/track';
 import { colors, spacing } from '@/theme';
 import type { SavedAspect, Tables } from '@/types/database';
 
@@ -202,6 +203,11 @@ function SaveSheetBody({
                     savedAspect: draft.aspect,
                   });
                 }
+                trackEvent('visual_save_note_saved', {
+                  has_aspect: Boolean(draft.aspect),
+                  has_note: Boolean(draft.note.trim()),
+                  aspect: draft.aspect,
+                });
                 onClose();
               } catch (err) {
                 const message = err instanceof Error ? err.message : 'Could not save this design.';

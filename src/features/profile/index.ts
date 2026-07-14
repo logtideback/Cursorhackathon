@@ -1,2 +1,2 @@
-/** Account settings and profile queries export from here. */
-export type ProfileFeature = 'profile';
+/** Account settings, Taste Profile, and preference controls. */
+export { SettingsScreen, TasteProfileScreen } from '@/features/preferences';

@@ -21,6 +21,8 @@ import { ProvenanceTransparency } from '@/features/creators/components/Provenanc
 import { useCreatorProfile } from '@/features/creators/hooks/useCreatorProfile';
 import { ReportCreatorSheet } from '@/features/creators/screens/ReportCreatorSheet';
 import { trackEvent } from '@/lib/analytics/track';
+import { isEnvConfigured } from '@/lib/env';
+import { hideCreator } from '@/services/preferences';
 import { useAuthStore } from '@/store/auth-store';
 import { useOnboardingStore } from '@/store/onboarding-store';
 import { spacing } from '@/theme';
@@ -123,6 +125,15 @@ export function CreatorProfileScreen({
             isSelf={false}
             isBlocking={false}
             onReport={() => setReportVisible(true)}
+            onHide={() => {
+              void (async () => {
+                if (isEnvConfigured()) {
+                  await hideCreator(creatorId);
+                }
+                trackEvent('creator_hidden', { creator_id: creatorId });
+                Alert.alert('Hidden', 'This creator won’t appear in recommendations.');
+              })();
+            }}
             onBlock={() => {
               void blockMutation.mutateAsync(true).then(() => {
                 trackEvent('creator_blocked', { creator_id: creatorId });
@@ -220,6 +231,15 @@ export function CreatorProfileScreen({
             isSelf={false}
             isBlocking={false}
             onReport={() => setReportVisible(true)}
+            onHide={() => {
+              void (async () => {
+                if (isEnvConfigured()) {
+                  await hideCreator(creatorId);
+                }
+                trackEvent('creator_hidden', { creator_id: creatorId });
+                Alert.alert('Hidden', 'This creator won’t appear in recommendations.');
+              })();
+            }}
             onBlock={() => {
               void blockMutation.mutateAsync(true).then(() => {
                 trackEvent('creator_blocked', { creator_id: creatorId });
@@ -244,6 +264,12 @@ export function CreatorProfileScreen({
             <Text variant="label" tone="tertiary">
               Account
             </Text>
+            <Button
+              label="Taste Profile"
+              variant="secondary"
+              onPress={() => router.push('/settings/taste-profile')}
+            />
+            <Button label="Settings" variant="secondary" onPress={() => router.push('/settings')} />
             <Button
               label="Sign out"
               variant="secondary"

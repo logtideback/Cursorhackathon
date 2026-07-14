@@ -13,8 +13,22 @@ import { SwipeDeck, type SwipeDeckHandle } from '@/features/discover/components/
 import { UndoToast } from '@/features/discover/components/UndoToast';
 import { useDiscoverDeck } from '@/features/discover/hooks/useDiscoverDeck';
 import type { DiscoverCard } from '@/features/discover/types';
+import { DesignFeedbackActionsSheet } from '@/features/preferences';
+import type { DesignContextForFeedback } from '@/features/preferences/types';
 import { spacing } from '@/theme';
 import type { SwipeDirection } from '@/types/database';
+
+function toFeedbackContext(card: DiscoverCard): DesignContextForFeedback {
+  return {
+    designId: card.id,
+    title: card.title,
+    creatorId: card.creatorId,
+    creatorName: card.creatorName,
+    categorySlug: card.category,
+    tags: card.tags,
+    styleSlugs: card.tags,
+  };
+}
 
 export default function DiscoverScreen() {
   const deckRef = useRef<SwipeDeckHandle>(null);
@@ -39,6 +53,7 @@ export default function DiscoverScreen() {
 
   const [organiseDesignId, setOrganiseDesignId] = useState<string | null>(null);
   const [organiseTitle, setOrganiseTitle] = useState<string | null>(null);
+  const [feedbackDesign, setFeedbackDesign] = useState<DesignContextForFeedback | null>(null);
 
   const onSwipe = useCallback(
     (direction: SwipeDirection) => {
@@ -65,7 +80,6 @@ export default function DiscoverScreen() {
     }
     setOrganiseDesignId(toast.designId);
     setOrganiseTitle(toast.title);
-    // Keep toast dismiss soft — sheet is lightweight overlay, not a full-screen modal route.
     dismissToast();
   }, [dismissToast, toast.designId, toast.title]);
 
@@ -119,6 +133,7 @@ export default function DiscoverScreen() {
             disabled={interactionsDisabled}
             onSwipe={onSwipe}
             onOpenDetail={onOpenDetail}
+            onLongPressCard={(card) => setFeedbackDesign(toFeedbackContext(card))}
           />
         ) : null}
       </View>
@@ -130,6 +145,7 @@ export default function DiscoverScreen() {
           onSave={onSave}
           onUndo={() => void undo()}
           canUndo={sessionSwipes > 0}
+          onMore={() => setFeedbackDesign(toFeedbackContext(activeCard))}
         />
       ) : null}
 
@@ -148,6 +164,16 @@ export default function DiscoverScreen() {
         onClose={() => {
           setOrganiseDesignId(null);
           setOrganiseTitle(null);
+        }}
+      />
+
+      <DesignFeedbackActionsSheet
+        visible={Boolean(feedbackDesign)}
+        design={feedbackDesign}
+        onClose={() => setFeedbackDesign(null)}
+        onRemoved={() => {
+          setFeedbackDesign(null);
+          deckRef.current?.swipe('left');
         }}
       />
     </Screen>

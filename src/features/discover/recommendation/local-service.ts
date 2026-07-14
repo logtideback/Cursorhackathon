@@ -11,6 +11,7 @@ import {
   DEFAULT_DIVERSITY_CONFIG,
   DEFAULT_RANKING_WEIGHTS,
 } from '@/features/discover/recommendation/weights';
+import { isCandidateExcludedByFeedback } from '@/features/preferences/apply-feedback';
 
 export const EMPTY_TASTE_PROFILE: UserTasteProfile = {
   preferredCategories: [],
@@ -20,14 +21,22 @@ export const EMPTY_TASTE_PROFILE: UserTasteProfile = {
   preferredColourFamilies: [],
   likedTags: [],
   dislikedTags: [],
+  dislikedStyles: [],
+  dislikedCategories: [],
+  dislikedColourFamilies: [],
+  dislikedLayoutPatterns: [],
   showLessDesignIds: [],
   showLessCreatorIds: [],
+  hiddenCreatorIds: [],
   followedCreatorIds: [],
   blockedCreatorIds: [],
   recentCreatorIds: [],
   recentStyleSlugs: [],
   recentCategorySlugs: [],
   swipedDesignIds: [],
+  includeAiAssisted: true,
+  includeFullyAiGenerated: true,
+  explorationLevel: 'balanced',
 };
 
 export function filterIneligibleCandidates(
@@ -36,20 +45,12 @@ export function filterIneligibleCandidates(
   excludeDesignIds: string[] = [],
 ): CandidateDesign[] {
   const excluded = new Set([...profile.swipedDesignIds, ...excludeDesignIds]);
-  const blocked = new Set(profile.blockedCreatorIds);
-  const hiddenCreators = new Set(profile.showLessCreatorIds);
 
   return candidates.filter((design) => {
     if (excluded.has(design.id)) {
       return false;
     }
-    if (blocked.has(design.creatorId) || hiddenCreators.has(design.creatorId)) {
-      return false;
-    }
-    if (profile.showLessDesignIds.includes(design.id)) {
-      return false;
-    }
-    return true;
+    return !isCandidateExcludedByFeedback(design, profile);
   });
 }
 
