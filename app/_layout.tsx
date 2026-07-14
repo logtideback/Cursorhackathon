@@ -1,0 +1,28 @@
+import { Stack } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
+
+import { AppProviders } from '@/providers/AppProviders';
+import { colors } from '@/theme';
+
+export default function RootLayout() {
+  return (
+    <AppProviders>
+      <StatusBar style="dark" />
+      <Stack
+        screenOptions={{
+          headerShown: false,
+          contentStyle: { backgroundColor: colors.background },
+          animation: 'fade',
+        }}
+      >
+        <Stack.Screen name="index" />
+        <Stack.Screen name="(auth)" />
+        <Stack.Screen name="(onboarding)" />
+        <Stack.Screen name="(tabs)" />
+        <Stack.Screen name="design" options={{ animation: 'slide_from_right' }} />
+        <Stack.Screen name="creator" options={{ animation: 'slide_from_right' }} />
+        <Stack.Screen name="collection" options={{ animation: 'slide_from_right' }} />
+      </Stack>
+    </AppProviders>
+  );
+}
