@@ -21,11 +21,11 @@ export default function TabsLayout() {
   }
 
   if (status !== 'authenticated') {
-    return <Redirect href="/(auth)/sign-in" />;
+    return <Redirect href="/(auth)" />;
   }
 
   if (!hasCompletedOnboarding) {
-    return <Redirect href="/(onboarding)" />;
+    return <Redirect href="/(onboarding)/preferences" />;
   }
 
   return (

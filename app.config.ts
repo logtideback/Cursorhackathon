@@ -34,6 +34,12 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     'expo-secure-store',
     'expo-image',
     [
+      'expo-image-picker',
+      {
+        photosPermission: 'Taste uses your photos for an optional profile image.',
+      },
+    ],
+    [
       'expo-splash-screen',
       {
         backgroundColor: '#F6F4F1',

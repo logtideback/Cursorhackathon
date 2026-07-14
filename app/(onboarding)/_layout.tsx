@@ -5,7 +5,7 @@ import { useAuthStore } from '@/store/auth-store';
 import { useOnboardingStore } from '@/store/onboarding-store';
 import { colors } from '@/theme';
 
-/** Onboarding is authenticated but pre-tabs — gated by local completion flag. */
+/** Authenticated onboarding — preferences then profile setup. */
 export default function OnboardingLayout() {
   const status = useAuthStore((s) => s.status);
   const hasCompletedOnboarding = useOnboardingStore((s) => s.hasCompletedOnboarding);
@@ -20,7 +20,7 @@ export default function OnboardingLayout() {
   }
 
   if (status !== 'authenticated') {
-    return <Redirect href="/(auth)/sign-in" />;
+    return <Redirect href="/(auth)" />;
   }
 
   if (hasCompletedOnboarding) {
@@ -32,6 +32,7 @@ export default function OnboardingLayout() {
       screenOptions={{
         headerShown: false,
         contentStyle: { backgroundColor: colors.background },
+        animation: 'fade',
       }}
     />
   );

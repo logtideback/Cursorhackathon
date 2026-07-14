@@ -80,11 +80,19 @@ supabase/
   config.toml
 ```
 
+## Auth & onboarding
+
+Unauthenticated users land on Welcome → optional carousel → Sign up / Sign in.
+After authentication, incomplete profiles go through preference selection and profile setup.
+`profiles.onboarding_completed` (synced into local Zustand) gates access to Discover.
+
+Magic-link and password-reset emails must allow redirect URLs for the `taste://` scheme in the Supabase dashboard.
+
 ## Manual setup
 
 1. Create a Supabase project and copy the URL + anon key into `.env`.
-2. Enable Email auth in the Supabase dashboard.
-3. Apply migrations with `supabase db push` (or run SQL files in order).
-4. Confirm storage buckets `avatars` and `design-images` exist.
-5. Optional: regenerate types with `supabase gen types typescript --linked`.
+2. Enable Email auth (password + magic link / OTP) in the Supabase dashboard.
+3. Add redirect URLs: `taste://magic-link`, `taste://reset-password`, and your Expo Go URL if needed.
+4. Apply migrations with `supabase db push`.
+5. Confirm storage buckets `avatars` and `design-images` exist.
 6. Optional: create an EAS project and set `EAS_PROJECT_ID`.

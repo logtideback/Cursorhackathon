@@ -5,6 +5,7 @@ import { authApi } from '@/features/auth';
 import { useAuthStore } from '@/store/auth-store';
 import { useOnboardingStore } from '@/store/onboarding-store';
 import { spacing } from '@/theme';
+import { router } from 'expo-router';
 
 export default function ProfileScreen() {
   const user = useAuthStore((s) => s.user);
@@ -29,7 +30,9 @@ export default function ProfileScreen() {
           label="Sign out"
           variant="secondary"
           onPress={() => {
-            void authApi.signOut();
+            void authApi.signOut().then(() => {
+              router.replace('/(auth)');
+            });
           }}
         />
         <Button
@@ -37,6 +40,7 @@ export default function ProfileScreen() {
           variant="ghost"
           onPress={() => {
             resetOnboarding();
+            router.replace('/(onboarding)/preferences');
           }}
         />
       </View>

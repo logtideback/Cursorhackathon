@@ -5,9 +5,11 @@ import { useAuthStore } from '@/store/auth-store';
 import { useOnboardingStore } from '@/store/onboarding-store';
 
 /**
- * Root entry chooses the correct route group based on lightweight client state.
- * Authenticated users who finished onboarding land on tabs; everyone else is
- * sent to public (auth) or (onboarding) groups.
+ * Root gate:
+ * - loading/hydration → spinner
+ * - unauthenticated → welcome
+ * - authenticated + incomplete onboarding → preferences flow
+ * - otherwise → Discover tabs
  */
 export default function Index() {
   const status = useAuthStore((s) => s.status);
@@ -23,11 +25,11 @@ export default function Index() {
   }
 
   if (status !== 'authenticated') {
-    return <Redirect href="/(auth)/sign-in" />;
+    return <Redirect href="/(auth)" />;
   }
 
   if (!hasCompletedOnboarding) {
-    return <Redirect href="/(onboarding)" />;
+    return <Redirect href="/(onboarding)/preferences" />;
   }
 
   return <Redirect href="/(tabs)" />;

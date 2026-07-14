@@ -16,6 +16,7 @@ export type ButtonProps = {
   disabled?: boolean;
   loading?: boolean;
   fullWidth?: boolean;
+  accessibilityHint?: string;
   style?: StyleProp<ViewStyle>;
 };
 
@@ -27,6 +28,7 @@ export function Button({
   disabled = false,
   loading = false,
   fullWidth = true,
+  accessibilityHint,
   style,
 }: ButtonProps) {
   const { haptic } = useHaptics();
@@ -36,6 +38,7 @@ export function Button({
   return (
     <PressableScale
       accessibilityLabel={label}
+      accessibilityHint={accessibilityHint}
       disabled={isDisabled}
       onPress={() => {
         haptic('selection');

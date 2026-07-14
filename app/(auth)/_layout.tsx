@@ -4,7 +4,7 @@ import { LoadingIndicator, Screen } from '@/components';
 import { useAuthStore } from '@/store/auth-store';
 import { colors } from '@/theme';
 
-/** Public auth route group — redirects away when already signed in. */
+/** Public auth group — welcome, carousel, sign-in/up, magic link, forgot password. */
 export default function AuthLayout() {
   const status = useAuthStore((s) => s.status);
 
@@ -25,6 +25,7 @@ export default function AuthLayout() {
       screenOptions={{
         headerShown: false,
         contentStyle: { backgroundColor: colors.background },
+        animation: 'fade',
       }}
     />
   );
