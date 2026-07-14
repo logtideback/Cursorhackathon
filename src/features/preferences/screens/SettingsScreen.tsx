@@ -273,10 +273,4 @@ const styles = StyleSheet.create({
     borderColor: colors.accent,
     backgroundColor: colors.accentMuted,
   },
-  listRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    gap: spacing.md,
-  },
 });
