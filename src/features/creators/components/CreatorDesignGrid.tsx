@@ -51,7 +51,12 @@ export function CreatorDesignGrid({
             onLongPress={isSelf && onEditDesign ? () => onEditDesign(design.id) : undefined}
           >
             {uri ? (
-              <Image source={{ uri }} style={styles.image} contentFit="cover" />
+              <Image
+                source={{ uri }}
+                style={styles.image}
+                contentFit="cover"
+                recyclingKey={design.id}
+              />
             ) : (
               <View style={[styles.image, styles.placeholder]} />
             )}

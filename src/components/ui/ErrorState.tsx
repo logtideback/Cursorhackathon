@@ -20,11 +20,21 @@ export function ErrorState({
   style,
 }: ErrorStateProps) {
   return (
-    <View style={[styles.root, style]}>
-      <Text variant="label" tone="tertiary">
+    <View
+      style={[styles.root, style]}
+      accessibilityRole="alert"
+      accessibilityLiveRegion="polite"
+      accessibilityLabel={`${title}. ${message}`}
+    >
+      <Text
+        variant="label"
+        tone="tertiary"
+        accessibilityElementsHidden
+        importantForAccessibility="no"
+      >
         Error
       </Text>
-      <Text variant="title" style={styles.title}>
+      <Text variant="title" style={styles.title} accessibilityRole="header">
         {title}
       </Text>
       <Text variant="body" tone="secondary" style={styles.message}>

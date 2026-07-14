@@ -145,8 +145,13 @@ export const SwipeDeck = forwardRef<SwipeDeckHandle, SwipeDeckProps>(function Sw
         return;
       }
 
-      translateX.value = withSpring(0, { damping: 18, stiffness: 220 });
-      translateY.value = withSpring(0, { damping: 18, stiffness: 220 });
+      if (reducedMotion) {
+        translateX.value = withTiming(0, { duration: animation.duration.instant });
+        translateY.value = withTiming(0, { duration: animation.duration.instant });
+      } else {
+        translateX.value = withSpring(0, { damping: 18, stiffness: 220 });
+        translateY.value = withSpring(0, { damping: 18, stiffness: 220 });
+      }
       thresholdSide.value = 0;
     });
 

@@ -1,18 +1,30 @@
+import NetInfo from '@react-native-community/netinfo';
+import { FlashList } from '@shopify/flash-list';
 import { router } from 'expo-router';
-import { RefreshControl, ScrollView, StyleSheet, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import { StyleSheet, View } from 'react-native';
 
-import { Button, EmptyState, ErrorState, LoadingIndicator, Screen, Text } from '@/components';
+import { Button, EmptyState, ErrorState, OfflineBanner, Screen, Text } from '@/components';
 import { CollectionListItem } from '@/features/collections/components/CollectionListItem';
+import { CollectionsSkeleton } from '@/features/collections/components/CollectionsSkeleton';
 import { useCollectionsOverview } from '@/features/collections/hooks/useCollectionsOverview';
-import { colors, spacing } from '@/theme';
+import { spacing } from '@/theme';
 
 export function CollectionsOverviewScreen() {
   const { collections, isLoading, isRefreshing, error, refetch } = useCollectionsOverview();
+  const [offline, setOffline] = useState(false);
+
+  useEffect(() => {
+    const sub = NetInfo.addEventListener((state) => {
+      setOffline(!(state.isConnected && state.isInternetReachable !== false));
+    });
+    return () => sub();
+  }, []);
 
   if (isLoading) {
     return (
-      <Screen>
-        <LoadingIndicator label="Loading collections" />
+      <Screen padded={false}>
+        <CollectionsSkeleton variant="overview" />
       </Screen>
     );
   }
@@ -31,34 +43,38 @@ export function CollectionsOverviewScreen() {
 
   return (
     <Screen padded={false} edges={['top', 'left', 'right']}>
-      <ScrollView
+      <FlashList
+        data={collections}
+        keyExtractor={(item) => item.id}
+        refreshing={isRefreshing}
+        onRefresh={() => void refetch()}
+        style={styles.list}
         contentContainerStyle={styles.content}
-        refreshControl={
-          <RefreshControl
-            refreshing={isRefreshing}
-            onRefresh={() => void refetch()}
-            tintColor={colors.accent}
-          />
+        ListHeaderComponent={
+          <View style={styles.header}>
+            {offline ? (
+              <OfflineBanner
+                message="Showing the last collections we could load."
+                actionLabel="Retry"
+                onAction={() => void refetch()}
+              />
+            ) : null}
+            <Text variant="label" tone="tertiary">
+              Collections
+            </Text>
+            <Text variant="heading">Saved</Text>
+            <Text variant="body" tone="secondary">
+              Default Saved stays first. Build quieter boards around the work you keep returning to.
+            </Text>
+            <Button
+              label="New collection"
+              fullWidth={false}
+              onPress={() => router.push('/collection/create')}
+              style={styles.create}
+            />
+          </View>
         }
-        showsVerticalScrollIndicator={false}
-      >
-        <View style={styles.header}>
-          <Text variant="label" tone="tertiary">
-            Collections
-          </Text>
-          <Text variant="heading">Saved</Text>
-          <Text variant="body" tone="secondary">
-            Default Saved stays first. Build quieter boards around the work you keep returning to.
-          </Text>
-          <Button
-            label="New collection"
-            fullWidth={false}
-            onPress={() => router.push('/collection/create')}
-            style={styles.create}
-          />
-        </View>
-
-        {collections.length === 0 ? (
+        ListEmptyComponent={
           <EmptyState
             label="Empty"
             title="Nothing saved yet"
@@ -66,21 +82,22 @@ export function CollectionsOverviewScreen() {
             actionLabel="Go to Discover"
             onAction={() => router.push('/(tabs)')}
           />
-        ) : (
-          collections.map((collection) => (
-            <CollectionListItem
-              key={collection.id}
-              collection={collection}
-              onPress={() => router.push(`/collection/${collection.id}`)}
-            />
-          ))
+        }
+        renderItem={({ item }) => (
+          <CollectionListItem
+            collection={item}
+            onPress={() => router.push(`/collection/${item.id}`)}
+          />
         )}
-      </ScrollView>
+      />
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
+  list: {
+    flex: 1,
+  },
   content: {
     paddingHorizontal: spacing.xl,
     paddingTop: spacing.lg,

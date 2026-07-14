@@ -1,14 +1,27 @@
 import { StyleSheet, View } from 'react-native';
 
-import { Button } from '@/components/ui/Button';
-import { Text } from '@/components/ui/Text';
+import { Button, EmptyState, Text } from '@/components';
 import { spacing } from '@/theme';
 
 type EmptyDeckStateProps = {
   onRefresh?: () => void;
+  offline?: boolean;
 };
 
-export function EmptyDeckState({ onRefresh }: EmptyDeckStateProps) {
+export function EmptyDeckState({ onRefresh, offline = false }: EmptyDeckStateProps) {
+  if (offline) {
+    return (
+      <EmptyState
+        label="Offline"
+        title="No designs to show offline"
+        description="Connect to load your next set of recommendations. Saved work is still available under Collections."
+        actionLabel={onRefresh ? 'Try again' : undefined}
+        onAction={onRefresh}
+        style={styles.root}
+      />
+    );
+  }
+
   return (
     <View style={styles.root} accessibilityRole="summary">
       <Text variant="label" tone="tertiary">

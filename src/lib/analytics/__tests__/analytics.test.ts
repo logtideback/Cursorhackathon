@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 
+import type { AnalyticsEvent } from '@/lib/analytics/events';
 import { sanitizeProperties } from '@/lib/analytics/sanitize';
 import { validateAnalyticsEvent } from '@/lib/analytics/validate';
-import type { AnalyticsEvent } from '@/lib/analytics/events';
 
 describe('sanitizeProperties', () => {
   it('strips passwords, notes, email, and raw queries', () => {

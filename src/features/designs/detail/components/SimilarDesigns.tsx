@@ -59,6 +59,7 @@ export function SimilarDesigns({ designs, loading, error, onRetry }: SimilarDesi
                   source={{ uri: design.thumbnailUrl ?? design.imageUrl }}
                   style={[styles.image, { width: columnWidth, height: columnWidth * 1.25 }]}
                   accessibilityLabel={design.title}
+                  recyclingKey={design.id}
                 />
               ) : (
                 <View

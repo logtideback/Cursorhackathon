@@ -1,20 +1,9 @@
-import { router } from 'expo-router';
-import { useEffect, useState } from 'react';
-import { Alert, StyleSheet, View } from 'react-native';
-
-import {
-  Button,
-  Divider,
-  EmptyState,
-  ErrorState,
-  LoadingIndicator,
-  Screen,
-  Text,
-} from '@/components';
+import { Button, Divider, EmptyState, ErrorState, OfflineBanner, Screen, Text } from '@/components';
 import { authApi } from '@/features/auth';
 import { CreatorActions } from '@/features/creators/components/CreatorActions';
 import { CreatorDesignGrid } from '@/features/creators/components/CreatorDesignGrid';
 import { CreatorHeader } from '@/features/creators/components/CreatorHeader';
+import { CreatorProfileSkeleton } from '@/features/creators/components/CreatorProfileSkeleton';
 import { CreatorPublicCollections } from '@/features/creators/components/CreatorPublicCollections';
 import { CreatorStats } from '@/features/creators/components/CreatorStats';
 import { ProvenanceTransparency } from '@/features/creators/components/ProvenanceTransparency';
@@ -26,6 +15,10 @@ import { hideCreator } from '@/services/preferences';
 import { useAuthStore } from '@/store/auth-store';
 import { useOnboardingStore } from '@/store/onboarding-store';
 import { spacing } from '@/theme';
+import NetInfo from '@react-native-community/netinfo';
+import { router } from 'expo-router';
+import { useEffect, useState } from 'react';
+import { Alert, StyleSheet, View } from 'react-native';
 
 type CreatorProfileScreenProps = {
   creatorId: string;
@@ -42,6 +35,14 @@ export function CreatorProfileScreen({
     useCreatorProfile(creatorId, viewerId);
 
   const [reportVisible, setReportVisible] = useState(false);
+  const [offline, setOffline] = useState(false);
+
+  useEffect(() => {
+    const sub = NetInfo.addEventListener((state) => {
+      setOffline(!(state.isConnected && state.isInternetReachable !== false));
+    });
+    return () => sub();
+  }, []);
 
   useEffect(() => {
     if (!profile) {
@@ -55,12 +56,14 @@ export function CreatorProfileScreen({
         source: 'profile',
       },
     });
+    // Intentionally keyed to identity, not every profile field refresh.
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- track once per creator id
   }, [profile?.id]);
 
   if (isLoading) {
     return (
-      <Screen>
-        <LoadingIndicator label="Loading creator" />
+      <Screen padded={false}>
+        <CreatorProfileSkeleton />
       </Screen>
     );
   }
@@ -68,6 +71,13 @@ export function CreatorProfileScreen({
   if (isError || !profile) {
     return (
       <Screen>
+        {offline ? (
+          <OfflineBanner
+            message="Connect to load this creator profile."
+            actionLabel="Try again"
+            onAction={() => void refetch()}
+          />
+        ) : null}
         <ErrorState
           title="Could not load profile"
           message="Check your connection and try again."

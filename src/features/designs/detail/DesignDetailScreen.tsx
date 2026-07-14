@@ -2,10 +2,11 @@ import { router } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { Alert, StyleSheet, View } from 'react-native';
 
-import { Button, EmptyState, ErrorState, LoadingIndicator, Screen, Text } from '@/components';
+import { Button, EmptyState, ErrorState, OfflineBanner, Screen, Text } from '@/components';
 import { ChooseCollectionSheet } from '@/features/collections';
 import { CreatorSummary } from '@/features/designs/detail/components/CreatorSummary';
 import { DesignActions } from '@/features/designs/detail/components/DesignActions';
+import { DesignDetailSkeleton } from '@/features/designs/detail/components/DesignDetailSkeleton';
 import { DesignGallery } from '@/features/designs/detail/components/DesignGallery';
 import { DesignMetadata } from '@/features/designs/detail/components/DesignMetadata';
 import { ProvenanceLabel } from '@/features/designs/detail/components/ProvenanceLabel';
@@ -61,12 +62,14 @@ export function DesignDetailScreen({ designId }: DesignDetailScreenProps) {
         provenance: design.provenance,
       },
     });
+    // Intentionally keyed to identity, not every design field refresh.
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- track once per design id
   }, [design?.id]);
 
   if (isLoading) {
     return (
-      <Screen>
-        <LoadingIndicator label="Loading design" />
+      <Screen padded={false}>
+        <DesignDetailSkeleton />
       </Screen>
     );
   }
@@ -74,6 +77,11 @@ export function DesignDetailScreen({ designId }: DesignDetailScreenProps) {
   if (errorKind === 'offline' && !design) {
     return (
       <Screen>
+        <OfflineBanner
+          message="Connect to the internet to load this design."
+          actionLabel="Try again"
+          onAction={() => void refetch()}
+        />
         <ErrorState
           title="You’re offline"
           message="Connect to the internet to load this design."

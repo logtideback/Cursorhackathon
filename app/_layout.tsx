@@ -2,12 +2,14 @@ import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
 import { AppProviders } from '@/providers/AppProviders';
-import { colors } from '@/theme';
+import { useTheme } from '@/providers/ThemeProvider';
 
-export default function RootLayout() {
+function RootNavigator() {
+  const { scheme, colors } = useTheme();
+
   return (
-    <AppProviders>
-      <StatusBar style="dark" />
+    <>
+      <StatusBar style={scheme === 'dark' ? 'light' : 'dark'} />
       <Stack
         screenOptions={{
           headerShown: false,
@@ -28,6 +30,14 @@ export default function RootLayout() {
         />
         <Stack.Screen name="settings" options={{ animation: 'slide_from_right' }} />
       </Stack>
+    </>
+  );
+}
+
+export default function RootLayout() {
+  return (
+    <AppProviders>
+      <RootNavigator />
     </AppProviders>
   );
 }

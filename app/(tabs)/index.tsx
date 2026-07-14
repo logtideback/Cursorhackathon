@@ -2,9 +2,10 @@ import { router } from 'expo-router';
 import { useCallback, useRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { LoadingIndicator, Screen } from '@/components';
+import { OfflineBanner, Screen } from '@/components';
 import { ChooseCollectionSheet } from '@/features/collections';
 import { BatchProgress } from '@/features/discover/components/BatchProgress';
+import { DiscoverDeckSkeleton } from '@/features/discover/components/DiscoverDeckSkeleton';
 import { DiscoverHeader } from '@/features/discover/components/DiscoverHeader';
 import { EmptyDeckState } from '@/features/discover/components/EmptyDeckState';
 import { NetworkErrorBanner } from '@/features/discover/components/NetworkErrorBanner';
@@ -91,9 +92,8 @@ export default function DiscoverScreen() {
       </View>
 
       {isOffline ? (
-        <NetworkErrorBanner
-          offline
-          message="You are offline. Swipes will retry when connected."
+        <OfflineBanner
+          message="Swipes will retry when you reconnect."
           actionLabel="Reload"
           onAction={() => void reload()}
         />
@@ -112,7 +112,7 @@ export default function DiscoverScreen() {
       ) : null}
 
       <View style={styles.deckArea}>
-        {status === 'loading' ? <LoadingIndicator label="Preparing your deck" /> : null}
+        {status === 'loading' ? <DiscoverDeckSkeleton /> : null}
 
         {status === 'error' && !activeCard ? (
           <NetworkErrorBanner
@@ -122,7 +122,7 @@ export default function DiscoverScreen() {
         ) : null}
 
         {status === 'empty' && !activeCard ? (
-          <EmptyDeckState onRefresh={() => void reload()} />
+          <EmptyDeckState offline={isOffline} onRefresh={() => void reload()} />
         ) : null}
 
         {activeCard ? (

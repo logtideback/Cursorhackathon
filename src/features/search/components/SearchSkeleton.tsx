@@ -1,6 +1,7 @@
-import { StyleSheet, View, useWindowDimensions } from 'react-native';
+import { StyleSheet, useWindowDimensions } from 'react-native';
 
-import { colors, spacing } from '@/theme';
+import { Skeleton, SkeletonBlock } from '@/components/ui/Skeleton';
+import { spacing } from '@/theme';
 
 type SearchSkeletonProps = {
   variant?: 'grid' | 'rows';
@@ -14,23 +15,20 @@ export function SearchSkeleton({ variant = 'grid' }: SearchSkeletonProps) {
 
   if (variant === 'rows') {
     return (
-      <View style={styles.rows} accessibilityLabel="Loading results">
+      <SkeletonBlock label="Loading results" style={styles.rows}>
         {Array.from({ length: 6 }).map((_, index) => (
-          <View key={index} style={styles.row} />
+          <Skeleton key={index} height={64} radius="none" />
         ))}
-      </View>
+      </SkeletonBlock>
     );
   }
 
   return (
-    <View style={styles.grid} accessibilityLabel="Loading design results">
+    <SkeletonBlock label="Loading design results" style={styles.grid}>
       {Array.from({ length: 6 }).map((_, index) => (
-        <View
-          key={index}
-          style={[styles.tile, { width: columnWidth, height: columnWidth * 1.25 }]}
-        />
+        <Skeleton key={index} width={columnWidth} height={columnWidth * 1.25} radius="none" />
       ))}
-    </View>
+    </SkeletonBlock>
   );
 }
 
@@ -40,14 +38,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     gap: spacing.sm,
   },
-  tile: {
-    backgroundColor: colors.surfaceMuted,
-  },
   rows: {
     gap: spacing.sm,
-  },
-  row: {
-    height: 64,
-    backgroundColor: colors.surfaceMuted,
   },
 });

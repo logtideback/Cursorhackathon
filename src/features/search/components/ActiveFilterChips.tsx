@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   chip: {
-    minHeight: 36,
+    minHeight: 44,
     paddingHorizontal: spacing.md,
     justifyContent: 'center',
     borderWidth: StyleSheet.hairlineWidth,
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.surfaceMuted,
   },
   clearAll: {
-    minHeight: 36,
+    minHeight: 44,
     justifyContent: 'center',
     paddingHorizontal: spacing.sm,
   },

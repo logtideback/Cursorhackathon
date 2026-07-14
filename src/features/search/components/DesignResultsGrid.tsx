@@ -1,3 +1,5 @@
+import { FlashList } from '@shopify/flash-list';
+import type { ReactElement } from 'react';
 import { StyleSheet, View, useWindowDimensions } from 'react-native';
 
 import { Image, PressableScale, Text } from '@/components';
@@ -8,24 +10,39 @@ type DesignResultsGridProps = {
   items: SearchDesignHit[];
   onPress: (item: SearchDesignHit) => void;
   onLongPress: (item: SearchDesignHit) => void;
+  onEndReached?: () => void;
+  ListFooterComponent?: ReactElement | null;
 };
 
-export function DesignResultsGrid({ items, onPress, onLongPress }: DesignResultsGridProps) {
+export function DesignResultsGrid({
+  items,
+  onPress,
+  onLongPress,
+  onEndReached,
+  ListFooterComponent,
+}: DesignResultsGridProps) {
   const { width } = useWindowDimensions();
   const gutter = spacing.xl;
   const gap = spacing.sm;
   const columnWidth = (width - gutter * 2 - gap) / 2;
 
   return (
-    <View style={styles.grid}>
-      {items.map((item) => (
+    <FlashList
+      data={items}
+      numColumns={2}
+      keyExtractor={(item) => item.id}
+      onEndReached={onEndReached}
+      onEndReachedThreshold={0.6}
+      ListFooterComponent={ListFooterComponent}
+      contentContainerStyle={styles.content}
+      renderItem={({ item }) => (
         <PressableScale
-          key={item.id}
           accessibilityLabel={`${item.title} by ${item.creatorName}`}
           accessibilityHint="Opens design detail. Long press for quick actions."
           onPress={() => onPress(item)}
           onLongPress={() => onLongPress(item)}
-          style={{ width: columnWidth }}
+          minTouchTarget={false}
+          style={[styles.cell, { width: columnWidth }]}
         >
           {item.imageUrl ? (
             <Image
@@ -33,6 +50,7 @@ export function DesignResultsGrid({ items, onPress, onLongPress }: DesignResults
               style={{ width: columnWidth, height: columnWidth * 1.25 }}
               contentFit="cover"
               recyclingKey={item.id}
+              priority="normal"
             />
           ) : (
             <View style={[styles.fallback, { width: columnWidth, height: columnWidth * 1.25 }]}>
@@ -42,16 +60,18 @@ export function DesignResultsGrid({ items, onPress, onLongPress }: DesignResults
             </View>
           )}
         </PressableScale>
-      ))}
-    </View>
+      )}
+    />
   );
 }
 
 const styles = StyleSheet.create({
-  grid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: spacing.sm,
+  content: {
+    paddingBottom: spacing['2xl'],
+  },
+  cell: {
+    marginBottom: spacing.sm,
+    marginRight: spacing.sm,
   },
   fallback: {
     alignItems: 'center',

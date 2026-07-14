@@ -2,15 +2,17 @@ import { Redirect, Tabs } from 'expo-router';
 import { ColorValue } from 'react-native';
 
 import { LoadingIndicator, Screen, Text } from '@/components';
+import { useTheme } from '@/providers/ThemeProvider';
 import { useAuthStore } from '@/store/auth-store';
 import { useOnboardingStore } from '@/store/onboarding-store';
-import { colors, fontFamilies } from '@/theme';
+import { fontFamilies } from '@/theme';
 
 /** Protected tab shell — requires auth + completed onboarding. */
 export default function TabsLayout() {
   const status = useAuthStore((s) => s.status);
   const hasCompletedOnboarding = useOnboardingStore((s) => s.hasCompletedOnboarding);
   const hasHydrated = useOnboardingStore((s) => s.hasHydrated);
+  const { colors } = useTheme();
 
   if (status === 'loading' || !hasHydrated) {
     return (
@@ -54,6 +56,7 @@ export default function TabsLayout() {
         name="index"
         options={{
           title: 'Discover',
+          tabBarAccessibilityLabel: 'Discover',
           tabBarIcon: ({ color }) => <TabMark color={color} label="D" />,
         }}
       />
@@ -61,6 +64,7 @@ export default function TabsLayout() {
         name="search"
         options={{
           title: 'Search',
+          tabBarAccessibilityLabel: 'Search',
           tabBarIcon: ({ color }) => <TabMark color={color} label="S" />,
         }}
       />
@@ -68,6 +72,7 @@ export default function TabsLayout() {
         name="collections"
         options={{
           title: 'Saved',
+          tabBarAccessibilityLabel: 'Saved collections',
           tabBarIcon: ({ color }) => <TabMark color={color} label="C" />,
         }}
       />
@@ -75,6 +80,7 @@ export default function TabsLayout() {
         name="profile"
         options={{
           title: 'Profile',
+          tabBarAccessibilityLabel: 'Profile',
           tabBarIcon: ({ color }) => <TabMark color={color} label="P" />,
         }}
       />
@@ -84,6 +90,12 @@ export default function TabsLayout() {
 
 function TabMark({ color, label }: { color: ColorValue; label: string }) {
   return (
-    <Text style={{ color, fontSize: 13, fontFamily: fontFamilies.sansSemibold }}>{label}</Text>
+    <Text
+      accessibilityElementsHidden
+      importantForAccessibility="no"
+      style={{ color, fontSize: 13, fontFamily: fontFamilies.sansSemibold }}
+    >
+      {label}
+    </Text>
   );
 }

@@ -14,7 +14,10 @@ export function SwipeCard({ card, dimmed = false }: SwipeCardProps) {
   return (
     <View
       style={[styles.root, dimmed && styles.dimmed]}
-      accessibilityLabel={`${card.title} by ${card.creatorName}. Double tap to open details.`}
+      accessible
+      accessibilityRole="image"
+      accessibilityLabel={`${card.title} by ${card.creatorName}`}
+      accessibilityHint="Double tap to open details. Swipe right to save, left to pass, or use the buttons below."
     >
       <View style={styles.imageWrap}>
         <Image
@@ -23,12 +26,8 @@ export function SwipeCard({ card, dimmed = false }: SwipeCardProps) {
           recyclingKey={card.id}
           priority="high"
           transition={180}
+          accessibilityIgnoresInvertColors
         />
-        <View style={styles.tapHint} accessibilityElementsHidden>
-          <Text variant="label" tone="inverse" style={styles.tapHintText}>
-            View
-          </Text>
-        </View>
       </View>
 
       <View style={styles.meta}>
@@ -78,18 +77,6 @@ const styles = StyleSheet.create({
   image: {
     ...StyleSheet.absoluteFill,
   },
-  tapHint: {
-    position: 'absolute',
-    right: spacing.md,
-    bottom: spacing.md,
-    paddingHorizontal: spacing.sm,
-    paddingVertical: spacing.xs,
-    backgroundColor: 'rgba(18,18,18,0.45)',
-  },
-  tapHintText: {
-    color: colors.textInverse,
-    letterSpacing: 1.4,
-  },
   meta: {
     gap: spacing.xs,
     paddingHorizontal: spacing.lg,
@@ -98,10 +85,10 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
   footer: {
-    marginTop: spacing.sm,
+    marginTop: spacing.xs,
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'space-between',
+    alignItems: 'center',
     gap: spacing.md,
   },
   tags: {
@@ -111,7 +98,6 @@ const styles = StyleSheet.create({
     gap: spacing.sm,
   },
   tag: {
-    textTransform: 'none',
-    letterSpacing: 0.2,
+    textTransform: 'lowercase',
   },
 });

@@ -1,13 +1,22 @@
-import { router } from 'expo-router';
-import { useCallback, useEffect } from 'react';
-import { Alert, BackHandler, Pressable, ScrollView, StyleSheet, View } from 'react-native';
-
-import { Button, Image, LoadingIndicator, Screen, Text, TextField } from '@/components';
+import {
+  Button,
+  Image,
+  LoadingIndicator,
+  OfflineBanner,
+  PressableScale,
+  Screen,
+  Text,
+  TextField,
+} from '@/components';
 import { SimilarityReview } from '@/features/upload/components/SimilarityReview';
 import { UploadProgressList } from '@/features/upload/components/UploadProgressList';
 import { PROVENANCE_OPTIONS, UPLOAD_STEP_COPY } from '@/features/upload/constants';
 import { useUploadWizard } from '@/features/upload/hooks/useUploadWizard';
-import { colors, radii, spacing } from '@/theme';
+import { colors, MIN_TOUCH_TARGET, radii, spacing } from '@/theme';
+import NetInfo from '@react-native-community/netinfo';
+import { router } from 'expo-router';
+import { useCallback, useEffect, useState } from 'react';
+import { Alert, BackHandler, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 
 type UploadWizardScreenProps = {
   userId?: string | null;
@@ -52,6 +61,15 @@ export function UploadWizardScreen({ userId, editingDesignId = null }: UploadWiz
     discardDraft,
     deleteDesign,
   } = wizard;
+
+  const [offline, setOffline] = useState(false);
+
+  useEffect(() => {
+    const sub = NetInfo.addEventListener((state) => {
+      setOffline(!(state.isConnected && state.isInternetReachable !== false));
+    });
+    return () => sub();
+  }, []);
 
   const confirmLeave = useCallback(() => {
     if (canLeaveSafely) {
@@ -98,29 +116,38 @@ export function UploadWizardScreen({ userId, editingDesignId = null }: UploadWiz
   return (
     <Screen scroll contentStyle={styles.content} edges={['top', 'left', 'right']}>
       <View style={styles.topBar}>
-        <Pressable onPress={confirmLeave} accessibilityRole="button" accessibilityLabel="Close">
+        <PressableScale
+          onPress={confirmLeave}
+          accessibilityRole="button"
+          accessibilityLabel="Close upload"
+          style={styles.topAction}
+        >
           <Text variant="bodyStrong" tone="secondary">
             Close
           </Text>
-        </Pressable>
+        </PressableScale>
         <Text variant="caption" tone="tertiary">
           Step {stepNumber} of {totalSteps}
         </Text>
         {!isEditing ? (
-          <Pressable
+          <PressableScale
             onPress={() => void saveAsDraft()}
             accessibilityRole="button"
             accessibilityLabel="Save draft"
+            style={styles.topAction}
           >
             <Text variant="bodyStrong" tone="accent">
               Save
             </Text>
-          </Pressable>
+          </PressableScale>
         ) : (
           <View style={styles.topSpacer} />
         )}
       </View>
 
+      {offline ? (
+        <OfflineBanner message="Publishing needs a connection. You can still edit this draft." />
+      ) : null}
       <View style={styles.progressTrack}>
         <View style={[styles.progressFill, { width: `${(stepNumber / totalSteps) * 100}%` }]} />
       </View>
@@ -247,11 +274,14 @@ export function UploadWizardScreen({ userId, editingDesignId = null }: UploadWiz
       ) : null}
 
       {currentStep === 'category' ? (
-        <View style={styles.optionList}>
+        <View style={styles.optionList} accessibilityRole="radiogroup">
           {categories.map((option) => (
             <Pressable
               key={option.id}
               onPress={() => setCategorySlug(option.id)}
+              accessibilityRole="radio"
+              accessibilityState={{ selected: draft.categorySlug === option.id }}
+              accessibilityLabel={option.label}
               style={[styles.option, draft.categorySlug === option.id && styles.optionSelected]}
             >
               <Text variant="bodyStrong">{option.label}</Text>
@@ -266,11 +296,14 @@ export function UploadWizardScreen({ userId, editingDesignId = null }: UploadWiz
       ) : null}
 
       {currentStep === 'platform' ? (
-        <View style={styles.optionList}>
+        <View style={styles.optionList} accessibilityRole="radiogroup">
           {platforms.map((option) => (
             <Pressable
               key={option.id}
               onPress={() => setPlatform(option.id)}
+              accessibilityRole="radio"
+              accessibilityState={{ selected: draft.platform === option.id }}
+              accessibilityLabel={option.label}
               style={[styles.option, draft.platform === option.id && styles.optionSelected]}
             >
               <Text variant="bodyStrong">{option.label}</Text>
@@ -280,11 +313,14 @@ export function UploadWizardScreen({ userId, editingDesignId = null }: UploadWiz
       ) : null}
 
       {currentStep === 'industry' ? (
-        <View style={styles.optionList}>
+        <View style={styles.optionList} accessibilityRole="radiogroup">
           {industries.map((option) => (
             <Pressable
               key={option.id}
               onPress={() => setIndustry(option.id)}
+              accessibilityRole="radio"
+              accessibilityState={{ selected: draft.industry === option.id }}
+              accessibilityLabel={option.label}
               style={[styles.option, draft.industry === option.id && styles.optionSelected]}
             >
               <Text variant="bodyStrong">{option.label}</Text>
@@ -303,7 +339,6 @@ export function UploadWizardScreen({ userId, editingDesignId = null }: UploadWiz
               void handleNext();
             }}
           />
-          {/* Empty industry is treated as skipped in publish payload. */}
         </View>
       ) : null}
 
@@ -323,11 +358,15 @@ export function UploadWizardScreen({ userId, editingDesignId = null }: UploadWiz
       ) : null}
 
       {currentStep === 'provenance' ? (
-        <View style={styles.optionList}>
+        <View style={styles.optionList} accessibilityRole="radiogroup">
           {PROVENANCE_OPTIONS.map((option) => (
             <Pressable
               key={option.value}
               onPress={() => setProvenance(option.value)}
+              accessibilityRole="radio"
+              accessibilityState={{ selected: draft.provenance === option.value }}
+              accessibilityLabel={option.label}
+              accessibilityHint={option.body}
               style={[styles.option, draft.provenance === option.value && styles.optionSelected]}
             >
               <Text variant="bodyStrong">{option.label}</Text>
@@ -481,8 +520,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
+  topAction: {
+    minHeight: MIN_TOUCH_TARGET,
+    minWidth: MIN_TOUCH_TARGET,
+    justifyContent: 'center',
+  },
   topSpacer: {
-    width: 48,
+    width: MIN_TOUCH_TARGET,
   },
   progressTrack: {
     height: 4,
@@ -520,6 +564,7 @@ const styles = StyleSheet.create({
     gap: spacing.sm,
   },
   option: {
+    minHeight: MIN_TOUCH_TARGET,
     padding: spacing.md,
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: colors.border,

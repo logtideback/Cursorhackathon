@@ -18,11 +18,28 @@ const toneColor: Record<TextTone, string> = {
   danger: colors.danger,
 };
 
-export function Text({ variant = 'body', tone = 'primary', style, children, ...rest }: TextProps) {
+/**
+ * Typography respects Dynamic Type via `allowFontScaling` (default true).
+ * Caps extreme scaling so editorial layouts remain usable.
+ */
+export function Text({
+  variant = 'body',
+  tone = 'primary',
+  style,
+  children,
+  allowFontScaling = true,
+  maxFontSizeMultiplier = 1.35,
+  ...rest
+}: TextProps) {
   const variantStyle = typography[variant];
 
   return (
-    <RNText {...rest} style={[styles.base, variantStyle, { color: toneColor[tone] }, style]}>
+    <RNText
+      {...rest}
+      allowFontScaling={allowFontScaling}
+      maxFontSizeMultiplier={maxFontSizeMultiplier}
+      style={[styles.base, variantStyle, { color: toneColor[tone] }, style]}
+    >
       {children}
     </RNText>
   );

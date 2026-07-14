@@ -1,7 +1,7 @@
 import * as Linking from 'expo-linking';
 
-import { assertEnvConfigured } from '@/lib/env';
 import { resetAnalytics } from '@/lib/analytics';
+import { assertEnvConfigured } from '@/lib/env';
 import { supabase } from '@/lib/supabase';
 
 const magicRedirectTo = Linking.createURL('magic-link');

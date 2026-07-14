@@ -2,10 +2,11 @@ import { router } from 'expo-router';
 import { useMemo, useState } from 'react';
 import { Alert, ScrollView, StyleSheet, View } from 'react-native';
 
-import { Button, EmptyState, ErrorState, LoadingIndicator, Screen, Text } from '@/components';
+import { Button, EmptyState, ErrorState, Screen, Text } from '@/components';
 import { CollectionCover } from '@/features/collections/components/CollectionCover';
 import { CollectionDesignGrid } from '@/features/collections/components/CollectionDesignGrid';
 import { CollectionSharingState } from '@/features/collections/components/CollectionSharingState';
+import { CollectionsSkeleton } from '@/features/collections/components/CollectionsSkeleton';
 import { ItemActionsSheet } from '@/features/collections/components/ItemActionsSheet';
 import { resolveCoverSources } from '@/features/collections/cover';
 import { useCollectionDetail } from '@/features/collections/hooks/useCollectionDetail';
@@ -46,8 +47,8 @@ export function CollectionDetailScreen({ collectionId }: CollectionDetailScreenP
 
   if (isLoading) {
     return (
-      <Screen>
-        <LoadingIndicator label="Opening collection" />
+      <Screen padded={false}>
+        <CollectionsSkeleton variant="detail" />
       </Screen>
     );
   }

@@ -1,12 +1,6 @@
 import { PropsWithChildren, useEffect, useRef } from 'react';
 
-import {
-  identify,
-  resetAnalytics,
-  screen,
-  track,
-  useAnalyticsConsentStore,
-} from '@/lib/analytics';
+import { identify, resetAnalytics, screen, track, useAnalyticsConsentStore } from '@/lib/analytics';
 import { useAuthStore } from '@/store/auth-store';
 
 /**

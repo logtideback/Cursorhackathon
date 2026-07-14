@@ -106,6 +106,7 @@ function GridTile({
               source={{ uri: item.thumbnailUrl ?? item.imageUrl }}
               style={{ width, height }}
               contentFit="cover"
+              recyclingKey={item.designId}
             />
           ) : (
             <View style={[styles.unavailable, { width, height }]}>

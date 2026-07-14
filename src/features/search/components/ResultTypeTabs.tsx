@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.xs,
   },
   tab: {
-    minHeight: 40,
+    minHeight: 44,
     paddingHorizontal: spacing.md,
     justifyContent: 'center',
     borderWidth: StyleSheet.hairlineWidth,

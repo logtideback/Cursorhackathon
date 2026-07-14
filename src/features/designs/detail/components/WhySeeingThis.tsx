@@ -1,5 +1,5 @@
-import { StyleSheet, View } from 'react-native';
 import { useEffect, useRef } from 'react';
+import { StyleSheet, View } from 'react-native';
 
 import { Text } from '@/components';
 import { explainReasons } from '@/features/discover/recommendation/explanations';

@@ -1,9 +1,6 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { router } from 'expo-router';
-import { Alert, Pressable, StyleSheet, Switch, View } from 'react-native';
-
 import { Button, ErrorState, LoadingIndicator, Screen, Text } from '@/components';
 import { AnalyticsConsentCard } from '@/features/preferences/components/AnalyticsConsentCard';
+import { AppearancePreferenceCard } from '@/features/preferences/components/AppearancePreferenceCard';
 import { flushPreferenceQueue } from '@/features/preferences/offline-queue';
 import type { PreferenceControls } from '@/features/preferences/types';
 import { isEnvConfigured } from '@/lib/env';
@@ -18,6 +15,9 @@ import {
 import { unblockCreator } from '@/services/social';
 import { colors, spacing } from '@/theme';
 import type { ExplorationLevel } from '@/types/database';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { router } from 'expo-router';
+import { Alert, Pressable, StyleSheet, Switch, View } from 'react-native';
 
 const EXPLORATION_OPTIONS: { id: ExplorationLevel; label: string; body: string }[] = [
   { id: 'focused', label: 'Focused', body: 'Stay close to what you already save.' },
@@ -81,6 +81,10 @@ export function SettingsScreen() {
 
       <View style={styles.section}>
         <AnalyticsConsentCard />
+      </View>
+
+      <View style={styles.section}>
+        <AppearancePreferenceCard />
       </View>
 
       <View style={styles.section}>

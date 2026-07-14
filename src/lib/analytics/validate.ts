@@ -36,9 +36,7 @@ const EVENT_NAMES = new Set<AnalyticsEvent['name']>([
   'analytics_consent_updated',
 ]);
 
-export type AnalyticsValidationResult =
-  | { ok: true }
-  | { ok: false; message: string };
+export type AnalyticsValidationResult = { ok: true } | { ok: false; message: string };
 
 /**
  * Development-time guard against malformed or incomplete event payloads.
@@ -49,7 +47,10 @@ export function validateAnalyticsEvent(event: AnalyticsEvent): AnalyticsValidati
     return { ok: false, message: 'Event must be an object' };
   }
   if (!EVENT_NAMES.has(event.name)) {
-    return { ok: false, message: `Unknown event name: ${String((event as { name?: string }).name)}` };
+    return {
+      ok: false,
+      message: `Unknown event name: ${String((event as { name?: string }).name)}`,
+    };
   }
   if (event.properties == null || typeof event.properties !== 'object') {
     return { ok: false, message: `Event ${event.name} is missing properties` };

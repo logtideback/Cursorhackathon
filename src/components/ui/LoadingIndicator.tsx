@@ -8,15 +8,18 @@ type LoadingIndicatorProps = {
   style?: StyleProp<ViewStyle>;
 };
 
-export function LoadingIndicator({ label, style }: LoadingIndicatorProps) {
+export function LoadingIndicator({ label = 'Loading', style }: LoadingIndicatorProps) {
   return (
-    <View style={[styles.root, style]} accessibilityRole="progressbar">
+    <View
+      style={[styles.root, style]}
+      accessibilityRole="progressbar"
+      accessibilityLabel={label}
+      accessibilityLiveRegion="polite"
+    >
       <ActivityIndicator color={colors.accent} size="small" />
-      {label ? (
-        <Text variant="caption" tone="secondary" style={styles.label}>
-          {label}
-        </Text>
-      ) : null}
+      <Text variant="caption" tone="secondary" style={styles.label}>
+        {label}
+      </Text>
     </View>
   );
 }

@@ -15,9 +15,10 @@ import { PropsWithChildren, useEffect } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import { AuthProvider } from '@/providers/AuthProvider';
 import { AnalyticsBootstrap } from '@/providers/AnalyticsBootstrap';
+import { AuthProvider } from '@/providers/AuthProvider';
 import { QueryProvider } from '@/providers/QueryProvider';
+import { ThemeProvider } from '@/providers/ThemeProvider';
 import { colors } from '@/theme';
 
 SplashScreen.preventAutoHideAsync().catch(() => undefined);
@@ -46,11 +47,13 @@ export function AppProviders({ children }: PropsWithChildren) {
   return (
     <GestureHandlerRootView style={{ flex: 1, backgroundColor: colors.background }}>
       <SafeAreaProvider>
-        <QueryProvider>
-          <AuthProvider>
-            <AnalyticsBootstrap>{children}</AnalyticsBootstrap>
-          </AuthProvider>
-        </QueryProvider>
+        <ThemeProvider>
+          <QueryProvider>
+            <AuthProvider>
+              <AnalyticsBootstrap>{children}</AnalyticsBootstrap>
+            </AuthProvider>
+          </QueryProvider>
+        </ThemeProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>
   );

@@ -2,7 +2,7 @@ import { router } from 'expo-router';
 import { useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, ScrollView, StyleSheet, View } from 'react-native';
 
-import { Button, EmptyState, ErrorState, Screen, Text } from '@/components';
+import { Button, EmptyState, ErrorState, OfflineBanner, Screen, Text } from '@/components';
 import { ActiveFilterChips } from '@/features/search/components/ActiveFilterChips';
 import { CreatorResultsList } from '@/features/search/components/CreatorResultsList';
 import { DesignQuickActionsSheet } from '@/features/search/components/DesignQuickActionsSheet';
@@ -86,8 +86,18 @@ export function SearchResultsScreen() {
     }
   };
 
+  const footer =
+    resultType === 'designs' ? (
+      <View style={styles.footer}>
+        {isFetchingNextPage ? <ActivityIndicator color={colors.accent} /> : null}
+        {hasNextPage && !isFetchingNextPage ? (
+          <Button label="Load more" variant="ghost" onPress={() => void fetchNextPage()} />
+        ) : null}
+      </View>
+    ) : null;
+
   return (
-    <Screen padded={false} edges={['top', 'left', 'right']}>
+    <Screen padded={false} edges={['top', 'left', 'right']} keyboardAvoiding>
       <View style={styles.top}>
         <SearchBar value={query} onChangeText={setQuery} onClear={() => setQuery('')} autoFocus />
         <View style={styles.toolbar}>
@@ -134,36 +144,38 @@ export function SearchResultsScreen() {
         />
       </View>
 
-      <ScrollView
-        contentContainerStyle={styles.content}
-        keyboardShouldPersistTaps="handled"
-        onScrollEndDrag={() => {
-          if (hasNextPage) {
-            fetchNextPage();
-          }
-        }}
-      >
-        {offline ? (
-          <Text variant="caption" tone="secondary" style={styles.banner}>
-            {isEnvConfigured()
-              ? 'You’re offline. Connect to refresh remote search results.'
-              : 'Offline preview mode — using local search fixtures.'}
-          </Text>
-        ) : null}
+      {offline ? (
+        <View style={styles.offlineWrap}>
+          <OfflineBanner
+            message={
+              isEnvConfigured()
+                ? 'Connect to refresh remote search results.'
+                : 'Offline preview — using local search fixtures.'
+            }
+            actionLabel="Retry"
+            onAction={() => void refetch()}
+          />
+        </View>
+      ) : null}
 
-        {error && !showPlaceholder ? (
+      {showPlaceholder ? (
+        <View style={styles.padded}>
+          <SearchSkeleton variant={resultType === 'designs' ? 'grid' : 'rows'} />
+        </View>
+      ) : null}
+
+      {error && !showPlaceholder ? (
+        <View style={styles.padded}>
           <ErrorState
             title="Search failed"
             message={error instanceof Error ? error.message : 'Could not complete that search.'}
             onAction={() => void refetch()}
           />
-        ) : null}
+        </View>
+      ) : null}
 
-        {showPlaceholder ? (
-          <SearchSkeleton variant={resultType === 'designs' ? 'grid' : 'rows'} />
-        ) : null}
-
-        {!showPlaceholder && !error && resultType === 'designs' && visibleDesigns.length === 0 ? (
+      {!showPlaceholder && !error && resultType === 'designs' && visibleDesigns.length === 0 ? (
+        <View style={styles.padded}>
           <EmptyState
             label="No results"
             title="Nothing matched"
@@ -171,9 +183,11 @@ export function SearchResultsScreen() {
             actionLabel="Clear filters"
             onAction={clearAllFilters}
           />
-        ) : null}
+        </View>
+      ) : null}
 
-        {!showPlaceholder && resultType === 'designs' ? (
+      {!showPlaceholder && !error && resultType === 'designs' && visibleDesigns.length > 0 ? (
+        <View style={styles.list}>
           <DesignResultsGrid
             items={visibleDesigns}
             onPress={(item) => {
@@ -187,71 +201,74 @@ export function SearchResultsScreen() {
               router.push(`/design/${item.id}`);
             }}
             onLongPress={setQuickItem}
-          />
-        ) : null}
-
-        {!showPlaceholder && resultType === 'creators' && creatorItems.length === 0 ? (
-          <EmptyState
-            label="No results"
-            title="No creators found"
-            description="Try another name or username."
-          />
-        ) : null}
-
-        {!showPlaceholder && resultType === 'creators' ? (
-          <CreatorResultsList
-            items={creatorItems}
-            onPress={(item) => {
-              track({
-                name: 'search_result_opened',
-                properties: {
-                  resultType: 'creator',
-                  resultId: item.id,
-                },
-              });
-              router.push(`/creator/${item.id}`);
+            onEndReached={() => {
+              if (hasNextPage && !isFetchingNextPage) {
+                void fetchNextPage();
+              }
             }}
-            onFilterToCreator={(item) => {
-              clearFilterKey({
-                creatorId: item.id,
-                creatorLabel: item.displayName ?? item.username ?? 'Creator',
-              });
-              setResultType('designs');
-              track({
-                name: 'filter_applied',
-                properties: {
-                  filterKey: 'creator',
-                  activeFilterCount: activeFilterCount() + 1,
-                  action: 'apply',
-                },
-              });
-            }}
+            ListFooterComponent={footer}
           />
-        ) : null}
+        </View>
+      ) : null}
 
-        {!showPlaceholder &&
-        resultType !== 'designs' &&
-        resultType !== 'creators' &&
-        taxonomyItems.length === 0 ? (
-          <EmptyState
-            label="No results"
-            title="No matches"
-            description="Try a shorter term or browse trending categories from Search."
-          />
-        ) : null}
+      {!showPlaceholder && resultType !== 'designs' ? (
+        <ScrollView
+          contentContainerStyle={styles.content}
+          keyboardShouldPersistTaps="handled"
+          keyboardDismissMode="on-drag"
+        >
+          {resultType === 'creators' && creatorItems.length === 0 ? (
+            <EmptyState
+              label="No results"
+              title="No creators found"
+              description="Try another name or username."
+            />
+          ) : null}
 
-        {!showPlaceholder && resultType !== 'designs' && resultType !== 'creators' ? (
-          <TaxonomyResultsList items={taxonomyItems} onPress={applyTaxonomy} />
-        ) : null}
+          {resultType === 'creators' ? (
+            <CreatorResultsList
+              items={creatorItems}
+              onPress={(item) => {
+                track({
+                  name: 'search_result_opened',
+                  properties: {
+                    resultType: 'creator',
+                    resultId: item.id,
+                  },
+                });
+                router.push(`/creator/${item.id}`);
+              }}
+              onFilterToCreator={(item) => {
+                clearFilterKey({
+                  creatorId: item.id,
+                  creatorLabel: item.displayName ?? item.username ?? 'Creator',
+                });
+                setResultType('designs');
+                track({
+                  name: 'filter_applied',
+                  properties: {
+                    filterKey: 'creator',
+                    activeFilterCount: activeFilterCount() + 1,
+                    action: 'apply',
+                  },
+                });
+              }}
+            />
+          ) : null}
 
-        {isFetchingNextPage ? (
-          <ActivityIndicator color={colors.accent} style={styles.more} />
-        ) : null}
+          {resultType !== 'creators' && taxonomyItems.length === 0 ? (
+            <EmptyState
+              label="No results"
+              title="No matches"
+              description="Try a shorter term or browse trending categories from Search."
+            />
+          ) : null}
 
-        {hasNextPage && !isFetchingNextPage ? (
-          <Button label="Load more" variant="ghost" onPress={fetchNextPage} />
-        ) : null}
-      </ScrollView>
+          {resultType !== 'creators' ? (
+            <TaxonomyResultsList items={taxonomyItems} onPress={applyTaxonomy} />
+          ) : null}
+        </ScrollView>
+      ) : null}
 
       <DesignQuickActionsSheet
         visible={Boolean(quickItem)}
@@ -278,16 +295,27 @@ const styles = StyleSheet.create({
   filterButton: {
     minWidth: 120,
   },
+  padded: {
+    paddingHorizontal: spacing.xl,
+    paddingTop: spacing.lg,
+  },
+  offlineWrap: {
+    paddingHorizontal: spacing.xl,
+    paddingTop: spacing.md,
+  },
+  list: {
+    flex: 1,
+    paddingHorizontal: spacing.xl,
+    paddingTop: spacing.md,
+  },
   content: {
     paddingHorizontal: spacing.xl,
     paddingTop: spacing.lg,
     paddingBottom: spacing['4xl'],
     gap: spacing.lg,
   },
-  banner: {
-    marginBottom: -spacing.sm,
-  },
-  more: {
-    marginVertical: spacing.lg,
+  footer: {
+    paddingVertical: spacing.lg,
+    gap: spacing.sm,
   },
 });

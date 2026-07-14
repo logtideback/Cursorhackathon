@@ -1,5 +1,6 @@
 export { discoverApi } from './api';
 export { BatchProgress } from './components/BatchProgress';
+export { DiscoverDeckSkeleton } from './components/DiscoverDeckSkeleton';
 export { DiscoverHeader } from './components/DiscoverHeader';
 export { EmptyDeckState } from './components/EmptyDeckState';
 export { NetworkErrorBanner } from './components/NetworkErrorBanner';

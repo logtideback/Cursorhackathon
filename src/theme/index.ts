@@ -1,6 +1,7 @@
+import { MIN_TOUCH_TARGET } from './a11y';
 import { animation } from './animation';
 import { breakpoints } from './breakpoints';
-import { colors } from './colors';
+import { colors, darkColors, getColorsForScheme, lightColors } from './colors';
 import { radii } from './radii';
 import { shadows } from './shadows';
 import { spacing } from './spacing';
@@ -15,7 +16,7 @@ import {
 
 export type { AnimationDuration } from './animation';
 export type { BreakpointToken } from './breakpoints';
-export type { ColorToken } from './colors';
+export type { ColorSchemeName, ColorToken, ThemeColors } from './colors';
 export type { RadiusToken } from './radii';
 export type { ShadowToken } from './shadows';
 export type { SpacingToken } from './spacing';
@@ -25,11 +26,15 @@ export {
   animation,
   breakpoints,
   colors,
+  darkColors,
   fontFamilies,
   fontSizes,
   fontWeights,
+  getColorsForScheme,
   letterSpacings,
+  lightColors,
   lineHeights,
+  MIN_TOUCH_TARGET,
   radii,
   shadows,
   spacing,

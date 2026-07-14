@@ -21,8 +21,14 @@ export type AnalyticsEvent =
         industryCount: number;
       };
     }
-  | { name: 'sign_up_completed'; properties: { method: 'email' | 'magic_link' | 'apple' | 'google' } }
-  | { name: 'sign_in_completed'; properties: { method: 'email' | 'magic_link' | 'apple' | 'google' } }
+  | {
+      name: 'sign_up_completed';
+      properties: { method: 'email' | 'magic_link' | 'apple' | 'google' };
+    }
+  | {
+      name: 'sign_in_completed';
+      properties: { method: 'email' | 'magic_link' | 'apple' | 'google' };
+    }
   | {
       name: 'design_viewed';
       properties: {

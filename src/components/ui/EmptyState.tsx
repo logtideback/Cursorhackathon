@@ -22,11 +22,20 @@ export function EmptyState({
   style,
 }: EmptyStateProps) {
   return (
-    <View style={[styles.root, style]}>
-      <Text variant="label" tone="tertiary">
+    <View
+      style={[styles.root, style]}
+      accessibilityRole="summary"
+      accessibilityLabel={[label, title, description].filter(Boolean).join('. ')}
+    >
+      <Text
+        variant="label"
+        tone="tertiary"
+        accessibilityElementsHidden
+        importantForAccessibility="no"
+      >
         {label}
       </Text>
-      <Text variant="title" style={styles.title}>
+      <Text variant="title" style={styles.title} accessibilityRole="header">
         {title}
       </Text>
       {description ? (
