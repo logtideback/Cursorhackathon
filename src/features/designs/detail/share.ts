@@ -2,6 +2,7 @@ import { Share } from 'react-native';
 
 import { track } from '@/lib/analytics';
 import { buildDesignDeepLink } from '@/lib/deep-links';
+import { shareContent } from '@/utils/share';
 
 export function buildDesignShareUrl(designId: string): string {
   return buildDesignDeepLink(designId);
@@ -26,19 +27,15 @@ export async function shareDesign(params: {
 }): Promise<'shared' | 'dismissed' | 'unavailable'> {
   const { message, url } = buildDesignShareMessage(params);
 
-  try {
-    const result = await Share.share(
-      {
-        message,
-        url,
-        title: params.title,
-      },
-      {
-        dialogTitle: 'Share design',
-        subject: params.title,
-      },
-    );
+  const result = await shareContent({
+    message,
+    url,
+    title: params.title,
+    dialogTitle: 'Share design',
+    subject: params.title,
+  });
 
+  if (result !== 'unavailable') {
     track({
       name: 'design_shared',
       properties: {
@@ -47,29 +44,25 @@ export async function shareDesign(params: {
         source: 'detail',
       },
     });
+    return result;
+  }
 
-    if (result.action === Share.dismissedAction) {
-      return 'dismissed';
-    }
+  // Native fallback without URL if the first share path failed.
+  try {
+    await Share.share({
+      message: `Taste — ${params.title}${params.creatorName ? ` by ${params.creatorName}` : ''}`,
+      title: params.title,
+    });
+    track({
+      name: 'design_shared',
+      properties: {
+        designId: params.designId,
+        ...(params.creatorId ? { creatorId: params.creatorId } : {}),
+        source: 'detail',
+      },
+    });
     return 'shared';
   } catch {
-    // Fallback copy without relying on deep-link plumbing.
-    try {
-      await Share.share({
-        message: `Taste — ${params.title}${params.creatorName ? ` by ${params.creatorName}` : ''}`,
-        title: params.title,
-      });
-      track({
-        name: 'design_shared',
-        properties: {
-          designId: params.designId,
-          ...(params.creatorId ? { creatorId: params.creatorId } : {}),
-          source: 'detail',
-        },
-      });
-      return 'shared';
-    } catch {
-      return 'unavailable';
-    }
+    return 'unavailable';
   }
 }

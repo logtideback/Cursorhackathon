@@ -1,4 +1,3 @@
-import * as ImagePicker from 'expo-image-picker';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Alert } from 'react-native';
 
@@ -36,6 +35,7 @@ import {
   publishOrUpdateDesign,
 } from '@/services/design-upload';
 import type { DesignProvenance } from '@/types/database';
+import { ensureMediaLibraryAccess, ImagePicker } from '@/utils/image-picker';
 
 function stepIndex(step: UploadStep): number {
   return UPLOAD_STEPS.indexOf(step);
@@ -201,9 +201,8 @@ export function useUploadWizard(options?: {
     if (!draft) {
       return;
     }
-    const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
-    if (!permission.granted) {
-      Alert.alert('Permission needed', 'Allow photo access to upload designs.');
+    const allowed = await ensureMediaLibraryAccess('Allow photo access to upload designs.');
+    if (!allowed) {
       return;
     }
 

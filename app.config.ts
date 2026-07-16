@@ -74,6 +74,11 @@ export default ({ config }: ConfigContext): ExpoConfig => {
       output: 'static',
       favicon: './assets/favicon.png',
       backgroundColor: '#F6F4F1',
+      name: 'Taste',
+      shortName: 'Taste',
+      description:
+        'Editorial discovery for interface and graphic design inspiration. Swipe to refine your taste.',
+      themeColor: '#3E5C4A',
     },
     plugins: [
       'expo-router',

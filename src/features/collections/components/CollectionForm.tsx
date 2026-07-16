@@ -1,4 +1,3 @@
-import * as ImagePicker from 'expo-image-picker';
 import { useState } from 'react';
 import { Alert, StyleSheet, View } from 'react-native';
 
@@ -6,6 +5,7 @@ import { Button, Image, Text, TextField } from '@/components';
 import type { CreateCollectionInput, UpdateCollectionInput } from '@/features/collections/types';
 import { createCollectionSchema, isDuplicateNameError } from '@/features/collections/validation';
 import { colors, spacing } from '@/theme';
+import { ensureMediaLibraryAccess, ImagePicker } from '@/utils/image-picker';
 import { firstZodError } from '@/utils/validation';
 
 type CollectionFormProps = {
@@ -98,9 +98,10 @@ export function CollectionForm({
             variant="secondary"
             loading={uploading}
             onPress={async () => {
-              const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
-              if (!permission.granted) {
-                Alert.alert('Permission needed', 'Allow photo access to set a collection cover.');
+              const allowed = await ensureMediaLibraryAccess(
+                'Allow photo access to set a collection cover.',
+              );
+              if (!allowed) {
                 return;
               }
               const result = await ImagePicker.launchImageLibraryAsync({

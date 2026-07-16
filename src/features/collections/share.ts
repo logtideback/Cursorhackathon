@@ -1,7 +1,6 @@
-import { Share } from 'react-native';
-
 import { track } from '@/lib/analytics';
 import { buildCollectionDeepLink } from '@/lib/deep-links';
+import { shareContent } from '@/utils/share';
 
 /** Public collection share URL (universal link or scheme by APP_ENV). */
 export function buildPublicCollectionShareUrl(collectionId: string): string {
@@ -20,33 +19,20 @@ export async function sharePublicCollection(params: {
   const url = buildPublicCollectionShareUrl(params.collectionId);
   const message = `Taste — ${params.name}\n${url}`;
 
-  try {
-    const result = await Share.share(
-      {
-        message,
-        url,
-        title: params.name,
-      },
-      { dialogTitle: 'Share collection', subject: params.name },
-    );
+  const result = await shareContent({
+    message,
+    url,
+    title: params.name,
+    dialogTitle: 'Share collection',
+    subject: params.name,
+  });
+
+  if (result !== 'unavailable') {
     track({
       name: 'collection_shared',
       properties: { collectionId: params.collectionId, isPrivate: params.isPrivate },
     });
-    if (result.action === Share.dismissedAction) {
-      return 'dismissed';
-    }
-    return 'shared';
-  } catch {
-    try {
-      await Share.share({ message: `Taste — ${params.name}`, title: params.name });
-      track({
-        name: 'collection_shared',
-        properties: { collectionId: params.collectionId, isPrivate: params.isPrivate },
-      });
-      return 'shared';
-    } catch {
-      return 'unavailable';
-    }
   }
+
+  return result;
 }
